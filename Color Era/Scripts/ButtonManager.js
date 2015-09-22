@@ -8,24 +8,6 @@ function ButtonManager(game)
 //    this.exitButton = null;
     this.gametype = 0;
 }
-//ButtonManager.prototype.createButton = function(posx, posy, key)
-//{
-//    this.theButton = this.game.add.button(posx, posy, key, this.actionOnClick, this,  1, 0, 2);
-//    this.theButton.anchor.set(0.5,0.5);
-//    new Image(Phaser.Game, posx, posy, key, 0);
-//    this.theButton.inputEnbled = true;
-//},
-//    
-//ButtonManager.prototype.actionOnClick = function()
-//{
-//    var startbtn = this.game.cache.getImage('StartGame');
-//   // var clicked = this.game.input.activePointer.isDown
-//    if(startbtn.input.pointerOver())
-//    {
-//        this.gametype = 1;
-//	   theGame.FadeScreen.OnEnd = true;
-//    }
-//};
 
 ButtonManager.prototype.createButton = function(posx, posy, key, func)
 {
@@ -34,12 +16,10 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
     new Image(Phaser.Game, posx, posy, key, 0);
     this.theButton.inputEnbled = true;
     console.log(this.gametype);
-}
+};
     
 ButtonManager.prototype.StartGame = function()
-{
-    //var startbtn = this.game.cache.getImage('StartGame');
-    
+{   
     this.gametype = 1;
     theGame.FadeScreen.OnEnd = true;
     console.log(this.gametype);
