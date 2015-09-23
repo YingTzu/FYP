@@ -15,19 +15,19 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
     this.theButton.anchor.set(0.5,0.5);
     new Image(Phaser.Game, posx, posy, key, 0);
     this.theButton.inputEnbled = true;
-    console.log(this.gametype);
+    console.log("game scence: " + this.gametype);
 };
     
 ButtonManager.prototype.StartGame = function()
 {   
     this.gametype = 1;
     theGame.FadeScreen.OnEnd = true;
-    console.log(this.gametype);
+    console.log("game scence: " + this.gametype);
 };
 
 ButtonManager.prototype.GoToTutorial = function()
 {
     this.gametype = 2;
     theGame.FadeScreen.OnEnd = true;
-    console.log(this.gametype);
+    console.log("game scence: " + this.gametype);
 };

@@ -30,6 +30,17 @@ theGame.Preloader.prototype =
         this.load.image('GameBackGround', 'Assets/images/game.png');
         this.load.image('ToturialBackGround', 'Assets/images/tutorial.png');
         
+        //Person & Clothes
+        this.load.image('Person', 'Assets/images/people.png');
+        
+        this.load.image('70Hat', 'Assets/images/hat.png');
+        this.load.image('70Clothes', 'Assets/images/clothes.png');
+        this.load.image('70Pants', 'Assets/images/pants.png');
+        
+        this.load.image('80Hat', 'Assets/images/hat2.png');
+        this.load.image('80Clothes', 'Assets/images/clothes2.png');
+        this.load.image('80Pants', 'Assets/images/pants2.png');
+        
         //button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
