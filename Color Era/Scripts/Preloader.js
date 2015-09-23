@@ -46,10 +46,7 @@ theGame.Preloader.prototype =
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
         
         //Objects
-        this.load.spritesheet('tiles', 'assets/images/phaser_tiles.png', 64, 64);
-        
-        //Tiles
-       // this.load.tilemap('map', 'assets/tilemaps/level1.csv', null, Phaser.Tilemap.CSV);
+        this.load.spritesheet('tiles', 'Assets/images/phaser_tiles.png', 64, 64);
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
