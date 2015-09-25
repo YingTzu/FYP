@@ -1,10 +1,9 @@
 theGame.Preloader = function(game)
 {
     this.background = null;
+    
+    this.preloadBarEmpty = null;
     this.preloadBar = null;
-    this.PreloadBarempty = null;
-    this.preloadCover = null;
-    this.ready = false;
 };
 
 theGame.Preloader.prototype = 
@@ -15,14 +14,15 @@ theGame.Preloader.prototype =
         theGame.Game_Mute = false;
         
         //Loading Screen Background
-        this.preloadCover = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'LoadingScreenBackGround');
-        this.preloadCover.anchor.set(0.5,0.5);
+        this.background = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'LoadingScreenBackGround');
+        this.background.anchor.set(0.5,0.5);
         
-        //Empty Loading bar
-        
-        //Loading bar
-        
-        //this.load.setPreloadSprite(this.preloadBar); //use this.preloadbar as a sprite for loadingbar
+        //Draw Loading bar
+        this.preloadBarEmpty = this.add.sprite(this.world.width*0.2, this.world.height*0.8, 'LoadingBar'); 
+        this.preloadBar = this.add.sprite(this.world.width*0.2, this.world.height*0.8, 'LoadingBarCover'); 
+
+        //use this.loadingBar as a sprite for loadingbar
+        this.load.setPreloadSprite(this.preloadBar); 
         
         //Imagae Assets preload here
         //Background
@@ -47,6 +47,8 @@ theGame.Preloader.prototype =
         
         //Objects
         this.load.spritesheet('tiles', 'Assets/images/phaser_tiles.png', 64, 64);
+        //time bar
+        this.load.image('TimeBar', 'Assets/images/timeBar.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
@@ -54,6 +56,7 @@ theGame.Preloader.prototype =
     
     create: function()
     {
+        this.preloadBar.cropEnabled = false;
         this.state.start('MainMenu');
     },
     

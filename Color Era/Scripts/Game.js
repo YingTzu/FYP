@@ -9,10 +9,12 @@ theGame.Game = function(game)
     
     this.tileSize = 64;
     this.theTile = null;
-    this.tileType  = 24;
+    this.tileType  = 0;
     this.tileArray = [];
+    this.tileChangeSpeed = null;
     
-    this.level = 0;
+    this.level = 2;
+    this.score = 0;
     
     this.isTimeChange = true;
     this.counter = 0;
@@ -23,13 +25,15 @@ theGame.Game = function(game)
     this.eightysTheme = false;
     this.ninetysTheme = false;
     this.twoThousandsTheme = false;
-    //this.randomEra = null;
     
     this.seventysArray = [];    //1970s
     this.eightysArray = [];     //1980s
     this.ninetysArray = [];     //199s
     this.twoThousandsArray =[]; //2000s
     this.hatArray = [];
+    
+    //timeBar
+    this.timeManager = null;
 };
 
 theGame.Game.prototype = 
@@ -78,6 +82,27 @@ theGame.Game.prototype =
                 }
             }
         }
+        
+        //level settings
+        if(this.level == 0)
+        {
+            this.tileType  = 12;
+            this.tileChangeSpeed = 2;
+        }
+        else if(this.level == 1)
+        {
+            this.tileType  = 18;
+            this.tileChangeSpeed = 1;
+        }
+        else if(this.level == 2)
+        {
+            this.tileChangeSpeed = 1;
+            this.tileType  = 24;
+        }
+        
+        //draw time bar
+        this.timeManager = new TimeManager(this);
+        this.timeManager.createTimer(50, 0, 30, 1);
 
        this.randomEraFunc(1, 4);
         
@@ -93,7 +118,8 @@ theGame.Game.prototype =
     /////////////////////////////////////////////////////
     update: function()
     {
-        this.checkLevel(3);
+        this.checkLevel(this.level);
+        this.timeManager.startTimer();
     },
     
     //when game start, random a Era theme
@@ -147,10 +173,6 @@ theGame.Game.prototype =
             this.tileArray[i] = [];
             for(j = 0; j < row; j++)
             {
-                //if(this is not currentera de item)
-                //notcurrentera++;
-                //if(notcurrentera > 4)
-                //force it to be currentera
                 this.randomTile = Math.floor(Math.random()* this.tileType);
                 this.theTile = this.add.sprite(300+i*this.tileSize, 200+j*this.tileSize, 'tiles');
                 this.theTile.frame = this.randomTile;
@@ -170,8 +192,8 @@ theGame.Game.prototype =
     {
         this.counter++;
         this.text.setText('Counter: ' + this.counter);
-        
-        if(this.counter >= 3)
+
+        if(this.counter >= this.tileChangeSpeed)
         {
             this.counter = 0;
             this.isTimeChange = true;
@@ -225,40 +247,52 @@ theGame.Game.prototype =
         {
             if(sprite.frame == this.seventysArray[i])
             {
-                //sucessCounter+=25;
+                if(this.seventysTheme == true)
+                    this.score += 20;  
+                
                 this.text2.text = "1970s " + sprite.frame;
+                console.log(this.score);
             }
             else if(sprite.frame == this.eightysArray[i])
             {
-                //sucessCounter+=25;
+                if(this.eightysTheme == true)
+                    this.score += 20;
+
                 this.text2.text = "1980s " + sprite.frame;
+                console.log(this.score);
             }
             else if(sprite.frame == this.ninetysArray[i])
             {
-                //sucessCounter+=25;
+                 if(this.ninetysTheme == true)
+                    this.score += 20;
+                
                 this.text2.text = "1990s " + sprite.frame;
+                console.log(this.score);
             }
             else if(sprite.frame == this.twoThousandsArray[i])
             {
-                //sucessCounter+=25;
+                 if(this.twoThousandsTheme == true)
+                    this.score += 20;
+                
                 this.text2.text = "2000s " + sprite.frame;
+                console.log(this.score);
             }
         }
     },
     
-    checkLevel: function(level)
+    checkLevel: function(levelSelect)
     {
         if(this.isTimeChange)
         {
-             switch(level)
+             switch(levelSelect)
              {
-                case 1:
+                 case 0:
                     this.drawGrids(2, 2);
                     break;
-                case 2:
+                case 1:
                     this.drawGrids(3, 3);
                     break;
-                case 3:
+                case 2:
                     this.drawGrids(3, 3);
                     break;
             }

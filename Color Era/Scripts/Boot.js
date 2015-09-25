@@ -32,6 +32,8 @@ theGame.Boot.prototype =
     {
         //Loading screen assets
         this.load.image('LoadingScreenBackGround', 'Assets/images/loading.png');
+        this.load.image('LoadingBar', 'Assets/images/loadingBar.png');
+        this.load.image('LoadingBarCover', 'Assets/images/loadingBarCover.png');
     },
 
     create: function ()
