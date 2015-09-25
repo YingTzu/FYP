@@ -23,6 +23,7 @@ TimeManager.prototype.createTimer = function(posx, posy, time, interval)
     this.startTime = time;
     this.timerInterval = interval;
     this.game.time.events.add(Phaser.Timer.SECOND, this.startTimer, this);
+    
 };
 
 TimeManager.prototype.startTimer = function()
