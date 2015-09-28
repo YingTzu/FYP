@@ -9,16 +9,13 @@ theGame.Game = function(game)
     
     this.tileSize = 128;
     this.theTile = null;
-    this.tileType  = 0;
+    this.tileType  = 4;
     this.tileArray = [];
     this.tileChangeSpeed = null;
     
     this.level = 1;
     this.score = 0;
-    
-    this.isTimeChange = true;
-    this.counter = 0;
-    this.text = 0;
+
     this.text2 = 0;
     
     this.seventysTheme = false;
@@ -49,59 +46,32 @@ theGame.Game.prototype =
         this.person = this.add.sprite(this.world.width*0.8, this.world.height*0.5, 'Person');
         this.person.anchor.set(0.5,0.5);
         
-        //draw time count text
-        this.text = this.add.text(this.world.centerX, 500, 'Counter: 0', { font: "64px Arial", fill: "#000000", align: "center" });
-        this.text.anchor.setTo(0.5, 0.5);
-        
         //set the images into different era array
-        for(i = 0; i < 4; i++)
+        for(i = 0; i < 2; i++)
         {
-            for(j = 0; j < 6; j++)
+            for(j = 0; j < 2; j++)
             {
-                if(i == 0)
+                if(i == 0 && j == 0)
                 {
-                    this.seventysArray[j] = 6*i + j;
-                    //console.log("70s: " + this.seventysArray[j]);
+                    this.seventysArray[j] = 2*i + j;
                 }
-                else if(i == 1)
+                else if(i == 0 && j == 1)
                 {
-                    this.eightysArray[j] = 6*i + j;
-                    //console.log("80s: " + this.eightysArray[j]);
+                    this.eightysArray[j] = 2*i + j;
                 }
-                else if(i == 2)
+                else if(i == 1 && j == 0)
                 {
-                    this.ninetysArray[j] = 6*i + j;
-                    //console.log("90s: " + this.ninetysArray[j]);
+                    this.ninetysArray[j] = 2*i + j;
                 }
-                else if(i == 3)
+                else if(i == 1 && j == 2)
                 {
-                    this.twoThousandsArray[j] = 6*i + j;
-                    //console.log("2000s: " + this.twoThousandsArray[j]);
+                    this.twoThousandsArray[j] = 2*i + j;
                 }
             }
         }
-        
-        //level settings
-        if(this.level == 0)
-        {
-            this.tileType  = 12;
-            this.tileChangeSpeed = 3;
-        }
-        else if(this.level == 1)
-        {
-            this.tileType  = 18;
-            this.tileChangeSpeed = 3;
-        }
-        else if(this.level == 2)
-        {
-            this.tileChangeSpeed = 3;
-            this.tileType  = 24;
-        }
 
-       this.randomEraFunc(1, 4);
-        
-        //time count
-        this.time.events.loop(Phaser.Timer.SECOND, this.TimeChange, this);
+        this.randomEraFunc(1, 4);
+        this.drawGrids(2, 2);
         
         //draw sprite clicked text
         this.text2 = this.add.text(16, 200, 'Click a sprite', { fill: '#000000' });
@@ -112,7 +82,6 @@ theGame.Game.prototype =
     /////////////////////////////////////////////////////
     update: function()
     {
-        this.checkLevel(this.level);
     },
     
     //when game start, random a Era theme
@@ -168,8 +137,8 @@ theGame.Game.prototype =
             {
                 this.randomTile = Math.floor(Math.random()* this.tileType);
                 this.theTile = this.add.sprite(300+i*this.tileSize, 200+j*this.tileSize, 'tiles');
-                //this.theTile.frame = this.randomTile;
-                //this.theTile.value = this.randomTile;
+                this.theTile.frame = this.randomTile;
+                this.theTile.value = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
                 this.theTile.anchor.setTo(0.5, 0.5);
                 this.isTimeChange = false;
@@ -183,22 +152,14 @@ theGame.Game.prototype =
      //the reaches time, change the images in the gird
     TimeChange: function() 
     {
-        this.counter++;
-        this.text.setText('Counter: ' + this.counter);
-
-        if(this.counter > this.tileChangeSpeed)
+        for(i = 0; i < 2; i++)
         {
-            this.counter = 0;
-            this.isTimeChange = true;
-
-            for(i = 0; i < 3; i++)
+            for(j = 0; j < 2; j++)
             {
-                for(j = 0; j < 3; j++)
-                {
-                    this.tileArray[i][j].destroy();
-                }
+                this.tileArray[i][j].destroy();
             }
         }
+        
     },
     
     clicked: function(sprite, pointer) //check the clicking of the images
@@ -217,14 +178,8 @@ theGame.Game.prototype =
             case 0:
                 this.drawClothes('70Clothes');
                 break;
-            case 1:
-                this.drawClothes('70Hat');
-                break;
             case 2:
                 this.drawClothes('70Pants');
-                break;
-            case 3:
-                this.drawClothes('70Watch');
                 break;
             case 4:
                 this.drawClothes('70Glasses');
@@ -236,17 +191,11 @@ theGame.Game.prototype =
             case 6:
                 this.drawClothes('80Clothes');
                 break;
-            case 7:
-                this.drawClothes('80Hat');
-                break;
             case 8:
                 this.drawClothes('80Pants');
                 break;
             case 9:
                 this.drawClothes('80Watch');
-                break;
-            case 10:
-                this.drawClothes('80Glasses');
                 break;
             case 11:
                 this.drawClothes('80Shose');
@@ -295,25 +244,6 @@ theGame.Game.prototype =
                 
                 this.text2.text = "2000s " + sprite.frame;
                 console.log(this.score);
-            }
-        }
-    },
-    
-    checkLevel: function(levelSelect)
-    {
-        if(this.isTimeChange)
-        {
-             switch(levelSelect)
-             {
-                 case 0:
-                    this.drawGrids(2, 2);
-                    break;
-                case 1:
-                    this.drawGrids(3, 3);
-                    break;
-                case 2:
-                    this.drawGrids(3, 3);
-                    break;
             }
         }
     }
