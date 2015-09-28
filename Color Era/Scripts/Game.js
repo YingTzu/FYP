@@ -7,13 +7,13 @@ theGame.Game = function(game)
     this.person = null;
     this.images =null;
     
-    this.tileSize = 64;
+    this.tileSize = 128;
     this.theTile = null;
     this.tileType  = 0;
     this.tileArray = [];
     this.tileChangeSpeed = null;
     
-    this.level = 2;
+    this.level = 1;
     this.score = 0;
     
     this.isTimeChange = true;
@@ -31,9 +31,7 @@ theGame.Game = function(game)
     this.ninetysArray = [];     //199s
     this.twoThousandsArray =[]; //2000s
     this.hatArray = [];
-    
-    //timeBar
-    this.timeManager = null;
+
 };
 
 theGame.Game.prototype = 
@@ -87,27 +85,23 @@ theGame.Game.prototype =
         if(this.level == 0)
         {
             this.tileType  = 12;
-            this.tileChangeSpeed = 2;
+            this.tileChangeSpeed = 3;
         }
         else if(this.level == 1)
         {
             this.tileType  = 18;
-            this.tileChangeSpeed = 1;
+            this.tileChangeSpeed = 3;
         }
         else if(this.level == 2)
         {
-            this.tileChangeSpeed = 1;
+            this.tileChangeSpeed = 3;
             this.tileType  = 24;
         }
-        
-        //draw time bar
-        this.timeManager = new TimeManager(this);
-        this.timeManager.createTimer(50, 0, 30, 1);
 
        this.randomEraFunc(1, 4);
         
         //time count
-        this.time.events.loop(Phaser.Timer.SECOND, this.TimesUP, this);
+        this.time.events.loop(Phaser.Timer.SECOND, this.TimeChange, this);
         
         //draw sprite clicked text
         this.text2 = this.add.text(16, 200, 'Click a sprite', { fill: '#000000' });
@@ -119,7 +113,6 @@ theGame.Game.prototype =
     update: function()
     {
         this.checkLevel(this.level);
-        this.timeManager.startTimer();
     },
     
     //when game start, random a Era theme
@@ -175,8 +168,8 @@ theGame.Game.prototype =
             {
                 this.randomTile = Math.floor(Math.random()* this.tileType);
                 this.theTile = this.add.sprite(300+i*this.tileSize, 200+j*this.tileSize, 'tiles');
-                this.theTile.frame = this.randomTile;
-                this.theTile.value = this.randomTile;
+                //this.theTile.frame = this.randomTile;
+                //this.theTile.value = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
                 this.theTile.anchor.setTo(0.5, 0.5);
                 this.isTimeChange = false;
@@ -188,15 +181,23 @@ theGame.Game.prototype =
     },
     
      //the reaches time, change the images in the gird
-    TimesUP: function() 
+    TimeChange: function() 
     {
         this.counter++;
         this.text.setText('Counter: ' + this.counter);
 
-        if(this.counter >= this.tileChangeSpeed)
+        if(this.counter > this.tileChangeSpeed)
         {
             this.counter = 0;
             this.isTimeChange = true;
+
+            for(i = 0; i < 3; i++)
+            {
+                for(j = 0; j < 3; j++)
+                {
+                    this.tileArray[i][j].destroy();
+                }
+            }
         }
     },
     
@@ -214,23 +215,41 @@ theGame.Game.prototype =
         switch(sprite.frame)
         {
             case 0:
-                this.drawClothes('70Hat');
+                this.drawClothes('70Clothes');
                 break;
             case 1:
-                this.drawClothes('70Clothes');
+                this.drawClothes('70Hat');
                 break;
             case 2:
                 this.drawClothes('70Pants');
                 break;
+            case 3:
+                this.drawClothes('70Watch');
+                break;
+            case 4:
+                this.drawClothes('70Glasses');
+                break;
+            case 5:
+                this.drawClothes('70Shose');
+                break;
             
             case 6:
-                this.drawClothes('80Hat');
+                this.drawClothes('80Clothes');
                 break;
             case 7:
-                this.drawClothes('80Clothes');
+                this.drawClothes('80Hat');
                 break;
             case 8:
                 this.drawClothes('80Pants');
+                break;
+            case 9:
+                this.drawClothes('80Watch');
+                break;
+            case 10:
+                this.drawClothes('80Glasses');
+                break;
+            case 11:
+                this.drawClothes('80Shose');
                 break;
             case 12:
                 //this.drawClothes('90Hat');
