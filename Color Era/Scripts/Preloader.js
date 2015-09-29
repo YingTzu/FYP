@@ -33,26 +33,30 @@ theGame.Preloader.prototype =
         //Person & Clothes
         this.load.image('Person', 'Assets/images/people.png');
         
-        this.load.image('70Hat', 'Assets/images/70hat.png');
-        this.load.image('70Glasses', 'Assets/images/70glasses.png');
-        this.load.image('70Clothes', 'Assets/images/70clothes.png');
-        this.load.image('70Watch', 'Assets/images/70watch.png');
-        this.load.image('70Pants', 'Assets/images/70pants.png');
-        this.load.image('70Shose', 'Assets/images/70shose.png');
+        this.load.image('70Glasses', 'Assets/images/70s_specs.png');
+        this.load.image('70Clothes', 'Assets/images/70s_shirt.png');
+        this.load.image('70Pants', 'Assets/images/70s_pants.png');
+        this.load.image('70Shose', 'Assets/images/70s_shoes.png');
         
-        this.load.image('80Hat', 'Assets/images/80hat.png');
         this.load.image('80Glasses', 'Assets/images/80glasses.png');
         this.load.image('80Clothes', 'Assets/images/80clothes.png');
-        this.load.image('80Watch', 'Assets/images/80watch.png');
         this.load.image('80Pants', 'Assets/images/80pants.png');
         this.load.image('80Shose', 'Assets/images/80shose.png');
         
         //button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
+        this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 64, 64);
+        this.load.spritesheet('PantsButton', 'Assets/images/pantsButtons.png', 64, 64);
         
         //Objects
-        this.load.spritesheet('tiles', 'Assets/images/clothesIcon.png', 128, 128);
+        this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
+        this.load.spritesheet('PantsTiles', 'Assets/images/pantsIcon.png', 128, 128);
+        this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
+        this.load.spritesheet('PantsTiles', 'Assets/images/pantsIcon.png', 128, 128);
+        this.load.spritesheet('GlassesIcon', 'Assets/images/glassesIcon.png', 128, 128);
+        this.load.spritesheet('ShoseIcon', 'Assets/images/shoseIcon.png', 128, 128);
+        
         //time bar
         this.load.image('TimeBar', 'Assets/images/timeBar.png');
         

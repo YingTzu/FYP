@@ -1,7 +1,9 @@
 theGame.Game = function(game)
 {
+    this.input;
     this.music = null;
     this.uiManager = null;
+    this.spriteManager = null;
     
     this.gameBackground = null;
     this.person = null;
@@ -28,7 +30,11 @@ theGame.Game = function(game)
     this.ninetysArray = [];     //199s
     this.twoThousandsArray =[]; //2000s
     this.hatArray = [];
-
+    
+    this.clothesOpen = true; //clothes grid will draw when this is true
+    this.pantsOpen = true;
+    this.shoesOpen = false;
+    this.specsOpen = false;
 };
 
 theGame.Game.prototype = 
@@ -45,6 +51,10 @@ theGame.Game.prototype =
         //Draw character
         this.person = this.add.sprite(this.world.width*0.8, this.world.height*0.5, 'Person');
         this.person.anchor.set(0.5,0.5);
+        
+        this.spriteManager = new SpriteManager(this);
+        this.spriteManager.createClothes(this.world.width*0.3, this.world.height*0.8, 'ClothesButton');
+        this.spriteManager.createPants(this.world.width*0.4, this.world.height*0.8, 'PantsButton');
         
         //set the images into different era array
         for(i = 0; i < 2; i++)
@@ -63,16 +73,17 @@ theGame.Game.prototype =
                 {
                     this.ninetysArray[j] = 2*i + j;
                 }
-                else if(i == 1 && j == 2)
+                else if(i == 1 && j == 1)
                 {
                     this.twoThousandsArray[j] = 2*i + j;
                 }
             }
         }
-
-        this.randomEraFunc(1, 4);
-        this.drawGrids(2, 2);
         
+        this.randomEraFunc(1, 4);
+        
+        //this.drawGrids('ClothesTiles');
+        this.drawGrids('PantsTiles');
         //draw sprite clicked text
         this.text2 = this.add.text(16, 200, 'Click a sprite', { fill: '#000000' });
     },
@@ -82,6 +93,12 @@ theGame.Game.prototype =
     /////////////////////////////////////////////////////
     update: function()
     {
+       // console.log(this.clothesOpen);
+//        if(this.clothesOpen == true)
+//        {
+//            this.drawGrids('ClothesTiles');
+//            this.clothesOpen = false;
+//        }
     },
     
     //when game start, random a Era theme
@@ -121,33 +138,92 @@ theGame.Game.prototype =
         console.log("the era " + randomEra);
     },
     
-    drawClothes: function(sprite)
+    checkOpen: function()
     {
-        this.images = this.add.sprite(this.world.width*0.8, this.world.height*0.5, sprite);
-        this.images.anchor.set(0.5,0.5);
+        //this.drawGrids('PantsTiles');
+        //this.drawGrids('GlassesIcon');
+        //this.drawGrids('ShoseIcon');
     },
     
-    drawGrids: function(row, column)
+    drawClothes: function(sprite)
     {
-        //notcurrentera
-        for(i = 0; i < column; i++)
+        var tempImages = null;
+        
+        //delete previous selected image
+        if(this.tempImages != null)
+            this.tempImages.destroy();
+        
+        this.images = this.add.sprite(this.world.width*0.8, this.world.height*0.5, sprite);
+        this.images.anchor.set(0.5,0.5);
+        this.tempImages = this.images;
+        
+    },
+    
+    drawGrids: function(key)
+    {
+        var newArray = [-1,-1,-1,-1];
+        var newTile;
+        for(i = 0; i < 2; i++)
         {
             this.tileArray[i] = [];
-            for(j = 0; j < row; j++)
+            for(j = 0; j < 2; j++)
             {
-                this.randomTile = Math.floor(Math.random()* this.tileType);
-                this.theTile = this.add.sprite(300+i*this.tileSize, 200+j*this.tileSize, 'tiles');
+                this.newTile = Math.floor(Math.random() * this.tileType);
+                for(k = 0; k < 4; k++)
+                {
+                    while(newArray[k] ==  this.newTile) //check if random is repeat of k
+                    {
+                        this.newTile = Math.floor(Math.random() * this.tileType); //random again
+                        
+                        for(l = 0; l < 4; l++)
+                        { 
+                            if(newArray[l] ==  this.newTile) //if repeated, reset for loop
+                                k = 0;
+                        }
+                    }
+                }
+
+                for(l = 0; l < 4; l++)
+                {
+                    if(newArray[l] == -1)
+                    {
+                        newArray[l] =  this.newTile; //set value into the array
+                        break;
+                    }
+                }
+                
+                this.randomTile = this.newTile;
+                this.theTile = this.add.sprite(350+i*this.tileSize, 250+j*this.tileSize, key);
                 this.theTile.frame = this.randomTile;
-                this.theTile.value = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
+                
                 this.theTile.anchor.setTo(0.5, 0.5);
                 this.isTimeChange = false;
-                
                 this.theTile.inputEnabled=true;
                 this.theTile.events.onInputDown.add(this.clicked, this);
             }
         }
     },
+    
+//    returnValue: function(number, testArray)
+//    {
+//        this.number = Math.floor(Math.random() * this.tileType);
+//        var empty = false;
+//        for(i = 0; i < 4; i++)
+//        {
+//            if(testArray[i] == 'nil')
+//            {
+//                empty = true;
+//                testArray[i] = this.number;
+//                console.log("breakkkkkkkk");
+//            }
+//            if(this.number == testArray[i] && !empty)
+//            {
+//                this.returnValue(number, testArray);
+//            }
+//        }
+//        console.log(number);
+//    },
     
      //the reaches time, change the images in the gird
     TimeChange: function() 
@@ -173,45 +249,86 @@ theGame.Game.prototype =
     
     wearClothes: function(sprite)
     {
-        switch(sprite.frame)
+        if(this.clothesOpen == true)
         {
-            case 0:
-                this.drawClothes('70Clothes');
-                break;
-            case 2:
-                this.drawClothes('70Pants');
-                break;
-            case 4:
-                this.drawClothes('70Glasses');
-                break;
-            case 5:
-                this.drawClothes('70Shose');
-                break;
-            
-            case 6:
-                this.drawClothes('80Clothes');
-                break;
-            case 8:
-                this.drawClothes('80Pants');
-                break;
-            case 9:
-                this.drawClothes('80Watch');
-                break;
-            case 11:
-                this.drawClothes('80Shose');
-                break;
-            case 12:
-                //this.drawClothes('90Hat');
-                break;
-            case 18:
-                //this.drawClothes('2000Hat');
-                break;
+            switch(sprite.frame)
+            {
+                case 0:
+                    this.drawClothes('70Clothes');
+                    break;
+                case 1:
+                    this.drawClothes('80Clothes');
+                    break;
+                case 2:
+                    //this.drawClothes('90Clothes');
+                    break;
+                case 3:
+                    //this.drawClothes('2000Clothes');
+                    break;
+            }
         }
+        
+        if(this.pantsOpen == true)
+        {
+            switch(sprite.frame)
+            {
+                case 0:
+                    this.drawClothes('70Pants');
+                    break;
+                case 1:
+                    this.drawClothes('80Pants');
+                    break;
+                case 2:
+                   // this.drawClothes('70Glasses');
+                    break;
+                case 3:
+                    //this.drawClothes('70Shose');
+                    break;
+            }
+        }
+        
+//        if(this.shoesOpen == true)
+//        {
+//            switch(sprite.frame)
+//            {
+//                case 0:
+//                    this.drawClothes('70Clothes');
+//                    break;
+//                case 1:
+//                    this.drawClothes('70Pants');
+//                    break;
+//                case 2:
+//                    this.drawClothes('70Glasses');
+//                    break;
+//                case 3:
+//                    this.drawClothes('70Shose');
+//                    break;
+//            }
+//        }
+//        
+//        if(this.specsOpen == true)
+//        {
+//            switch(sprite.frame)
+//            {
+//                case 0:
+//                    this.drawClothes('70Clothes');
+//                    break;
+//                case 1:
+//                    this.drawClothes('70Pants');
+//                    break;
+//                case 2:
+//                    this.drawClothes('70Glasses');
+//                    break;
+//                case 3:
+//                    this.drawClothes('70Shose');
+//                    break;
+//            }
+//        }
     },
     
     checkEraImage: function(sprite)
     {
-        for(i = 0; i < 6; i++)
+        for(i = 0; i < 4; i++)
         {
             if(sprite.frame == this.seventysArray[i])
             {

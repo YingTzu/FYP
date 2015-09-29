@@ -15,7 +15,8 @@ theGame.Tutorial.prototype =
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'SkipButton', this.buttonManager.StartGame);
+        this.buttonManager.createButton(this.world.width*0.9, this.world.height*0.1, 'SkipButton', this.buttonManager.StartGame);
+        this.buttonManager.scale(0.5, 1);
         
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
