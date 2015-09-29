@@ -33,8 +33,8 @@ theGame.Game = function(game)
     
     this.clothesOpen = true; //clothes grid will draw when this is true
     this.pantsOpen = true;
-    this.shoesOpen = false;
-    this.specsOpen = false;
+    this.shoesOpen = true;
+    this.specsOpen = true;
 };
 
 theGame.Game.prototype = 
@@ -83,7 +83,9 @@ theGame.Game.prototype =
         this.randomEraFunc(1, 4);
         
         //this.drawGrids('ClothesTiles');
-        this.drawGrids('PantsTiles');
+        //this.drawGrids('PantsTiles');
+        this.drawGrids('GlassesIcon');
+        //this.drawGrids('ShoseIcon');
         //draw sprite clicked text
         this.text2 = this.add.text(16, 200, 'Click a sprite', { fill: '#000000' });
     },
@@ -204,26 +206,6 @@ theGame.Game.prototype =
             }
         }
     },
-    
-//    returnValue: function(number, testArray)
-//    {
-//        this.number = Math.floor(Math.random() * this.tileType);
-//        var empty = false;
-//        for(i = 0; i < 4; i++)
-//        {
-//            if(testArray[i] == 'nil')
-//            {
-//                empty = true;
-//                testArray[i] = this.number;
-//                console.log("breakkkkkkkk");
-//            }
-//            if(this.number == testArray[i] && !empty)
-//            {
-//                this.returnValue(number, testArray);
-//            }
-//        }
-//        console.log(number);
-//    },
     
      //the reaches time, change the images in the gird
     TimeChange: function() 
