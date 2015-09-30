@@ -43,19 +43,21 @@ theGame.Preloader.prototype =
         this.load.image('80Pants', 'Assets/images/80pants.png');
         this.load.image('80Shose', 'Assets/images/80shose.png');
         
-        //button
+        //UI button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
+        
+        //Object button
         this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 64, 64);
         this.load.spritesheet('PantsButton', 'Assets/images/pantsButtons.png', 64, 64);
+        this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 64, 64);
+        this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 64, 64);
         
         //Objects
         this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
         this.load.spritesheet('PantsTiles', 'Assets/images/pantsIcon.png', 128, 128);
-        this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
-        this.load.spritesheet('PantsTiles', 'Assets/images/pantsIcon.png', 128, 128);
-        this.load.spritesheet('GlassesIcon', 'Assets/images/glassesIcon.png', 128, 128);
-        this.load.spritesheet('ShoseIcon', 'Assets/images/shoseIcon.png', 128, 128);
+        this.load.spritesheet('GlassesTiles', 'Assets/images/glassesIcon.png', 128, 128);
+        this.load.spritesheet('ShoseTiles', 'Assets/images/shoseIcon.png', 128, 128);
         
         //time bar
         this.load.image('TimeBar', 'Assets/images/timeBar.png');

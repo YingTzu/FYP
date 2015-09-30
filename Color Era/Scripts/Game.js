@@ -16,9 +16,11 @@ theGame.Game = function(game)
     this.tileChangeSpeed = null;
     
     this.level = 1;
-    this.score = 0;
 
-    this.text2 = 0;
+    this.eraText = null;
+    this.speach = null;
+    
+    this.Era = 1;  //1: 1970s,  2: 1980s,  3: 1990s, 4: 2000s,
     
     this.seventysTheme = false;
     this.eightysTheme = false;
@@ -31,10 +33,10 @@ theGame.Game = function(game)
     this.twoThousandsArray =[]; //2000s
     this.hatArray = [];
     
-    this.clothesOpen = true; //clothes grid will draw when this is true
-    this.pantsOpen = true;
-    this.shoesOpen = true;
-    this.specsOpen = true;
+    this.clothesOpened = false;
+    this.pantsOpened = false;
+    this.specsOpened = false;
+    this.shoseOpened = false;
 };
 
 theGame.Game.prototype = 
@@ -49,12 +51,15 @@ theGame.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         //Draw character
-        this.person = this.add.sprite(this.world.width*0.8, this.world.height*0.5, 'Person');
+        this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'Person');
         this.person.anchor.set(0.5,0.5);
         
+        //the clothes icons
         this.spriteManager = new SpriteManager(this);
-        this.spriteManager.createClothes(this.world.width*0.3, this.world.height*0.8, 'ClothesButton');
-        this.spriteManager.createPants(this.world.width*0.4, this.world.height*0.8, 'PantsButton');
+        this.spriteManager.createClothes(this.world.width*0.6, this.world.height*0.25, 'ClothesButton');
+        this.spriteManager.createPants(this.world.width*0.6, this.world.height*0.41, 'PantsButton');
+        this.spriteManager.createSpecs(this.world.width*0.6, this.world.height*0.57, 'SpecsButton');
+        this.spriteManager.createShose(this.world.width*0.6, this.world.height*0.72, 'ShoseButton');
         
         //set the images into different era array
         for(i = 0; i < 2; i++)
@@ -80,14 +85,8 @@ theGame.Game.prototype =
             }
         }
         
-        this.randomEraFunc(1, 4);
-        
-        //this.drawGrids('ClothesTiles');
-        //this.drawGrids('PantsTiles');
-        this.drawGrids('GlassesIcon');
-        //this.drawGrids('ShoseIcon');
-        //draw sprite clicked text
-        this.text2 = this.add.text(16, 200, 'Click a sprite', { fill: '#000000' });
+        this.eraSwitch();
+        this.speach = this.add.text(this.world.width*0.8, this.world.height*0.1, 'Hello', { fill: '#000000' });
     },
     
     /////////////////////////////////////////////////////
@@ -95,81 +94,153 @@ theGame.Game.prototype =
     /////////////////////////////////////////////////////
     update: function()
     {
-       // console.log(this.clothesOpen);
-//        if(this.clothesOpen == true)
-//        {
-//            this.drawGrids('ClothesTiles');
-//            this.clothesOpen = false;
-//        }
+        this.checkOpen();
     },
     
-    //when game start, random a Era theme
+    //random a Era theme
     randomEraFunc: function(min, max)
     {
-        // 1: 1970s,  2: 1980s,  3: 1990s, 4: 2000s,
-        var randomEra = this.game.rnd.integerInRange(min, max);
-        
-        switch(randomEra)
+        this.Era = this.game.rnd.integerInRange(min, max);
+    },
+    
+    //check era theme
+    eraSwitch:  function()
+    {
+        switch(this.Era)
         {
             case 1:
                 this.seventysTheme = true;
                 this.eightysTheme = false;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = false;
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1970s', { fill: '#000000' });
                 break;
             case 2:
                 this.seventysTheme = false;
                 this.eightysTheme = true;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = false;
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1980s', { fill: '#000000' });
                 break;
             case 3:
                 this.seventysTheme = false;
                 this.eightysTheme = false;
                 this.ninetysTheme = true;
                 this.twoThousandsTheme = false;
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1990s', { fill: '#000000' });
                 break;
             case 4:
                 this.seventysTheme = false;
                 this.eightysTheme = false;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = true;
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '2000s', { fill: '#000000' });
                 break;
         }
-        
-        console.log("the era " + randomEra);
     },
     
+    //check the Icons are open and close
     checkOpen: function()
     {
-        //this.drawGrids('PantsTiles');
-        //this.drawGrids('GlassesIcon');
-        //this.drawGrids('ShoseIcon');
+        if(this.spriteManager.onClothes == true)
+        {
+            this.drawGrids('ClothesTiles');
+            this.spriteManager.onClothes = false;
+            
+            this.clothesOpened = true;
+            this.pantsOpened = false;
+            this.specsOpened = false;
+            this.shoseOpened = false;
+        }
+       else if(this.spriteManager.onPants == true)
+        {
+            this.drawGrids('PantsTiles');
+            this.spriteManager.onPants = false;
+            
+            this.clothesOpened = false;
+            this.pantsOpened = true;
+            this.specsOpened = false;
+            this.shoseOpened = false;
+        }
+        else if(this.spriteManager.onSpecs == true)
+        {
+            this.drawGrids('GlassesTiles');
+            this.spriteManager.onSpecs = false;
+            
+            this.clothesOpened = false;
+            this.pantsOpened = false;
+            this.specsOpened = true;
+            this.shoseOpened = false;
+        }
+        else if(this.spriteManager.onShose == true)
+        {
+            this.drawGrids('ShoseTiles');
+            this.spriteManager.onShose = false;
+            
+            this.clothesOpened = false;
+            this.pantsOpened = false;
+            this.specsOpened = false;
+            this.shoseOpened = true;
+        }
     },
-    
+    //check each shirt/pants/specs/shose not draw again
     drawClothes: function(sprite)
     {
-        var tempImages = null;
+        var tempShirt = null;
         
         //delete previous selected image
-        if(this.tempImages != null)
-            this.tempImages.destroy();
+        if(this.tempShirt != null)
+            this.tempShirt.destroy();
         
-        this.images = this.add.sprite(this.world.width*0.8, this.world.height*0.5, sprite);
+        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
         this.images.anchor.set(0.5,0.5);
-        this.tempImages = this.images;
+        this.tempShirt = this.images;
+    },
+    drawPants: function(sprite)
+    {
+        var tempPants = null;
         
+        if(this.tempPants != null)
+            this.tempPants.destroy();
+        
+        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.images.anchor.set(0.5,0.5);
+        this.tempPants = this.images;
+    },
+    drawSpecs: function(sprite)
+    {
+        var tempSpecs = null;
+        
+        if(this.tempSpecs != null)
+            this.tempSpecs.destroy();
+        
+        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.images.anchor.set(0.5,0.5);
+        this.tempSpecs = this.images;
+    },
+    drawShose: function(sprite)
+    {
+        var tempShose = null;
+        
+        if(this.tempShose != null)
+            this.tempShose.destroy();
+        
+        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.images.anchor.set(0.5,0.5);
+        this.tempShose = this.images;
     },
     
     drawGrids: function(key)
     {
         var newArray = [-1,-1,-1,-1];
         var newTile;
+        
         for(i = 0; i < 2; i++)
         {
             this.tileArray[i] = [];
+            
             for(j = 0; j < 2; j++)
-            {
+            {    
                 this.newTile = Math.floor(Math.random() * this.tileType);
                 for(k = 0; k < 4; k++)
                 {
@@ -195,29 +266,15 @@ theGame.Game.prototype =
                 }
                 
                 this.randomTile = this.newTile;
-                this.theTile = this.add.sprite(350+i*this.tileSize, 250+j*this.tileSize, key);
+                this.theTile = this.add.sprite(200+i*this.tileSize, 200+j*this.tileSize, key);
                 this.theTile.frame = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
                 
                 this.theTile.anchor.setTo(0.5, 0.5);
-                this.isTimeChange = false;
                 this.theTile.inputEnabled=true;
                 this.theTile.events.onInputDown.add(this.clicked, this);
             }
         }
-    },
-    
-     //the reaches time, change the images in the gird
-    TimeChange: function() 
-    {
-        for(i = 0; i < 2; i++)
-        {
-            for(j = 0; j < 2; j++)
-            {
-                this.tileArray[i][j].destroy();
-            }
-        }
-        
     },
     
     clicked: function(sprite, pointer) //check the clicking of the images
@@ -231,7 +288,7 @@ theGame.Game.prototype =
     
     wearClothes: function(sprite)
     {
-        if(this.clothesOpen == true)
+        if(this.clothesOpened == true)
         {
             switch(sprite.frame)
             {
@@ -250,15 +307,15 @@ theGame.Game.prototype =
             }
         }
         
-        if(this.pantsOpen == true)
+        if(this.pantsOpened == true)
         {
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawClothes('70Pants');
+                    this.drawPants('70Pants');
                     break;
                 case 1:
-                    this.drawClothes('80Pants');
+                    this.drawPants('80Pants');
                     break;
                 case 2:
                    // this.drawClothes('70Glasses');
@@ -269,7 +326,7 @@ theGame.Game.prototype =
             }
         }
         
-//        if(this.shoesOpen == true)
+//        if(this.specsOpened == true)
 //        {
 //            switch(sprite.frame)
 //            {
@@ -288,7 +345,7 @@ theGame.Game.prototype =
 //            }
 //        }
 //        
-//        if(this.specsOpen == true)
+//        if(this.shoseOpened == true)
 //        {
 //            switch(sprite.frame)
 //            {
@@ -315,34 +372,40 @@ theGame.Game.prototype =
             if(sprite.frame == this.seventysArray[i])
             {
                 if(this.seventysTheme == true)
-                    this.score += 20;  
+                {
+                    this.speach.text = "you are right";
+                }
+                else
+                    this.speach.text = "try another";
                 
-                this.text2.text = "1970s " + sprite.frame;
-                console.log(this.score);
+                console.log( "1970s " + sprite.frame);
             }
             else if(sprite.frame == this.eightysArray[i])
             {
                 if(this.eightysTheme == true)
-                    this.score += 20;
-
-                this.text2.text = "1980s " + sprite.frame;
-                console.log(this.score);
+                    this.speach.text = "you are right";
+                else
+                    this.speach.text = "try another";
+                
+                console.log( "1980s " + sprite.frame);
             }
             else if(sprite.frame == this.ninetysArray[i])
             {
-                 if(this.ninetysTheme == true)
-                    this.score += 20;
+                  if(this.ninetysTheme == true)
+                    this.speach.text = "you are right";
+                else
+                    this.speach.text = "try another";
                 
-                this.text2.text = "1990s " + sprite.frame;
-                console.log(this.score);
+                console.log( "1990s " + sprite.frame);
             }
             else if(sprite.frame == this.twoThousandsArray[i])
             {
                  if(this.twoThousandsTheme == true)
-                    this.score += 20;
+                    this.speach.text = "you are right";
+                else
+                    this.speach.text = "try another";
                 
-                this.text2.text = "2000s " + sprite.frame;
-                console.log(this.score);
+                console.log( "2000s " + sprite.frame);
             }
         }
     }
