@@ -32,6 +32,7 @@ theGame.Preloader.prototype =
         
         //Person & Clothes
         this.load.image('Person', 'Assets/images/people.png');
+        this.load.image('PersonSad', 'Assets/images/sad_character.png');
         
         this.load.image('70Glasses', 'Assets/images/70s_specs.png');
         this.load.image('70Clothes', 'Assets/images/70s_shirt.png');
@@ -48,10 +49,10 @@ theGame.Preloader.prototype =
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
         
         //Object button
-        this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 64, 64);
-        this.load.spritesheet('PantsButton', 'Assets/images/pantsButtons.png', 64, 64);
-        this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 64, 64);
-        this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 64, 64);
+        this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 49, 49);
+        this.load.spritesheet('PantsButton', 'Assets/images/pantsButtons.png', 49, 49);
+        this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 49, 49);
+        this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 49, 49);
         
         //Objects
         this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);

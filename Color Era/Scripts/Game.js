@@ -7,7 +7,10 @@ theGame.Game = function(game)
     
     this.gameBackground = null;
     this.person = null;
-    this.images =null;
+    this.shirtImage =null;
+    this.pantsImage =null;
+    this.specsImage =null;
+    this.shoseImage =null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -45,7 +48,7 @@ theGame.Game.prototype =
     //                    Create                       //
     /////////////////////////////////////////////////////
     create: function()
-    {
+    {   
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
@@ -56,10 +59,10 @@ theGame.Game.prototype =
         
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
-        this.spriteManager.createClothes(this.world.width*0.6, this.world.height*0.25, 'ClothesButton');
-        this.spriteManager.createPants(this.world.width*0.6, this.world.height*0.41, 'PantsButton');
-        this.spriteManager.createSpecs(this.world.width*0.6, this.world.height*0.57, 'SpecsButton');
-        this.spriteManager.createShose(this.world.width*0.6, this.world.height*0.72, 'ShoseButton');
+        this.spriteManager.createClothes(this.world.width*0.12, this.world.height*0.433, 'ClothesButton');
+        this.spriteManager.createPants(this.world.width*0.12, this.world.height*0.505, 'PantsButton');
+        this.spriteManager.createSpecs(this.world.width*0.12, this.world.height*0.58, 'SpecsButton');
+        this.spriteManager.createShose(this.world.width*0.12, this.world.height*0.64, 'ShoseButton');
         
         //set the images into different era array
         for(i = 0; i < 2; i++)
@@ -113,28 +116,28 @@ theGame.Game.prototype =
                 this.eightysTheme = false;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = false;
-                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1970s', { fill: '#000000' });
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1970s', { fill: '#000000' });
                 break;
             case 2:
                 this.seventysTheme = false;
                 this.eightysTheme = true;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = false;
-                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1980s', { fill: '#000000' });
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1980s', { fill: '#000000' });
                 break;
             case 3:
                 this.seventysTheme = false;
                 this.eightysTheme = false;
                 this.ninetysTheme = true;
                 this.twoThousandsTheme = false;
-                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '1990s', { fill: '#000000' });
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1990s', { fill: '#000000' });
                 break;
             case 4:
                 this.seventysTheme = false;
                 this.eightysTheme = false;
                 this.ninetysTheme = false;
                 this.twoThousandsTheme = true;
-                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.1, '2000s', { fill: '#000000' });
+                this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '2000s', { fill: '#000000' });
                 break;
         }
     },
@@ -184,7 +187,7 @@ theGame.Game.prototype =
         }
     },
     //check each shirt/pants/specs/shose not draw again
-    drawClothes: function(sprite)
+    drawClothes: function(shirtSprite)
     {
         var tempShirt = null;
         
@@ -192,20 +195,21 @@ theGame.Game.prototype =
         if(this.tempShirt != null)
             this.tempShirt.destroy();
         
-        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
-        this.images.anchor.set(0.5,0.5);
-        this.tempShirt = this.images;
+        this.shirtImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, shirtSprite);
+        this.shirtImage.anchor.set(0.5,0.5);
+        this.tempShirt = this.shirtImage;
+        
     },
-    drawPants: function(sprite)
+    drawPants: function(pantsSprite)
     {
         var tempPants = null;
         
         if(this.tempPants != null)
             this.tempPants.destroy();
         
-        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
-        this.images.anchor.set(0.5,0.5);
-        this.tempPants = this.images;
+        this.pantsImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, pantsSprite);
+        this.pantsImage.anchor.set(0.5,0.5);
+        this.tempPants = this.pantsImage;
     },
     drawSpecs: function(sprite)
     {
@@ -214,9 +218,9 @@ theGame.Game.prototype =
         if(this.tempSpecs != null)
             this.tempSpecs.destroy();
         
-        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
-        this.images.anchor.set(0.5,0.5);
-        this.tempSpecs = this.images;
+        this.specsImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.specsImage.anchor.set(0.5,0.5);
+        this.tempSpecs = this.specsImage;  
     },
     drawShose: function(sprite)
     {
@@ -225,9 +229,9 @@ theGame.Game.prototype =
         if(this.tempShose != null)
             this.tempShose.destroy();
         
-        this.images = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
-        this.images.anchor.set(0.5,0.5);
-        this.tempShose = this.images;
+        this.shoseImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.shoseImage.anchor.set(0.5,0.5);
+        this.tempShose = this.shoseImage;
     },
     
     drawGrids: function(key)
@@ -266,7 +270,7 @@ theGame.Game.prototype =
                 }
                 
                 this.randomTile = this.newTile;
-                this.theTile = this.add.sprite(200+i*this.tileSize, 200+j*this.tileSize, key);
+                this.theTile = this.add.sprite(230+i*this.tileSize*1.3, 180+j*this.tileSize*1.3, key);
                 this.theTile.frame = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
                 
@@ -288,6 +292,25 @@ theGame.Game.prototype =
     
     wearClothes: function(sprite)
     {
+        if(this.pantsOpened == true)
+        {
+            switch(sprite.frame)
+            {
+                case 0:
+                    this.drawPants('70Pants');
+                    break;
+                case 1:
+                    this.drawPants('80Pants');
+                    break;
+                case 2:
+                   // this.drawPants('70Glasses');
+                    break;
+                case 3:
+                    //this.drawPants('70Shose');
+                    break;
+            }
+        }
+        
         if(this.clothesOpened == true)
         {
             switch(sprite.frame)
@@ -306,41 +329,21 @@ theGame.Game.prototype =
                     break;
             }
         }
-        
-        if(this.pantsOpened == true)
-        {
-            switch(sprite.frame)
-            {
-                case 0:
-                    this.drawPants('70Pants');
-                    break;
-                case 1:
-                    this.drawPants('80Pants');
-                    break;
-                case 2:
-                   // this.drawClothes('70Glasses');
-                    break;
-                case 3:
-                    //this.drawClothes('70Shose');
-                    break;
-            }
-        }
-        
 //        if(this.specsOpened == true)
 //        {
 //            switch(sprite.frame)
 //            {
 //                case 0:
-//                    this.drawClothes('70Clothes');
+//                    this.drawSpecs('70Clothes');
 //                    break;
 //                case 1:
-//                    this.drawClothes('70Pants');
+//                    this.drawSpecs('70Pants');
 //                    break;
 //                case 2:
-//                    this.drawClothes('70Glasses');
+//                    this.drawSpecs('70Glasses');
 //                    break;
 //                case 3:
-//                    this.drawClothes('70Shose');
+//                    this.drawSpecs('70Shose');
 //                    break;
 //            }
 //        }
@@ -350,16 +353,16 @@ theGame.Game.prototype =
 //            switch(sprite.frame)
 //            {
 //                case 0:
-//                    this.drawClothes('70Clothes');
+//                    this.drawShose('70Clothes');
 //                    break;
 //                case 1:
-//                    this.drawClothes('70Pants');
+//                    this.drawShose('70Pants');
 //                    break;
 //                case 2:
-//                    this.drawClothes('70Glasses');
+//                    this.drawShose('70Glasses');
 //                    break;
 //                case 3:
-//                    this.drawClothes('70Shose');
+//                    this.drawShose('70Shose');
 //                    break;
 //            }
 //        }
@@ -376,7 +379,11 @@ theGame.Game.prototype =
                     this.speach.text = "you are right";
                 }
                 else
+                {
                     this.speach.text = "try another";
+                    this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'PersonSad');
+                    this.person.anchor.set(0.5,0.5);
+                }
                 
                 console.log( "1970s " + sprite.frame);
             }
@@ -385,7 +392,12 @@ theGame.Game.prototype =
                 if(this.eightysTheme == true)
                     this.speach.text = "you are right";
                 else
+                    {
                     this.speach.text = "try another";
+                    this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'PersonSad');
+                    this.person.anchor.set(0.5,0.5);
+                }
+                
                 
                 console.log( "1980s " + sprite.frame);
             }
@@ -394,7 +406,11 @@ theGame.Game.prototype =
                   if(this.ninetysTheme == true)
                     this.speach.text = "you are right";
                 else
+                   {
                     this.speach.text = "try another";
+                    this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'PersonSad');
+                    this.person.anchor.set(0.5,0.5);
+                }
                 
                 console.log( "1990s " + sprite.frame);
             }
@@ -403,7 +419,11 @@ theGame.Game.prototype =
                  if(this.twoThousandsTheme == true)
                     this.speach.text = "you are right";
                 else
+                    {
                     this.speach.text = "try another";
+                    this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'PersonSad');
+                    this.person.anchor.set(0.5,0.5);
+                }
                 
                 console.log( "2000s " + sprite.frame);
             }
