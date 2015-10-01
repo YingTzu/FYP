@@ -3,6 +3,37 @@ theGame.Tutorial = function(game)
     this.toturialBackground = null;
     this.uiManager = null;
     this.buttonManager = null;
+    
+    this.music = null;
+    this.uiManager = null;
+    this.spriteManager = null;
+    
+    this.person = null;
+    this.shirtImage =null;
+    
+    this.tileSize = 128;
+    this.theTile = null;
+    this.tileType  = 4;
+    this.tileArray = [];
+    this.tileChangeSpeed = null;
+
+    this.eraText = null;
+    this.speach = null;
+    
+    this.seventysTheme = true;
+    this.eightysTheme = false;
+    this.ninetysTheme = false;
+    this.twoThousandsTheme = false;
+    
+    this.seventysArray = [];    //1970s
+    this.eightysArray = [];     //1980s
+    this.ninetysArray = [];     //199s
+    this.twoThousandsArray =[]; //2000s
+    this.hatArray = [];
+    
+    this.clothesOpened = false;
+    
+    this.selectedCorrect = false;
 };
 
 theGame.Tutorial.prototype = 
@@ -10,21 +41,211 @@ theGame.Tutorial.prototype =
     create: function()
     {
         //Screen Background
-        this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'ToturialBackGround');
+        this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.toturialBackground.anchor.set(0.5,0.5);
+        
+        //character
+        this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterTutorial');
+        this.person.anchor.set(0.5,0.5);
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.9, this.world.height*0.1, 'SkipButton', this.buttonManager.StartGame);
-        this.buttonManager.scale(0.5, 1);
+        
+        //the shirt icon
+        this.spriteManager = new SpriteManager(this);
+        this.spriteManager.createClothes(this.world.width*0.12, this.world.height*0.433, 'ClothesButton'); 
+        
+        //set the images into different era array
+        for(i = 0; i < 2; i++)
+        {
+            for(j = 0; j < 2; j++)
+            {
+                if(i == 0 && j == 0)
+                {
+                    this.seventysArray[j] = 2*i + j;
+                }
+                else if(i == 0 && j == 1)
+                {
+                    this.eightysArray[j] = 2*i + j;
+                }
+                else if(i == 1 && j == 0)
+                {
+                    this.ninetysArray[j] = 2*i + j;
+                }
+                else if(i == 1 && j == 1)
+                {
+                    this.twoThousandsArray[j] = 2*i + j;
+                }
+            }
+        }
+        
+        this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1970s', { fill: '#000000' });
+        this.speach = this.add.text(this.world.width*0.8, this.world.height*0.1, 'Hello', { fill: '#000000' });
         
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
-        theGame.FadeScreen.create();
+        theGame.FadeScreen.create(); 
     }, 
     
     update: function()
     {
-      theGame.FadeScreen.update(this.buttonManager.gametype);          
+        this.checkOpen();
+        this.whenTrue();
+        
+        theGame.FadeScreen.update(this.buttonManager.gametype);
+    },
+    
+    checkOpen: function()
+    {
+        if(this.spriteManager.onClothes == true)
+        {
+            this.drawGrids('ClothesTiles');
+            this.spriteManager.onClothes = false;
+            
+            this.clothesOpened = true;
+        }
+    },
+    
+    drawClothes: function(shirtSprite)
+    {
+        var tempShirt = null;
+        
+        //delete previous selected image
+        if(this.tempShirt != null)
+            this.tempShirt.destroy();
+        
+        this.shirtImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, shirtSprite);
+        this.shirtImage.anchor.set(0.5,0.5);
+        this.tempShirt = this.shirtImage;
+        
+    },
+    
+    drawGrids: function(key)
+    {
+        var newArray = [-1,-1,-1,-1];
+        var newTile;
+
+        for(i = 0; i < 2; i++)
+        {
+            this.tileArray[i] = [];
+
+            for(j = 0; j < 2; j++)
+            {    
+                this.newTile = Math.floor(Math.random() * this.tileType);
+                for(k = 0; k < 4; k++)
+                {
+                    while(newArray[k] ==  this.newTile) //check if random is repeat of k
+                    {
+                        this.newTile = Math.floor(Math.random() * this.tileType); //random again
+
+                        for(l = 0; l < 4; l++)
+                        { 
+                            if(newArray[l] ==  this.newTile) //if repeated, reset for loop
+                                k = 0;
+                        }
+                    }
+                }
+
+                for(l = 0; l < 4; l++)
+                {
+                    if(newArray[l] == -1)
+                    {
+                        newArray[l] =  this.newTile; //set value into the array
+                        break;
+                    }
+                }
+
+                this.randomTile = this.newTile;
+                this.theTile = this.add.sprite(230+i*this.tileSize*1.3, 180+j*this.tileSize*1.3, key);
+                this.theTile.frame = this.randomTile;
+                this.tileArray[i][j] = this.theTile;
+
+                this.theTile.anchor.setTo(0.5, 0.5);
+                if(this.selectedCorrect == false)
+                {
+                    this.theTile.inputEnabled=true;
+                    this.theTile.events.onInputDown.add(this.clicked, this);
+                }
+            }
+        }
+    },
+    
+    clicked: function(sprite, pointer) //check the clicking of the images
+    {
+        this.wearClothes(sprite);
+        this.checkEraImage(sprite);
+    },
+    
+    wearClothes: function(sprite)
+    {
+        if(this.clothesOpened == true)
+        {
+            switch(sprite.frame)
+            {
+                case 0:
+                    this.drawClothes('70Shirt');
+                    break;
+                case 1:
+                    this.drawClothes('80Shirt');
+                    break;
+                case 2:
+                    this.drawClothes('90Shirt');
+                    break;
+                case 3:
+                    this.drawClothes('2000Shirt');
+                    break;
+            }
+        }
+    },
+    
+    checkEraImage: function(sprite)
+    {
+        for(i = 0; i < 4; i++)
+        {
+            if(sprite.frame == this.seventysArray[i])
+            {
+                if(this.seventysTheme == true)
+                {
+                    this.speach.text = "you are right";
+                    this.person.frame = 2;
+                    this.selectedCorrect = true;
+                }
+            }
+            else if(sprite.frame == this.eightysArray[i] || 
+                    sprite.frame == this.ninetysArray[i] ||
+                    sprite.frame == this.twoThousandsArray[i])
+            {
+                this.speach.text = "try another";
+                this.person.frame = 1;
+            }
+        }
+    },
+    
+    whenTrue: function()
+    {
+        //When player select the correct shirt
+        if(this.selectedCorrect == true)
+        {
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'SkipButton', this.buttonManager.StartGame);
+            this.selectedCorrect = false;
+            
+            for(i = 0; i < 2; i++)
+            {
+                for(j = 0; j < 2; j++)
+                {
+                    this.tileArray[i][j].destroy();
+                }
+            }
+        }
+        
+        if(this.buttonManager.clicked == true) 
+        {
+            //destroy everything except background
+            this.selectedCorrect = false;
+            this.shirtImage.destroy();
+            this.person.destroy();
+            this.spriteManager.destroySprite();
+            this.buttonManager.destroyButton();
+        }
     }
 }

@@ -1,6 +1,5 @@
 theGame.Game = function(game)
 {
-    this.input;
     this.music = null;
     this.uiManager = null;
     this.spriteManager = null;
@@ -17,8 +16,6 @@ theGame.Game = function(game)
     this.tileType  = 4;
     this.tileArray = [];
     this.tileChangeSpeed = null;
-    
-    this.level = 1;
 
     this.eraText = null;
     this.speach = null;

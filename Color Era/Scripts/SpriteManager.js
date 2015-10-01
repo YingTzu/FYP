@@ -57,6 +57,7 @@ SpriteManager.prototype.checkClotheDown = function()
     this.onPants= false;
     this.onSpecs = false;
     this.onShose = false;
+    console.log(this.onClothes);
 };
 SpriteManager.prototype.checkPantsDown = function()
 {
@@ -121,3 +122,8 @@ SpriteManager.prototype.outShose = function()
     this.theShoseImage.frame = 0;
 };
 ////////////////////////////////////////////////
+
+SpriteManager.prototype.destroySprite = function()
+{   
+    this.theClothesImage.destroy();
+};

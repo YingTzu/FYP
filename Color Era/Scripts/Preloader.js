@@ -34,6 +34,7 @@ theGame.Preloader.prototype =
 //        this.load.image('Person', 'Assets/images/people.png');
 //        this.load.image('PersonSad', 'Assets/images/sad_character.png');
         this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 250, 533);
+        this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 250, 533);
         
         this.load.image('70Specs', 'Assets/images/70s_specs.png');
         this.load.image('70Shirt', 'Assets/images/70s_shirt.png');
