@@ -123,6 +123,35 @@ SpriteManager.prototype.outShose = function()
 };
 ////////////////////////////////////////////////
 
+//////////      Input Disable         //////////
+SpriteManager.prototype.shirtInputDisable = function()
+{   
+    this.theClothesImage.inputEnabled = false;
+    this.theClothesImage.frame = 2;
+};
+SpriteManager.prototype.pantsInputDisable = function()
+{   
+    this.thePantsImage.inputEnabled = false;
+    this.thePantsImage.frame = 2;
+};
+SpriteManager.prototype.specsInputDisable = function()
+{   
+    this.theSpecsImage.inputEnabled = false;
+    this.theSpecsImage.frame = 2;
+};
+SpriteManager.prototype.shoseInputDisable = function()
+{   
+    this.theShoseImage.inputEnabled = false;
+    this.theShoseImage.frame = 2;
+};
+////////////////////////////////////////////////
+
+//SpriteManager.prototype.shirtInputDisable = function()
+//{   
+//    this.theClothesImage.inputEnabled = false;
+//    this.theClothesImage.frame = 2;
+//};
+
 SpriteManager.prototype.destroySprite = function()
 {   
     this.theClothesImage.destroy();

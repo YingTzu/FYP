@@ -206,6 +206,7 @@ theGame.Tutorial.prototype =
             {
                 if(this.seventysTheme == true)
                 {
+                    this.spriteManager.shirtInputDisable();
                     this.speach.text = "you are right";
                     this.person.frame = 2;
                     this.selectedCorrect = true;
