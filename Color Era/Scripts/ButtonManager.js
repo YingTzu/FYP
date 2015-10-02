@@ -4,6 +4,7 @@ function ButtonManager(game)
     this.theButton = null;
     this.gametype = 0;
     this.clicked = false;
+    this.gameEnd = false;
 }
 
 ButtonManager.prototype.createButton = function(posx, posy, key, func)
@@ -18,7 +19,15 @@ ButtonManager.prototype.scale = function(x, y)
 {
     this.theButton.scale.set(x,y);
 };
-    
+
+ButtonManager.prototype.GoToMenu = function()
+{   
+    this.gametype = 0;
+    theGame.FadeScreen.OnEnd = true;
+    this.gameEnd = true;
+    console.log("game scence: " + this.gametype);
+};
+
 ButtonManager.prototype.StartGame = function()
 {   
     this.gametype = 1;

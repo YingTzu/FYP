@@ -69,6 +69,9 @@ theGame.Game.prototype =
         this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterSprite');
         this.person.anchor.set(0.5,0.5);
         
+        this.buttonManager = new ButtonManager(this);
+        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToMenu);
+        
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
         this.spriteManager.createClothes(this.world.width*0.12, this.world.height*0.433, 'ClothesButton');
@@ -112,6 +115,8 @@ theGame.Game.prototype =
     {
         this.checkOpen();
         this.setFalse();
+        this.gameEndSetting();
+        theGame.FadeScreen.update(this.buttonManager.gametype);
     },
     
     //random a Era theme
@@ -497,6 +502,22 @@ theGame.Game.prototype =
                     this.shoseCorrect = false;
                 }
             }
+        }
+    }, 
+    
+    gameEndSetting: function()
+    {
+        if(this.buttonManager.gameEnd == true)
+        {
+            this.shirtWear = false;
+            this.pantsWear = false;
+            this.specsWear = false;
+            this.shoseWear = false;
+
+            this.shirtCorrect = false;
+            this.pantsCorrect = false;
+            this.specsCorrect = false;
+            this.shoseCorrect = false;
         }
     }
 }
