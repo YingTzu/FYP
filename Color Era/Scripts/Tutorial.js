@@ -1,12 +1,10 @@
 theGame.Tutorial = function(game)
 {
     this.toturialBackground = null;
-    this.uiManager = null;
-    this.buttonManager = null;
     
-    this.music = null;
-    this.uiManager = null;
+    //this.music = null;
     this.spriteManager = null;
+    this.buttonManager = null;
     
     this.person = null;
     this.shirtImage =null;
@@ -15,7 +13,7 @@ theGame.Tutorial = function(game)
     this.theTile = null;
     this.tileType  = 4;
     this.tileArray = [];
-    this.tileChangeSpeed = null;
+    this.tempArray = [];
 
     this.eraText = null;
     this.speach = null;
@@ -29,7 +27,6 @@ theGame.Tutorial = function(game)
     this.eightysArray = [];     //1980s
     this.ninetysArray = [];     //199s
     this.twoThousandsArray =[]; //2000s
-    this.hatArray = [];
     
     this.clothesOpened = false;
     
@@ -58,6 +55,7 @@ theGame.Tutorial.prototype =
         //set the images into different era array
         for(i = 0; i < 2; i++)
         {
+            this.tempArray[i] = [];
             for(j = 0; j < 2; j++)
             {
                 if(i == 0 && j == 0)
@@ -130,7 +128,12 @@ theGame.Tutorial.prototype =
             this.tileArray[i] = [];
 
             for(j = 0; j < 2; j++)
-            {    
+            {
+                if(this.tempArray[i][j] != null)
+                {
+                    this.tempArray[i][j].destroy();
+                }
+                
                 this.newTile = Math.floor(Math.random() * this.tileType);
                 for(k = 0; k < 4; k++)
                 {
@@ -160,6 +163,8 @@ theGame.Tutorial.prototype =
                 this.theTile.frame = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
 
+                this.tempArray[i][j] = this.tileArray[i][j];
+                
                 this.theTile.anchor.setTo(0.5, 0.5);
                 if(this.selectedCorrect == false)
                 {
