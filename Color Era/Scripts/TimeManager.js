@@ -61,6 +61,14 @@ TimeManager.prototype.timeCountUp = function()
 TimeManager.prototype.stopTime = function()
 {
     this.timer.stop();
+    theGame.tempTimeSec = this.timeUp;
+    theGame.tempTimeMin = this.minutes;
+}
+
+TimeManager.prototype.timeReset = function()
+{
+    this.timeUp = 0;
+    this.minutes = 0;
 }
 
 

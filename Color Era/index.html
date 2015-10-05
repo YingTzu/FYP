@@ -19,6 +19,7 @@
 	<script src = "Scripts/MainMenu.js"></script>
 	<script src = "Scripts/Tutorial.js"></script>
     <script src = "Scripts/Game.js"></script>
+    <script src = "Scripts/GameEnd.js"></script>
 </head>
 <body>
 	<div id = "gameContainer"></div>
@@ -32,6 +33,7 @@
 		game.state.add('MainMenu',theGame.MainMenu);
 		game.state.add('Game',theGame.Game);
 		game.state.add('Tutorial',theGame.Tutorial);
+        game.state.add('GameEnd',theGame.GameEnd);
 		//Start state
 		game.state.start('Boot');
 	};

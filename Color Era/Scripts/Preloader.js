@@ -4,6 +4,9 @@ theGame.Preloader = function(game)
     
     this.preloadBarEmpty = null;
     this.preloadBar = null;
+    
+    this.tempTimeSec = 0;
+    this.tempTimeMin = 0;
 };
 
 theGame.Preloader.prototype = 
@@ -29,6 +32,7 @@ theGame.Preloader.prototype =
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
         this.load.image('GameBackGround', 'Assets/images/game.png');
         this.load.image('ToturialBackGround', 'Assets/images/tutorial.png');
+        this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
         
         //Person & Clothes
 //        this.load.image('Person', 'Assets/images/people.png');
@@ -52,7 +56,8 @@ theGame.Preloader.prototype =
         
         //UI button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
-        this.load.image('SkipButton', 'Assets/images/skipButton.png');
+        this.load.image('SkipButton', 'Assets/images/startGame.png');
+        this.load.image('GoParty', 'Assets/images/goParty.png');
         
         //Object button
         this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 49, 49);

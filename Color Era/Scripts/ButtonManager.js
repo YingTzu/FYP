@@ -4,7 +4,6 @@ function ButtonManager(game)
     this.theButton = null;
     this.gametype = 0;
     this.clicked = false;
-    this.gameEnd = false;
 }
 
 ButtonManager.prototype.createButton = function(posx, posy, key, func)
@@ -24,7 +23,6 @@ ButtonManager.prototype.GoToMenu = function()
 {   
     this.gametype = 0;
     theGame.FadeScreen.OnEnd = true;
-    this.gameEnd = true;
     console.log("game scence: " + this.gametype);
 };
 
@@ -43,7 +41,16 @@ ButtonManager.prototype.GoToTutorial = function()
     console.log("game scence: " + this.gametype);
 };
 
+ButtonManager.prototype.GoToGameEnd = function()
+{
+    this.gametype = 3;
+    theGame.FadeScreen.OnEnd = true;
+    this.clicked = true;
+    console.log("game scence: " + this.gametype);
+};
+
 ButtonManager.prototype.destroyButton = function()
 {
     this.theButton.destroy();
+    this.clicked = false;
 };

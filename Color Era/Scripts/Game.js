@@ -23,12 +23,6 @@ theGame.Game = function(game)
     
     this.Era = 0;  //1: 1970s,  2: 1980s,  3: 1990s, 4: 2000s,
     
-    //check era theme
-    this.seventysTheme = false;
-    this.eightysTheme = false;
-    this.ninetysTheme = false;
-    this.twoThousandsTheme = false;
-    
     this.seventysArray = [];    //1970s
     this.eightysArray = [];     //1980s
     this.ninetysArray = [];     //199s
@@ -52,6 +46,11 @@ theGame.Game = function(game)
     this.pantsCorrect = false;
     this.specsCorrect = false;
     this.shoseCorrect = false;
+    
+    this.correctShirtTheme = false;
+    this.correctPantsTheme = false;
+    this.correctSpecsTheme = false;
+    this.correctShoseTheme = false;
 };
 
 theGame.Game.prototype = 
@@ -71,7 +70,6 @@ theGame.Game.prototype =
         this.person.anchor.set(0.5,0.5);
         
         this.buttonManager = new ButtonManager(this);
-//        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToMenu);
         
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
@@ -118,48 +116,31 @@ theGame.Game.prototype =
     update: function()
     {
         this.checkOpen();
-        this.setFalse();
+        this.destroyTheGrid();
         this.gameEndSetting();
+        this.stopTiming();
         theGame.FadeScreen.update(this.buttonManager.gametype);
     },
     
-    //random a Era theme
-    randomEraFunc: function(min, max)
+    randomEraFunc: function(min, max) //random a Era theme
     {
         this.Era = this.game.rnd.integerInRange(min, max);
     },
     
-    //check era theme
-    eraSwitch:  function()
+    eraSwitch:  function() //check era theme
     {
         switch(this.Era)
         {
             case 1:
-                this.seventysTheme = true;
-                this.eightysTheme = false;
-                this.ninetysTheme = false;
-                this.twoThousandsTheme = false;
                 this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1970s', { fill: '#000000' });
                 break;
             case 2:
-                this.seventysTheme = false;
-                this.eightysTheme = true;
-                this.ninetysTheme = false;
-                this.twoThousandsTheme = false;
                 this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1980s', { fill: '#000000' });
                 break;
             case 3:
-                this.seventysTheme = false;
-                this.eightysTheme = false;
-                this.ninetysTheme = true;
-                this.twoThousandsTheme = false;
                 this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1990s', { fill: '#000000' });
                 break;
             case 4:
-                this.seventysTheme = false;
-                this.eightysTheme = false;
-                this.ninetysTheme = false;
-                this.twoThousandsTheme = true;
                 this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '2000s', { fill: '#000000' });
                 break;
         }
@@ -209,7 +190,8 @@ theGame.Game.prototype =
             this.shoseOpened = true;
         }
     },
-    //check each shirt/pants/specs/shose not draw again
+    
+    //check each shirt / pants / specs / shose not draw again
     drawClothes: function(shirtSprite)
     {
         var tempShirt = null;
@@ -403,29 +385,33 @@ theGame.Game.prototype =
     {
         for(i = 0; i < 4; i++)
         {
-            if(sprite.frame == this.seventysArray[i])
+            if(sprite.frame == this.seventysArray[i]) //if clicked on 70s clothes
             {
-                if(this.seventysTheme == true)
+                if(this.Era == 1) //if the era is 70s
                 {
-                    if(this.shirtWear == true)
+                    if(this.shirtWear == true) //if shirt wear
                     {
-                        this.spriteManager.shirtInputDisable();
+                        this.spriteManager.shirtInputDisable(); //Disable clicking of shirt sprite
                         this.shirtCorrect = true;
+                        this.correctShirtTheme = true;
                     }
                     if(this.pantsWear == true)
                     {
                         this.spriteManager.pantsInputDisable();
                         this.pantsCorrect = true;
+                        this.correctPantsTheme = true;
                     }
                      if(this.specsWear == true)
                      {
                         this.spriteManager.specsInputDisable();
                         this.specsCorrect = true;
+                        this.correctSpecsTheme = true;
                      }
                     if(this.shoseWear == true)
                     {
                         this.spriteManager.shoseInputDisable();
                         this.shoseCorrect = true;
+                        this.correctShoseTheme = true;
                     }
                     
                     this.speach.text = "you are right";
@@ -441,27 +427,31 @@ theGame.Game.prototype =
             }
             else if(sprite.frame == this.eightysArray[i])
             {
-                if(this.eightysTheme == true)
+                if(this.Era == 2)
                 {
                     if(this.shirtWear == true)
                     {
                         this.spriteManager.shirtInputDisable();
                         this.shirtCorrect = true;
+                        this.correctShirtTheme = true;
                     }
                     if(this.pantsWear == true)
                     {
                         this.spriteManager.pantsInputDisable();
                         this.pantsCorrect = true;
+                        this.correctPantsTheme = true;
                     }
                      if(this.specsWear == true)
                      {
                         this.spriteManager.specsInputDisable();
                         this.specsCorrect = true;
+                         this.correctSpecsTheme = true;
                      }
                     if(this.shoseWear == true)
                     {
                         this.spriteManager.shoseInputDisable();
                         this.shoseCorrect = true;
+                        this.correctShoseTheme = true;
                     }
                     
                     this.speach.text = "you are right";
@@ -478,27 +468,31 @@ theGame.Game.prototype =
             }
             else if(sprite.frame == this.ninetysArray[i])
             {
-                  if(this.ninetysTheme == true)
+                  if(this.Era == 3)
                   {
                     if(this.shirtWear == true)
                     {
                         this.spriteManager.shirtInputDisable();
                         this.shirtCorrect = true;
+                        this.correctShirtTheme = true;
                     }
                     if(this.pantsWear == true)
                     {
                         this.spriteManager.pantsInputDisable();
                         this.pantsCorrect = true;
+                        this.correctPantsTheme = true;
                     }
                      if(this.specsWear == true)
                      {
                         this.spriteManager.specsInputDisable();
                         this.specsCorrect = true;
+                         this.correctSpecsTheme = true;
                      }
                     if(this.shoseWear == true)
                     {
                         this.spriteManager.shoseInputDisable();
                         this.shoseCorrect = true;
+                        this.correctShoseTheme = true;
                     }
                       
                     this.speach.text = "you are right";
@@ -514,27 +508,31 @@ theGame.Game.prototype =
             }
             else if(sprite.frame == this.twoThousandsArray[i])
             {
-                 if(this.twoThousandsTheme == true)
+                 if(this.Era == 4)
                  {
                     if(this.shirtWear == true)
                     {
                         this.spriteManager.shirtInputDisable();
                         this.shirtCorrect = true;
+                        this.correctShirtTheme = true;
                     }
                     if(this.pantsWear == true)
                     {
                         this.spriteManager.pantsInputDisable();
                         this.pantsCorrect = true;
+                        this.correctPantsTheme = true;
                     }
                      if(this.specsWear == true)
                      {
                         this.spriteManager.specsInputDisable();
                         this.specsCorrect = true;
+                         this.correctSpecsTheme = true;
                      }
                     if(this.shoseWear == true)
                     {
                         this.spriteManager.shoseInputDisable();
                         this.shoseCorrect = true;
+                        this.correctShoseTheme = true;
                     }
                      
                     this.speach.text = "you are right";
@@ -551,7 +549,7 @@ theGame.Game.prototype =
         }
     }, 
     
-    setFalse: function()
+    destroyTheGrid: function()
     {
         //when shirt / pants / specs / shose is correct disable the clothes button.
         if(this.shirtCorrect == true || this.pantsCorrect == true || this.specsCorrect == true || this.shoseCorrect == true)
@@ -570,10 +568,21 @@ theGame.Game.prototype =
         }
     }, 
     
+    stopTiming: function() //stop timing when all clothes wear
+    {
+        //if(this.shirtWear == true && this.pantsWear == true && this.specsWear == true && this.shoseWear == true)
+        if(this.correctShirtTheme == true && this.correctPantsTheme == true && this.correctSpecsTheme == true && this.correctShoseTheme == true)
+        {
+            this.timeManager.stopTime();
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'GoParty', this.buttonManager.GoToGameEnd);
+        }
+    },
+    
     gameEndSetting: function()
     {
-        if(this.buttonManager.gameEnd == true)
+        if(this.buttonManager.clicked == true) 
         {
+            this.buttonManager.destroyButton();
             this.shirtWear = false;
             this.pantsWear = false;
             this.specsWear = false;
@@ -583,6 +592,11 @@ theGame.Game.prototype =
             this.pantsCorrect = false;
             this.specsCorrect = false;
             this.shoseCorrect = false;
+            
+            this.correctShirtTheme = false;
+            this.correctPantsTheme = false;
+            this.correctSpecsTheme = false;
+            this.correctShoseTheme = false;
         }
     }
 }

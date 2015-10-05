@@ -246,7 +246,6 @@ theGame.Tutorial.prototype =
         
         if(this.buttonManager.clicked == true) 
         {
-            //destroy everything except background
             this.selectedCorrect = false;
             this.shirtImage.destroy();
             this.person.destroy();
