@@ -7,10 +7,11 @@ theGame.Game = function(game)
     
     this.gameBackground = null;
     this.person = null;
-    this.shirtImage =null;
-    this.pantsImage =null;
-    this.specsImage =null;
-    this.shoseImage =null;
+    this.shirtImage = null;
+    this.pantsImage = null;
+    this.specsImage = null;
+    this.shoseImage = null;
+    this.wrongImage = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -51,6 +52,8 @@ theGame.Game = function(game)
     this.correctPantsTheme = false;
     this.correctSpecsTheme = false;
     this.correctShoseTheme = false;
+    
+    this.clickWrong = false;
 };
 
 theGame.Game.prototype = 
@@ -65,9 +68,13 @@ theGame.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         //Draw character
-        //this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.6, 'Person');
         this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterSprite');
         this.person.anchor.set(0.5,0.5);
+        
+        this.wrongImage = this.add.sprite(this.world.width*0.335, this.world.height*0.425, 'ClickWrong');
+        this.wrongImage.anchor.set(0.5,0.5);
+        this.wrongImage.visible = false;
+        
         
         this.buttonManager = new ButtonManager(this);
         
@@ -119,6 +126,7 @@ theGame.Game.prototype =
         this.destroyTheGrid();
         this.gameEndSetting();
         this.stopTiming();
+        //this.showWrong();
         theGame.FadeScreen.update(this.buttonManager.gametype);
     },
     
@@ -249,9 +257,8 @@ theGame.Game.prototype =
             this.tileArray[i] = [];
             for(j = 0; j < 2; j++)
             {    
-                if(this.tempArray[i][j] != null)
+                if(this.tempArray[i][j] != null) //destroy the previous grid
                 {
-                    console.log("not null");
                     this.tempArray[i][j].destroy();
                 }
                 
@@ -414,18 +421,20 @@ theGame.Game.prototype =
                         this.correctShoseTheme = true;
                     }
                     
-                    this.speach.text = "you are right";
+                    //this.speach.text = "you are right";
                     this.person.frame = 0;
+                    this.clickWrong = false;
                 }
                 else
                 {
-                    this.speach.text = "try another";
+                    //this.speach.text = "try another";
                     this.person.frame = 1;
+                    this.clickWrong = true;
                 }
                 
                 console.log( "1970s " + sprite.frame);
             }
-            else if(sprite.frame == this.eightysArray[i])
+            else if(sprite.frame == this.eightysArray[i]) //if clicked on 80s clothes
             {
                 if(this.Era == 2)
                 {
@@ -454,19 +463,21 @@ theGame.Game.prototype =
                         this.correctShoseTheme = true;
                     }
                     
-                    this.speach.text = "you are right";
+                    //this.speach.text = "you are right";
                     this.person.frame = 0;
+                    this.clickWrong = false;
                 }
                 else
-                    {
-                    this.speach.text = "try another";
-                        this.person.frame = 1;
+                {
+                   // this.speach.text = "try another";
+                    this.person.frame = 1;
+                    this.clickWrong = true;
                 }
                 
                 
                 console.log( "1980s " + sprite.frame);
             }
-            else if(sprite.frame == this.ninetysArray[i])
+            else if(sprite.frame == this.ninetysArray[i]) //if clicked on 90s clothes
             {
                   if(this.Era == 3)
                   {
@@ -495,18 +506,20 @@ theGame.Game.prototype =
                         this.correctShoseTheme = true;
                     }
                       
-                    this.speach.text = "you are right";
-                    this.person.frame = 0;   
+                    //this.speach.text = "you are right";
+                    this.person.frame = 0;
+                    this.clickWrong = false;
                   }
                 else
                    {
-                    this.speach.text = "try another";
+                    //this.speach.text = "try another";
                        this.person.frame = 1;
+                       this.clickWrong = true;
                 }
                 
                 console.log( "1990s " + sprite.frame);
             }
-            else if(sprite.frame == this.twoThousandsArray[i])
+            else if(sprite.frame == this.twoThousandsArray[i]) //if clicked on 2000s clothes
             {
                  if(this.Era == 4)
                  {
@@ -535,19 +548,38 @@ theGame.Game.prototype =
                         this.correctShoseTheme = true;
                     }
                      
-                    this.speach.text = "you are right";
-                    this.person.frame = 0;   
+                    //this.speach.text = "you are right";
+                    this.person.frame = 0;
+                    this.clickWrong = false;
                  }
                 else
                     {
-                    this.speach.text = "try another";
+                    //this.speach.text = "try another";
                         this.person.frame = 1;
+                        this.clickWrong = true;
                 }
-                
                 console.log( "2000s " + sprite.frame);
             }
         }
-    }, 
+    },
+    
+    showWrong: function()
+    {
+        if(this.clickWrong == true)
+        {
+            this.timeManager.createTimerDown(5);
+            this.wrongImage.visible = true;
+            //console.log("when click: " + this.wrongImage.visible);
+            if(this.timeManager.doSomething == true)
+            {
+                this.timeManager.stopDownTime();
+                this.wrongImage.visible = false;
+                this.clickWrong = false;
+                this.timeManager.doSomething = false;
+//                console.log("after click: " + this.wrongImage.visible);
+            }
+        }
+    },
     
     destroyTheGrid: function()
     {
@@ -573,7 +605,7 @@ theGame.Game.prototype =
         //if(this.shirtWear == true && this.pantsWear == true && this.specsWear == true && this.shoseWear == true)
         if(this.correctShirtTheme == true && this.correctPantsTheme == true && this.correctSpecsTheme == true && this.correctShoseTheme == true)
         {
-            this.timeManager.stopTime();
+            this.timeManager.stopUpTime();
             this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'GoParty', this.buttonManager.GoToGameEnd);
         }
     },

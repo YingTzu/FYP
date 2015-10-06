@@ -35,8 +35,6 @@ theGame.Preloader.prototype =
         this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
         
         //Person & Clothes
-//        this.load.image('Person', 'Assets/images/people.png');
-//        this.load.image('PersonSad', 'Assets/images/sad_character.png');
         this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 250, 533);
         this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 250, 533);
         
@@ -76,6 +74,9 @@ theGame.Preloader.prototype =
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
+        
+        //Wrong feedback
+        this.load.image('ClickWrong', 'Assets/images/wrong.png');
     }, 
     
     create: function()

@@ -57,7 +57,7 @@ SpriteManager.prototype.checkClotheDown = function()
     this.onPants= false;
     this.onSpecs = false;
     this.onShose = false;
-    console.log(this.onClothes);
+    //console.log(this.onClothes);
 };
 SpriteManager.prototype.checkPantsDown = function()
 {
