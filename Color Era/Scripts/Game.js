@@ -4,6 +4,7 @@ theGame.Game = function(game)
     this.uiManager = null;
     this.spriteManager = null;
     this.timeManager = null;
+    this.timeManager2 = null;
     
     this.gameBackground = null;
     this.person = null;
@@ -89,10 +90,9 @@ theGame.Game.prototype =
         this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterSprite');
         this.person.anchor.set(0.5,0.5);
         
-        this.wrongImage = this.add.sprite(this.world.width*0.335, this.world.height*0.425, 'ClickWrong');
+        this.wrongImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickWrong');
         this.wrongImage.anchor.set(0.5,0.5);
-        this.wrongImage.visible = false;
-        
+        this.wrongImage.alpha = 0.0;
         
         this.buttonManager = new ButtonManager(this);
         
@@ -133,6 +133,9 @@ theGame.Game.prototype =
         
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
+        
+        this.timeManager2 = new TimeManager(this);
+        //this.timeManager2.createTimerDown(10);
     },
     
     /////////////////////////////////////////////////////
@@ -144,7 +147,7 @@ theGame.Game.prototype =
         this.destroyTheGrid();
         this.gameEndSetting();
         this.stopTiming();
-        //this.showWrong();
+        this.showWrong();
         theGame.FadeScreen.update(this.buttonManager.gametype);
     },
     
@@ -501,7 +504,6 @@ theGame.Game.prototype =
                     this.clickWrong = true;
                 }
                 
-                
                 console.log( "1980s " + sprite.frame);
             }
             else if(sprite.frame == this.ninetysArray[i]) //if clicked on 90s clothes
@@ -594,17 +596,15 @@ theGame.Game.prototype =
     {
         if(this.clickWrong == true)
         {
-            this.timeManager.createTimerDown(5);
-            this.wrongImage.visible = true;
-            //console.log("when click: " + this.wrongImage.visible);
-            if(this.timeManager.doSomething == true)
+            this.wrongImage.alphain = this.game.add.tween(this.wrongImage).to({alpha:1},50, Phaser.Easing.linear, true);
+            if(this.wrongImage.alpha >= 0.8)
             {
-                this.timeManager.stopDownTime();
-                this.wrongImage.visible = false;
                 this.clickWrong = false;
-                this.timeManager.doSomething = false;
-//                console.log("after click: " + this.wrongImage.visible);
             }
+        }
+        if(this.clickWrong == false)
+        {
+            this.wrongImage.alphain = this.game.add.tween(this.wrongImage).to({alpha:0},50, Phaser.Easing.linear, true);
         }
     },
     
@@ -633,7 +633,7 @@ theGame.Game.prototype =
         if(this.correctShirtTheme == true && this.correctPantsTheme == true && this.correctSpecsTheme == true && this.correctShoseTheme == true)
         {
             this.timeManager.stopUpTime();
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'GoParty', this.buttonManager.GoToGameEnd);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'GoParty', this.buttonManager.GoToGameEnd);
         }
     },
     
