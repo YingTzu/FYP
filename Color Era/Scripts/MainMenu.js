@@ -17,6 +17,7 @@ theGame.MainMenu.prototype =
         //Button
         this.buttonManager = new ButtonManager(this);
         this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToTutorial);
+        
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
         theGame.FadeScreen.create();

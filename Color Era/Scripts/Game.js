@@ -96,6 +96,7 @@ theGame.Game.prototype =
         
         this.buttonManager = new ButtonManager(this);
         
+        
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
         this.spriteManager.createClothes(this.world.width*0.22, this.world.height*0.375, 'ClothesButton');
@@ -318,6 +319,7 @@ theGame.Game.prototype =
                 
                 this.randomTile = this.newTile;
                 this.theTile = this.add.sprite(315+i*this.tileSize*1.1, 250+j*this.tileSize*1.15, key);
+                this.tween = this.game.add.tween(this.theTile.scale).to( { x: 1.1, y: 1.1 }, 1000, Phaser.Easing.Bounce.Out, true);
                 this.theTile.frame = this.randomTile;
                 this.tileArray[i][j] = this.theTile;
                 
