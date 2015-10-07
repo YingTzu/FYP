@@ -14,9 +14,6 @@ theGame.Tutorial = function(game)
     this.tileType  = 4;
     this.tileArray = [];
     this.tempArray = [];
-
-    this.eraText = null;
-    this.speach = null;
     
     this.seventysTheme = true;
     this.eightysTheme = false;
@@ -76,9 +73,6 @@ theGame.Tutorial.prototype =
                 }
             }
         }
-        
-        this.eraText= this.add.text(this.world.width*0.4, this.world.height*0.08, '1970s', { fill: '#000000' });
-        this.speach = this.add.text(this.world.width*0.8, this.world.height*0.1, 'Hello', { fill: '#000000' });
         
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
@@ -211,8 +205,8 @@ theGame.Tutorial.prototype =
             {
                 if(this.seventysTheme == true)
                 {
+                    //check correct
                     this.spriteManager.shirtInputDisable();
-                    this.speach.text = "you are right";
                     this.person.frame = 2;
                     this.selectedCorrect = true;
                 }
@@ -221,7 +215,7 @@ theGame.Tutorial.prototype =
                     sprite.frame == this.ninetysArray[i] ||
                     sprite.frame == this.twoThousandsArray[i])
             {
-                this.speach.text = "try another";
+                //check wrong
                 this.person.frame = 1;
             }
         }

@@ -4,7 +4,8 @@ theGame.Game = function(game)
     this.uiManager = null;
     this.spriteManager = null;
     this.timeManager = null;
-    this.timeManager2 = null;
+    this.correctSound = null;
+    this.wrongSound = null;
     
     this.gameBackground = null;
     this.person = null;
@@ -134,6 +135,12 @@ theGame.Game.prototype =
         
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
+        
+        this.correctSound = new SoundManager(this);
+        this.wrongSound = new SoundManager(this);
+        this.correctSound.createCorrect('CorrectSFX');
+        this.wrongSound.createWrong('WrongSFX');
+        
         
         this.timeManager2 = new TimeManager(this);
         //this.timeManager2.createTimerDown(10);
@@ -454,12 +461,14 @@ theGame.Game.prototype =
                     }
                     
                     //check correct
+                    this.correctSound.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
+                    this.wrongSound.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -495,13 +504,15 @@ theGame.Game.prototype =
                         this.correctShoseTheme = true;
                     }
                     
-                    //this.speach.text = "you are right";
+                    //check correct
+                    this.correctSound.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
+                    this.wrongSound.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -538,12 +549,14 @@ theGame.Game.prototype =
                     }
                       
                     //check correct
+                    this.correctSound.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                   }
                 else
                 {
                     //check wrong
+                    this.wrongSound.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -580,12 +593,14 @@ theGame.Game.prototype =
                     }
                      
                     //check correct
+                    this.correctSound.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                  }
                 else
                 {
                     //check wrong
+                    this.wrongSound.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
