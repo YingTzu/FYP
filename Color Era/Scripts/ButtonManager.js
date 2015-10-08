@@ -36,6 +36,7 @@ ButtonManager.prototype.StartGame = function()
 
 ButtonManager.prototype.GoToTutorial = function()
 {
+    this.clicked = true;
     this.gametype = 2;
     theGame.FadeScreen.OnEnd = true;
     console.log("game scence: " + this.gametype);

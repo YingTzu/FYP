@@ -1,13 +1,13 @@
 theGame.Tutorial = function(game)
 {
-    this.toturialBackground = null;
-    
-    //this.music = null;
     this.spriteManager = null;
     this.buttonManager = null;
+    this.soundManager = null;
     
+    this.toturialBackground = null;
     this.person = null;
     this.shirtImage =null;
+    this.wrongImage = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -16,9 +16,6 @@ theGame.Tutorial = function(game)
     this.tempArray = [];
     
     this.seventysTheme = true;
-    this.eightysTheme = false;
-    this.ninetysTheme = false;
-    this.twoThousandsTheme = false;
     
     this.seventysArray = [];    //1970s
     this.eightysArray = [];     //1980s
@@ -26,8 +23,8 @@ theGame.Tutorial = function(game)
     this.twoThousandsArray =[]; //2000s
     
     this.clothesOpened = false;
-    
     this.selectedCorrect = false;
+    this.clickWrong = false;
 };
 
 theGame.Tutorial.prototype = 
@@ -41,6 +38,11 @@ theGame.Tutorial.prototype =
         //character
         this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterTutorial');
         this.person.anchor.set(0.5,0.5);
+        
+        //Wrong effect
+        this.wrongImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickWrong');
+        this.wrongImage.anchor.set(0.5,0.5);
+        this.wrongImage.alpha = 0.0;
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -74,6 +76,8 @@ theGame.Tutorial.prototype =
             }
         }
         
+        this.soundManager = new SoundManager(this);
+        
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
         theGame.FadeScreen.create(); 
@@ -83,6 +87,7 @@ theGame.Tutorial.prototype =
     {
         this.checkOpen();
         this.whenTrue();
+        this.showWrong();
         
         theGame.FadeScreen.update(this.buttonManager.gametype);
     },
@@ -91,6 +96,7 @@ theGame.Tutorial.prototype =
     {
         if(this.spriteManager.onClothes == true)
         {
+            this.soundManager.createSound('ClickSFX');
             this.drawGrids('ClothesTiles');
             this.spriteManager.onClothes = false;
             
@@ -206,9 +212,11 @@ theGame.Tutorial.prototype =
                 if(this.seventysTheme == true)
                 {
                     //check correct
+                    this.soundManager.createSound('CorrectSFX');
                     this.spriteManager.shirtInputDisable();
                     this.person.frame = 2;
                     this.selectedCorrect = true;
+                    this.clickWrong = false;
                 }
             }
             else if(sprite.frame == this.eightysArray[i] || 
@@ -216,8 +224,26 @@ theGame.Tutorial.prototype =
                     sprite.frame == this.twoThousandsArray[i])
             {
                 //check wrong
+                this.soundManager.createSound('WrongSFX');
+                this.clickWrong = true;
                 this.person.frame = 1;
             }
+        }
+    },
+    
+    showWrong: function()
+    {
+        if(this.clickWrong == true)
+        {
+            this.wrongImage.alphain = this.game.add.tween(this.wrongImage).to({alpha:1},50, Phaser.Easing.linear, true);
+            if(this.wrongImage.alpha >= 0.8)
+            {
+                this.clickWrong = false;
+            }
+        }
+        if(this.clickWrong == false)
+        {
+            this.wrongImage.alphain = this.game.add.tween(this.wrongImage).to({alpha:0},50, Phaser.Easing.linear, true);
         }
     },
     

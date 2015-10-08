@@ -88,10 +88,14 @@ theGame.Preloader.prototype =
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
         this.load.image('StarFull', 'Assets/images/starFull.png');
         
+        //Music
+        this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
+        
         //SFX
         this.load.audio('CorrectSFX', 'Assets/audio/Correct_SFX.mp3');
         this.load.audio('WrongSFX', 'Assets/audio/Wrong_SFX.mp3');
         this.load.audio('ClickSFX', 'Assets/audio/IconClick_SFX.mp3');
+        this.load.audio('StarSFX', 'Assets/audio/Star_SFX.mp3');
     }, 
     
     create: function()

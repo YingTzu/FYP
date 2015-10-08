@@ -1,38 +1,28 @@
 function SoundManager(game)
 {
     this.game = game;
+    
     this.gameSound = null;
     this.menuSound = null;
     this.gameEnd = null;
-    this.clickSound = null;
-    this.correctSound = null;
-    this.wrongSound = null;
+    
+    this.soundSFX = null;
 }
-
-SoundManager.prototype.createCorrect = function(key)
+//////////////////create sound////////////////////////
+SoundManager.prototype.createSound = function(key)
 {
-    this.correctSound = this.game.add.audio(key);
-};
-SoundManager.prototype.createWrong = function(key)
-{
-    this.wrongSound = this.game.add.audio(key);
-};
-SoundManager.prototype.createClickSound = function(key)
-{
-    this.clickSound = this.game.add.audio(key);
+    this.soundSFX = this.game.add.audio(key);
+    this.soundSFX.play();
 };
 
-SoundManager.prototype.playCorrect = function()
+SoundManager.prototype.createMusic = function(key)
 {
-    this.correctSound.play();
+    this.menuSound = this.game.add.audio(key);
+    this.menuSound.play();
 };
 
-SoundManager.prototype.playWrong = function()
+SoundManager.prototype.stopMusic = function()
 {
-    this.wrongSound.play();
-}
+    this.menuSound.stop();
+};
 
-SoundManager.prototype.playClickSound = function()
-{
-    this.clickSound.play();
-}

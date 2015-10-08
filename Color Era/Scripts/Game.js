@@ -136,9 +136,6 @@ theGame.Game.prototype =
         this.timeManager.createTimerUp();
         
         this.soundManager = new SoundManager(this);
-        this.soundManager.createCorrect('CorrectSFX');
-        this.soundManager.createWrong('WrongSFX');
-        this.soundManager.createClickSound('ClickSFX');
     },
     
     /////////////////////////////////////////////////////
@@ -192,7 +189,7 @@ theGame.Game.prototype =
     {
         if(this.spriteManager.onClothes == true)
         {
-            this.soundManager.playClickSound();
+            this.soundManager.createSound('ClickSFX');
             this.drawGrids('ClothesTiles');
             this.spriteManager.onClothes = false;
             
@@ -203,7 +200,7 @@ theGame.Game.prototype =
         }
        else if(this.spriteManager.onPants == true)
         {
-            this.soundManager.playClickSound();
+            this.soundManager.createSound('ClickSFX');
             this.drawGrids('PantsTiles');
             this.spriteManager.onPants = false;
             
@@ -214,7 +211,7 @@ theGame.Game.prototype =
         }
         else if(this.spriteManager.onSpecs == true)
         {
-            this.soundManager.playClickSound();
+            this.soundManager.createSound('ClickSFX');
             this.drawGrids('GlassesTiles');
             this.spriteManager.onSpecs = false;
             
@@ -225,7 +222,7 @@ theGame.Game.prototype =
         }
         else if(this.spriteManager.onShose == true)
         {
-            this.soundManager.playClickSound();
+            this.soundManager.createSound('ClickSFX');
             this.drawGrids('ShoseTiles');
             this.spriteManager.onShose = false;
             
@@ -460,14 +457,14 @@ theGame.Game.prototype =
                     }
                     
                     //check correct
-                    this.soundManager.playCorrect();
+                    this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
-                    this.soundManager.playWrong();
+                    this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -504,14 +501,14 @@ theGame.Game.prototype =
                     }
                     
                     //check correct
-                    this.soundManager.playCorrect();
+                    this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
-                    this.soundManager.playWrong();
+                    this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -548,14 +545,14 @@ theGame.Game.prototype =
                     }
                       
                     //check correct
-                    this.soundManager.playCorrect();
+                    this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
                   }
                 else
                 {
                     //check wrong
-                    this.soundManager.playWrong();
+                    this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -592,14 +589,14 @@ theGame.Game.prototype =
                     }
                      
                     //check correct
-                    this.soundManager.playCorrect();
+                    this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
                  }
                 else
                 {
                     //check wrong
-                    this.soundManager.playWrong();
+                    this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
