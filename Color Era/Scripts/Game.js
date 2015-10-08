@@ -4,8 +4,7 @@ theGame.Game = function(game)
     this.uiManager = null;
     this.spriteManager = null;
     this.timeManager = null;
-    this.correctSound = null;
-    this.wrongSound = null;
+    this.soundManager = null;
     
     this.gameBackground = null;
     this.person = null;
@@ -136,14 +135,10 @@ theGame.Game.prototype =
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
         
-        this.correctSound = new SoundManager(this);
-        this.wrongSound = new SoundManager(this);
-        this.correctSound.createCorrect('CorrectSFX');
-        this.wrongSound.createWrong('WrongSFX');
-        
-        
-        this.timeManager2 = new TimeManager(this);
-        //this.timeManager2.createTimerDown(10);
+        this.soundManager = new SoundManager(this);
+        this.soundManager.createCorrect('CorrectSFX');
+        this.soundManager.createWrong('WrongSFX');
+        this.soundManager.createClickSound('ClickSFX');
     },
     
     /////////////////////////////////////////////////////
@@ -197,6 +192,7 @@ theGame.Game.prototype =
     {
         if(this.spriteManager.onClothes == true)
         {
+            this.soundManager.playClickSound();
             this.drawGrids('ClothesTiles');
             this.spriteManager.onClothes = false;
             
@@ -207,6 +203,7 @@ theGame.Game.prototype =
         }
        else if(this.spriteManager.onPants == true)
         {
+            this.soundManager.playClickSound();
             this.drawGrids('PantsTiles');
             this.spriteManager.onPants = false;
             
@@ -217,6 +214,7 @@ theGame.Game.prototype =
         }
         else if(this.spriteManager.onSpecs == true)
         {
+            this.soundManager.playClickSound();
             this.drawGrids('GlassesTiles');
             this.spriteManager.onSpecs = false;
             
@@ -227,6 +225,7 @@ theGame.Game.prototype =
         }
         else if(this.spriteManager.onShose == true)
         {
+            this.soundManager.playClickSound();
             this.drawGrids('ShoseTiles');
             this.spriteManager.onShose = false;
             
@@ -461,14 +460,14 @@ theGame.Game.prototype =
                     }
                     
                     //check correct
-                    this.correctSound.playCorrect();
+                    this.soundManager.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
-                    this.wrongSound.playWrong();
+                    this.soundManager.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -505,14 +504,14 @@ theGame.Game.prototype =
                     }
                     
                     //check correct
-                    this.correctSound.playCorrect();
+                    this.soundManager.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                 }
                 else
                 {
                     //check wrong
-                    this.wrongSound.playWrong();
+                    this.soundManager.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -549,14 +548,14 @@ theGame.Game.prototype =
                     }
                       
                     //check correct
-                    this.correctSound.playCorrect();
+                    this.soundManager.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                   }
                 else
                 {
                     //check wrong
-                    this.wrongSound.playWrong();
+                    this.soundManager.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
@@ -593,14 +592,14 @@ theGame.Game.prototype =
                     }
                      
                     //check correct
-                    this.correctSound.playCorrect();
+                    this.soundManager.playCorrect();
                     this.person.frame = 0;
                     this.clickWrong = false;
                  }
                 else
                 {
                     //check wrong
-                    this.wrongSound.playWrong();
+                    this.soundManager.playWrong();
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }

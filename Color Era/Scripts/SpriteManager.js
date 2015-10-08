@@ -10,6 +10,8 @@ function SpriteManager(game)
     this.onPants= false;
     this.onSpecs = false;
     this.onShose = false;
+    
+    theGame.soundManager = new SoundManager(this);
 }
 
 SpriteManager.prototype.createClothes = function(posx, posy, key)
@@ -57,7 +59,6 @@ SpriteManager.prototype.checkClotheDown = function()
     this.onPants= false;
     this.onSpecs = false;
     this.onShose = false;
-    //console.log(this.onClothes);
 };
 SpriteManager.prototype.checkPantsDown = function()
 {

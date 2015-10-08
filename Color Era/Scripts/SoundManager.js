@@ -17,6 +17,10 @@ SoundManager.prototype.createWrong = function(key)
 {
     this.wrongSound = this.game.add.audio(key);
 };
+SoundManager.prototype.createClickSound = function(key)
+{
+    this.clickSound = this.game.add.audio(key);
+};
 
 SoundManager.prototype.playCorrect = function()
 {
@@ -26,4 +30,9 @@ SoundManager.prototype.playCorrect = function()
 SoundManager.prototype.playWrong = function()
 {
     this.wrongSound.play();
+}
+
+SoundManager.prototype.playClickSound = function()
+{
+    this.clickSound.play();
 }
