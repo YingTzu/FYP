@@ -18,7 +18,7 @@ SoundManager.prototype.createSound = function(key)
 SoundManager.prototype.createMusic = function(key)
 {
     this.menuSound = this.game.add.audio(key);
-    this.menuSound.play();
+    this.menuSound.play(null, 0, 1, true);
 };
 
 SoundManager.prototype.stopMusic = function()

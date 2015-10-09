@@ -87,7 +87,7 @@ theGame.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         //Draw character
-        this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterSprite');
+        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite');
         this.person.anchor.set(0.5,0.5);
         
         this.wrongImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickWrong');
@@ -242,7 +242,7 @@ theGame.Game.prototype =
         if(this.tempShirt != null)
             this.tempShirt.destroy();
         
-        this.shirtImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, shirtSprite);
+        this.shirtImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, shirtSprite);
         this.shirtImage.anchor.set(0.5,0.5);
         this.tempShirt = this.shirtImage;
         
@@ -254,7 +254,7 @@ theGame.Game.prototype =
         if(this.tempPants != null)
             this.tempPants.destroy();
         
-        this.pantsImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, pantsSprite);
+        this.pantsImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, pantsSprite);
         this.pantsImage.anchor.set(0.5,0.5);
         this.tempPants = this.pantsImage;
     },
@@ -265,7 +265,7 @@ theGame.Game.prototype =
         if(this.tempSpecs != null)
             this.tempSpecs.destroy();
         
-        this.specsImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.specsImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, sprite);
         this.specsImage.anchor.set(0.5,0.5);
         this.tempSpecs = this.specsImage;  
     },
@@ -276,7 +276,7 @@ theGame.Game.prototype =
         if(this.tempShose != null)
             this.tempShose.destroy();
         
-        this.shoseImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, sprite);
+        this.shoseImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, sprite);
         this.shoseImage.anchor.set(0.5,0.5);
         this.tempShose = this.shoseImage;
     },
@@ -354,10 +354,10 @@ theGame.Game.prototype =
                     this.drawPants('80Pants');
                     break;
                 case 2:
-                   // this.drawPants('90Pants');
+                    this.drawPants('90Pants');
                     break;
                 case 3:
-                    //this.drawPants('2000Pants');
+                    this.drawPants('2000Pants');
                     break;
             }
             this.pantsWear = true;
@@ -389,15 +389,15 @@ theGame.Game.prototype =
                 case 0:
                     this.drawSpecs('70Specs');
                     break;
-//                case 1:
-//                    this.drawSpecs('80Specs');
-//                    break;
-//                case 2:
-//                    this.drawSpecs('90Specs');
-//                    break;
-//                case 3:
-//                    this.drawSpecs('2000Specs');
-//                    break;
+                case 1:
+                    this.drawSpecs('80Specs');
+                    break;
+                case 2:
+                    this.drawSpecs('90Specs');
+                    break;
+                case 3:
+                    this.drawSpecs('2000Specs');
+                    break;
             }
             this.specsWear = true;
         }
@@ -410,14 +410,14 @@ theGame.Game.prototype =
                     this.drawShose('70Shose');
                     break;
                 case 1:
-//                    this.drawShose('80Shose');
-//                    break;
-//                case 2:
-//                    this.drawShose('90Shose');
-//                    break;
-//                case 3:
-//                    this.drawShose('2000Shose');
-//                    break;
+                    this.drawShose('80Shose');
+                    break;
+                case 2:
+                    this.drawShose('90Shose');
+                    break;
+                case 3:
+                    this.drawShose('2000Shose');
+                    break;
             }
             this.shoseWear = true;
         }
@@ -467,9 +467,17 @@ theGame.Game.prototype =
                     this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
+                    
+                    this.correctShirtTheme = false;
+                    this.correctPantsTheme = false;
+                    this.correctSpecsTheme = false;
+                    this.correctShoseTheme = false;
                 }
-                
-                console.log( "1970s " + sprite.frame);
+                console.log(" shirt: " + this.correctShirtTheme);
+                console.log(" pants: " + this.correctPantsTheme);
+                console.log(" accs: " + this.correctSpecsTheme);
+                console.log(" shoes: " + this.correctShoseTheme + "/////////////");
+                //console.log( "1970s " + sprite.frame);
             }
             else if(sprite.frame == this.eightysArray[i]) //if clicked on 80s clothes
             {
@@ -513,7 +521,11 @@ theGame.Game.prototype =
                     this.clickWrong = true;
                 }
                 
-                console.log( "1980s " + sprite.frame);
+                //console.log( "1980s " + sprite.frame);
+                console.log(" shirt: " + this.correctShirtTheme);
+                console.log(" pants: " + this.correctPantsTheme);
+                console.log(" accs: " + this.correctSpecsTheme);
+                console.log(" shoes: " + this.correctShoseTheme + "/////////////");
             }
             else if(sprite.frame == this.ninetysArray[i]) //if clicked on 90s clothes
             {
@@ -557,7 +569,11 @@ theGame.Game.prototype =
                     this.clickWrong = true;
                 }
                 
-                console.log( "1990s " + sprite.frame);
+                //console.log( "1990s " + sprite.frame);
+                console.log(" shirt: " + this.correctShirtTheme);
+                console.log(" pants: " + this.correctPantsTheme);
+                console.log(" accs: " + this.correctSpecsTheme);
+                console.log(" shoes: " + this.correctShoseTheme + "/////////////");
             }
             else if(sprite.frame == this.twoThousandsArray[i]) //if clicked on 2000s clothes
             {
@@ -600,7 +616,11 @@ theGame.Game.prototype =
                     this.person.frame = 1;
                     this.clickWrong = true;
                 }
-                console.log( "2000s " + sprite.frame);
+                //console.log( "2000s " + sprite.frame);
+                console.log(" shirt: " + this.correctShirtTheme);
+                console.log(" pants: " + this.correctPantsTheme);
+                console.log(" accs: " + this.correctSpecsTheme);
+                console.log(" shoes: " + this.correctShoseTheme + "/////////////");
             }
         }
     },
@@ -655,6 +675,20 @@ theGame.Game.prototype =
         if(this.buttonManager.clicked == true) 
         {
             this.buttonManager.destroyButton();
+            this.correctShirtTheme = false;
+            this.correctPantsTheme = false;
+            this.correctSpecsTheme = false;
+            this.correctShoseTheme = false;
+            
+            this.shirtWear = false;
+            this.pantsWear = false;
+            this.specsWear = false;
+            this.shoseWear = false;
+
+            this.shirtCorrect = false;
+            this.pantsCorrect = false;
+            this.specsCorrect = false;
+            this.shoseCorrect = false;
         }
     }
 }

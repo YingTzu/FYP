@@ -41,22 +41,28 @@ theGame.Preloader.prototype =
         this.load.image('2000s', 'Assets/images/2000s.png');
         
         //Person & Clothes
-        this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 250, 533);
-        this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 250, 533);
+        this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 960, 640);
+        this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 960, 640);
         
-        this.load.image('70Specs', 'Assets/images/70s_specs.png');
-        this.load.image('70Shirt', 'Assets/images/70s_shirt.png');
-        this.load.image('70Pants', 'Assets/images/70s_pants.png');
-        this.load.image('70Shose', 'Assets/images/70s_shoes.png');
+        this.load.image('70Specs', 'Assets/images/70s/70s_accessories.png');
+        this.load.image('70Shirt', 'Assets/images/70s/70s_shirt.png');
+        this.load.image('70Pants', 'Assets/images/70s/70s_skirt.png');
+        this.load.image('70Shose', 'Assets/images/70s/70s_shoes.png');
         
-        //this.load.image('80Specs', 'Assets/images/80s_specs.png');
-        this.load.image('80Shirt', 'Assets/images/80s_shirt.png');
-        this.load.image('80Pants', 'Assets/images/80s_pants.png');
-        //this.load.image('80Shose', 'Assets/images/80s_shoes.png');
+        this.load.image('80Specs', 'Assets/images/80s/80s_accessories.png');
+        this.load.image('80Shirt', 'Assets/images/80s/80s_shirt.png');
+        this.load.image('80Pants', 'Assets/images/80s/80s_skirt.png');
+        this.load.image('80Shose', 'Assets/images/80s/80s_shoes.png');
         
-        this.load.image('90Shirt', 'Assets/images/90s_shirt.png');
+        this.load.image('90Specs', 'Assets/images/90s/90s_accessories.png');
+        this.load.image('90Shirt', 'Assets/images/90s/90s_shirt.png');
+        this.load.image('90Pants', 'Assets/images/90s/90s_skirt.png');
+        this.load.image('90Shose', 'Assets/images/90s/90s_shoes.png');
         
-        this.load.image('2000Shirt', 'Assets/images/2000s_shirt.png');
+        this.load.image('2000Specs', 'Assets/images/2000s/2000s_accessories.png');
+        this.load.image('2000Shirt', 'Assets/images/2000s/2000s_shirt.png');
+        this.load.image('2000Pants', 'Assets/images/2000s/2000s_skirt.png');
+        this.load.image('2000Shose', 'Assets/images/2000s/2000s_shoes.png');
         
         //UI button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
@@ -96,6 +102,7 @@ theGame.Preloader.prototype =
         this.load.audio('WrongSFX', 'Assets/audio/Wrong_SFX.mp3');
         this.load.audio('ClickSFX', 'Assets/audio/IconClick_SFX.mp3');
         this.load.audio('StarSFX', 'Assets/audio/Star_SFX.mp3');
+        this.load.audio('ButtonClickSFX', 'Assets/audio/ButtonClick_SFX.mp3');
     }, 
     
     create: function()

@@ -36,7 +36,7 @@ theGame.Tutorial.prototype =
         this.toturialBackground.anchor.set(0.5,0.5);
         
         //character
-        this.person = this.add.sprite(this.world.width*0.83, this.world.height*0.59, 'CharacterTutorial');
+        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterTutorial');
         this.person.anchor.set(0.5,0.5);
         
         //Wrong effect
@@ -112,7 +112,7 @@ theGame.Tutorial.prototype =
         if(this.tempShirt != null)
             this.tempShirt.destroy();
         
-        this.shirtImage = this.add.sprite(this.world.width*0.83, this.world.height*0.6, shirtSprite);
+        this.shirtImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, shirtSprite);
         this.shirtImage.anchor.set(0.5,0.5);
         this.tempShirt = this.shirtImage;
         
