@@ -2,14 +2,14 @@ function SpriteManager(game)
 {
     this.game = game;
     this.theClothesImage = null;
-    this.thePantsImage = null;
+    this.theSkirtImage = null;
     this.theSpecsImage = null;
     this.theShoseImage = null;
     
     this.onClothes = false;
-    this.onPants= false;
-    this.onSpecs = false;
-    this.onShose = false;
+    this.onSkirt= false;
+    this.onAccessories = false;
+    this.onShoes = false;
     
     theGame.soundManager = new SoundManager(this);
 }
@@ -23,14 +23,14 @@ SpriteManager.prototype.createClothes = function(posx, posy, key)
     this.theClothesImage.events.onInputOver.add(this.overClothes, this);
     this.theClothesImage.events.onInputOut.add(this.outClothes, this);
 };
-SpriteManager.prototype.createPants = function(posx, posy, key)
+SpriteManager.prototype.createSkirts = function(posx, posy, key)
 {
-    this.thePantsImage = this.game.add.sprite(posx, posy, key);
-    this.thePantsImage.anchor.set(0.5,0.5);
-    this.thePantsImage.inputEnabled = true;
-    this.thePantsImage.events.onInputDown.add(this.checkPantsDown, this);
-    this.thePantsImage.events.onInputOver.add(this.overPants, this);
-    this.thePantsImage.events.onInputOut.add(this.outPants, this);
+    this.theSkirtImage = this.game.add.sprite(posx, posy, key);
+    this.theSkirtImage.anchor.set(0.5,0.5);
+    this.theSkirtImage.inputEnabled = true;
+    this.theSkirtImage.events.onInputDown.add(this.checkSkirtDown, this);
+    this.theSkirtImage.events.onInputOver.add(this.overSkirt, this);
+    this.theSkirtImage.events.onInputOut.add(this.outSkirt, this);
 };
 SpriteManager.prototype.createSpecs = function(posx, posy, key)
 {
@@ -56,33 +56,33 @@ SpriteManager.prototype.checkClotheDown = function()
 {
     this.theClothesImage.frame = 2;
     this.onClothes = true;
-    this.onPants= false;
-    this.onSpecs = false;
-    this.onShose = false;
+    this.onSkirt= false;
+    this.onAccessories = false;
+    this.onShoes = false;
 };
-SpriteManager.prototype.checkPantsDown = function()
+SpriteManager.prototype.checkSkirtDown = function()
 {
-    this.thePantsImage.frame = 2;
+    this.theSkirtImage.frame = 2;
     this.onClothes = false;
-    this.onPants= true;
-    this.onSpecs = false;
-    this.onShose = false;
+    this.onSkirt= true;
+    this.onAccessories = false;
+    this.onShoes = false;
 };
 SpriteManager.prototype.checkSpecsDown = function()
 {
     this.theSpecsImage.frame = 2;
     this.onClothes = false;
-    this.onPants= false;
-    this.onSpecs = true;
-    this.onShose = false;
+    this.onSkirt= false;
+    this.onAccessories = true;
+    this.onShoes = false;
 };
 SpriteManager.prototype.checkShoseDown = function()
 {
     this.theShoseImage.frame = 2;
     this.onClothes = false;
-    this.onPants= false;
-    this.onSpecs = false;
-    this.onShose = true;
+    this.onSkirt= false;
+    this.onAccessories = false;
+    this.onShoes = true;
 };
 /////////////////////////////////////////////////////
 
@@ -91,9 +91,9 @@ SpriteManager.prototype.overClothes = function()
 {
     this.theClothesImage.frame = 1;
 };
-SpriteManager.prototype.overPants = function()
+SpriteManager.prototype.overSkirt = function()
 {
-    this.thePantsImage.frame = 1;
+    this.theSkirtImage.frame = 1;
 };
 SpriteManager.prototype.overSpecs = function()
 {
@@ -110,9 +110,9 @@ SpriteManager.prototype.outClothes = function()
 {   
     this.theClothesImage.frame = 0;
 };
-SpriteManager.prototype.outPants = function()
+SpriteManager.prototype.outSkirt = function()
 {   
-    this.thePantsImage.frame = 0;
+    this.theSkirtImage.frame = 0;
 };
 SpriteManager.prototype.outSpecs = function()
 {   
@@ -130,10 +130,10 @@ SpriteManager.prototype.shirtInputDisable = function()
     this.theClothesImage.inputEnabled = false;
     this.theClothesImage.frame = 2;
 };
-SpriteManager.prototype.pantsInputDisable = function()
+SpriteManager.prototype.skirtInputDisable = function()
 {   
-    this.thePantsImage.inputEnabled = false;
-    this.thePantsImage.frame = 2;
+    this.theSkirtImage.inputEnabled = false;
+    this.theSkirtImage.frame = 2;
 };
 SpriteManager.prototype.specsInputDisable = function()
 {   
@@ -146,12 +146,6 @@ SpriteManager.prototype.shoseInputDisable = function()
     this.theShoseImage.frame = 2;
 };
 ////////////////////////////////////////////////
-
-//SpriteManager.prototype.shirtInputDisable = function()
-//{   
-//    this.theClothesImage.inputEnabled = false;
-//    this.theClothesImage.frame = 2;
-//};
 
 SpriteManager.prototype.destroySprite = function()
 {   

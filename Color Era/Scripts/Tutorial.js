@@ -166,11 +166,8 @@ theGame.Tutorial.prototype =
                 this.tempArray[i][j] = this.tileArray[i][j];
                 
                 this.theTile.anchor.setTo(0.5, 0.5);
-                if(this.selectedCorrect == false)
-                {
-                    this.theTile.inputEnabled=true;
-                    this.theTile.events.onInputDown.add(this.clicked, this);
-                }
+                this.theTile.inputEnabled=true;
+                this.theTile.events.onInputDown.add(this.clicked, this);
             }
         }
     },
@@ -252,7 +249,7 @@ theGame.Tutorial.prototype =
         //When player select the correct shirt
         if(this.selectedCorrect == true)
         {
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'SkipButton', this.buttonManager.StartGame);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'StartGameButton', this.buttonManager.StartGame);
             this.selectedCorrect = false;
             
             for(i = 0; i < 2; i++)

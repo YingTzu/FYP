@@ -44,40 +44,40 @@ theGame.Preloader.prototype =
         this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 960, 640);
         this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 960, 640);
         
-        this.load.image('70Specs', 'Assets/images/70s/70s_accessories.png');
+        this.load.image('70Accessories', 'Assets/images/70s/70s_accessories.png');
         this.load.image('70Shirt', 'Assets/images/70s/70s_shirt.png');
-        this.load.image('70Pants', 'Assets/images/70s/70s_skirt.png');
-        this.load.image('70Shose', 'Assets/images/70s/70s_shoes.png');
+        this.load.image('70Skirt', 'Assets/images/70s/70s_skirt.png');
+        this.load.image('70Shoes', 'Assets/images/70s/70s_shoes.png');
         
-        this.load.image('80Specs', 'Assets/images/80s/80s_accessories.png');
+        this.load.image('80Accessories', 'Assets/images/80s/80s_accessories.png');
         this.load.image('80Shirt', 'Assets/images/80s/80s_shirt.png');
-        this.load.image('80Pants', 'Assets/images/80s/80s_skirt.png');
-        this.load.image('80Shose', 'Assets/images/80s/80s_shoes.png');
+        this.load.image('80Skirt', 'Assets/images/80s/80s_skirt.png');
+        this.load.image('80Shoes', 'Assets/images/80s/80s_shoes.png');
         
-        this.load.image('90Specs', 'Assets/images/90s/90s_accessories.png');
+        this.load.image('90Accessories', 'Assets/images/90s/90s_accessories.png');
         this.load.image('90Shirt', 'Assets/images/90s/90s_shirt.png');
-        this.load.image('90Pants', 'Assets/images/90s/90s_skirt.png');
-        this.load.image('90Shose', 'Assets/images/90s/90s_shoes.png');
+        this.load.image('90Skirt', 'Assets/images/90s/90s_skirt.png');
+        this.load.image('90Shoes', 'Assets/images/90s/90s_shoes.png');
         
-        this.load.image('2000Specs', 'Assets/images/2000s/2000s_accessories.png');
+        this.load.image('2000Accessories', 'Assets/images/2000s/2000s_accessories.png');
         this.load.image('2000Shirt', 'Assets/images/2000s/2000s_shirt.png');
-        this.load.image('2000Pants', 'Assets/images/2000s/2000s_skirt.png');
-        this.load.image('2000Shose', 'Assets/images/2000s/2000s_shoes.png');
+        this.load.image('2000Skirt', 'Assets/images/2000s/2000s_skirt.png');
+        this.load.image('2000Shoes', 'Assets/images/2000s/2000s_shoes.png');
         
         //UI button
-        this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
-        this.load.image('SkipButton', 'Assets/images/startGame.png');
+        this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 196, 132);
+        this.load.image('StartGameButton', 'Assets/images/startGame.png');
         this.load.image('GoParty', 'Assets/images/goParty.png');
         
         //Object button
         this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 49, 49);
-        this.load.spritesheet('PantsButton', 'Assets/images/pantsButtons.png', 49, 49);
+        this.load.spritesheet('SkirtButton', 'Assets/images/skirtsButtons.png', 49, 49);
         this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 49, 49);
         this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 49, 49);
         
         //Objects
         this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
-        this.load.spritesheet('PantsTiles', 'Assets/images/pantsIcon.png', 128, 128);
+        this.load.spritesheet('SkirtTiles', 'Assets/images/skirtsIcon.png', 128, 128);
         this.load.spritesheet('GlassesTiles', 'Assets/images/glassesIcon.png', 128, 128);
         this.load.spritesheet('ShoseTiles', 'Assets/images/shoseIcon.png', 128, 128);
         

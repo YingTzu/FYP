@@ -17,7 +17,7 @@ theGame.MainMenu.prototype =
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToTutorial);
+        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'PlayGame', this.buttonManager.GoToTutorial);
         this.buttonManager.clicked = false;
         
         this.soundManager = new SoundManager(this);
