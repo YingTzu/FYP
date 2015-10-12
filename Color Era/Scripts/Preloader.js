@@ -42,7 +42,8 @@ theGame.Preloader.prototype =
         
         //Person & Clothes
         this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 960, 640);
-        this.load.spritesheet('CharacterTutorial', 'Assets/images/characterTutorial.png', 960, 640);
+        this.load.spritesheet('CharacterSprite2', 'Assets/images/characterSprite2.png', 960, 640);
+        this.load.spritesheet('CharacterSprite3', 'Assets/images/characterSprite3.png', 960, 640);
         
         this.load.image('70Accessories', 'Assets/images/70s/70s_accessories.png');
         this.load.image('70Shirt', 'Assets/images/70s/70s_shirt.png');

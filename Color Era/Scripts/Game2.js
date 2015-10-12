@@ -1,4 +1,4 @@
-theGame.Game = function(game)
+theGame.Game2 = function(game)
 {
     this.music = null;
     this.uiManager = null;
@@ -22,7 +22,7 @@ theGame.Game = function(game)
 
     this.eraText = null;
     
-    this.Era = 1;  //1: 1970s,  2: 1980s,  3: 1990s, 4: 2000s,
+    this.Era = 2;  //1: 1970s,  2: 1980s,  3: 1990s, 4: 2000s,
     this.seventysTheme = null;
     this.eightysTheme = null;
     this.ninetysTheme = null;
@@ -69,13 +69,14 @@ theGame.Game = function(game)
     this.clickWrong = false;
 };
 
-theGame.Game.prototype = 
+theGame.Game2.prototype = 
 {
     /////////////////////////////////////////////////////
     //                    Create                       //
     /////////////////////////////////////////////////////
     create: function()
-    {   console.log("level1");
+    {   
+        console.log("level2");
         this.shirtWear70 = false;
         this.skirtWear70 = false;
         this.shoesWear70 = false;
@@ -106,7 +107,7 @@ theGame.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         //Draw character
-        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite');
+        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite2');
         this.person.anchor.set(0.5,0.5);
         
         this.wrongImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickWrong');
@@ -122,7 +123,6 @@ theGame.Game.prototype =
         this.spriteManager.createSkirts(this.world.width*0.22, this.world.height*0.46, 'SkirtButton');
         this.spriteManager.createSpecs(this.world.width*0.22, this.world.height*0.55, 'SpecsButton');
         this.spriteManager.createShose(this.world.width*0.22, this.world.height*0.63, 'ShoseButton');
-        this.spriteManager.shoseInputDisable();
         this.spriteManager.specsInputDisable();
         
         //set the images into different era array
@@ -169,11 +169,6 @@ theGame.Game.prototype =
         this.stopTiming();
         this.showWrong();
         theGame.FadeScreen.update(this.buttonManager.gametype);
-    },
-    
-    randomEraFunc: function(min, max) //random a Era theme
-    {
-        this.Era = this.game.rnd.integerInRange(min, max);
     },
     
     eraSwitch:  function() //check era theme
@@ -229,6 +224,17 @@ theGame.Game.prototype =
             this.shoesOpened = false;
             this.accessoriesOpened = false;
         }
+        else if(this.spriteManager.onShoes == true)
+        {
+            this.soundManager.createSound('ClickSFX');
+            this.drawGrids('ShoseTiles');
+            this.spriteManager.onShoes = false;
+            
+            this.shirtOpened = false;
+            this.skirtOpened = false;
+            this.shoesOpened = true;
+            this.accessoriesOpened = false;
+        }
     },
     
     //check each shirt / pants / specs / shose not draw again
@@ -255,6 +261,17 @@ theGame.Game.prototype =
         this.skirtImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, pantsSprite);
         this.skirtImage.anchor.set(0.5,0.5);
         this.tempPants = this.skirtImage;
+    },
+    drawShose: function(sprite)
+    {
+        var tempShose = null;
+        
+        if(this.tempShose != null)
+            this.tempShose.destroy();
+        
+        this.shoesImage = this.add.sprite(this.world.width*0.5, this.world.height*0.5, sprite);
+        this.shoesImage.anchor.set(0.5,0.5);
+        this.tempShose = this.shoesImage;
     },
     
     drawGrids: function(key)
@@ -364,6 +381,28 @@ theGame.Game.prototype =
                     break;
             }
         }
+        if(this.shoesOpened == true)
+        {
+            switch(sprite.frame)
+            {
+                case 0:
+                    this.drawShose('70Shoes');
+                    this.shoesWear70 = true;
+                    break;
+                case 1:
+                    this.drawShose('80Shoes');
+                    this.shoesWear80 = true;
+                    break;
+                case 2:
+                    this.drawShose('90Shoes');
+                    this.shoesWear90 = true;
+                    break;
+                case 3:
+                    this.drawShose('2000Shoes');
+                    this.shoesWear = true;
+                    break;
+            } 
+        }
     },
     
     checkEraImage: function(sprite)
@@ -383,6 +422,11 @@ theGame.Game.prototype =
                     {
                         this.spriteManager.skirtInputDisable();
                         this.skirtCorrect = true;
+                    }
+                    if(this.shoesWear70 == true)
+                    {
+                        this.spriteManager.shoseInputDisable();
+                        this.shoseCorrect = true;
                     }
                     
                     //check correct
@@ -413,6 +457,11 @@ theGame.Game.prototype =
                         this.spriteManager.skirtInputDisable();
                         this.skirtCorrect = true;
                     }
+                    if(this.shoesWear80 == true)
+                    {
+                        this.spriteManager.shoseInputDisable();
+                        this.shoseCorrect = true;
+                    }
                     
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
@@ -441,6 +490,11 @@ theGame.Game.prototype =
                         this.spriteManager.skirtInputDisable();
                         this.skirtCorrect = true;
                     }
+                    if(this.shoesWear90 == true)
+                    {
+                        this.spriteManager.shoseInputDisable();
+                        this.shoseCorrect = true;
+                    }
                       
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
@@ -468,6 +522,11 @@ theGame.Game.prototype =
                     {
                         this.spriteManager.skirtInputDisable();
                         this.skirtCorrect = true;
+                    }
+                    if(this.shoesWear == true)
+                    {
+                        this.spriteManager.shoseInputDisable();
+                        this.shoseCorrect = true;
                     }
                      
                     //check correct
@@ -505,7 +564,7 @@ theGame.Game.prototype =
     destroyTheGrid: function()
     {
         //when shirt / pants / specs / shose is correct disable the clothes button.
-        if(this.shirtCorrect == true || this.skirtCorrect == true)
+        if(this.shirtCorrect == true || this.skirtCorrect == true || this.specsCorrect == true || this.shoseCorrect == true)
         {
             for(i = 0; i < 2; i++)
             {
@@ -523,7 +582,7 @@ theGame.Game.prototype =
     
     stopTiming: function() //stop timing when all clothes wear
     {
-        if(this.shirtWear70 == true && this.skirtWear70 == true)
+        if(this.shirtWear80 == true && this.skirtWear80 == true && this.shoesWear80 == true)
         {
             this.timeManager.stopUpTime();
             this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'GoParty', this.buttonManager.GoToGameEnd);

@@ -42,7 +42,7 @@ theGame.GameEnd.prototype =
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'PlayGame', this.buttonManager.GoToMenu);
+        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel2);
         
         this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Time taken: ' + theGame.tempTimeMin + ':' + theGame.tempTimeSec + 's', { fill: '#000000' });
         

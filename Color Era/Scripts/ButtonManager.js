@@ -14,34 +14,38 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
     this.theButton.inputEnbled = true;
 };
 
-ButtonManager.prototype.scale = function(x, y)
-{
-    this.theButton.scale.set(x,y);
-};
-
 ButtonManager.prototype.GoToMenu = function()
 {   
     this.gametype = 0;
     theGame.FadeScreen.OnEnd = true;
 };
-
-ButtonManager.prototype.StartGame = function()
-{   
-    this.gametype = 1;
-    theGame.FadeScreen.OnEnd = true;
-    this.clicked = true;
-};
-
 ButtonManager.prototype.GoToTutorial = function()
 {
     this.clicked = true;
-    this.gametype = 2;
+    this.gametype = 1;
     theGame.FadeScreen.OnEnd = true;
 };
-
+ButtonManager.prototype.StartGame = function()
+{   
+    this.gametype = 2;
+    theGame.FadeScreen.OnEnd = true;
+    this.clicked = true;
+};
+ButtonManager.prototype.GoToLevel2 = function()
+{   
+    this.gametype = 3;
+    theGame.FadeScreen.OnEnd = true;
+    this.clicked = true;
+};
+ButtonManager.prototype.GoToLevel3 = function()
+{   
+    this.gametype = 4;
+    theGame.FadeScreen.OnEnd = true;
+    this.clicked = true;
+};
 ButtonManager.prototype.GoToGameEnd = function()
 {
-    this.gametype = 3;
+    this.gametype = 5;
     theGame.FadeScreen.OnEnd = true;
     this.clicked = true;
 };
