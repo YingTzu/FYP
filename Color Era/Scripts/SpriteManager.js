@@ -128,22 +128,22 @@ SpriteManager.prototype.outShose = function()
 SpriteManager.prototype.shirtInputDisable = function()
 {   
     this.theClothesImage.inputEnabled = false;
-    this.theClothesImage.frame = 2;
+    this.theClothesImage.frame = 3;
 };
 SpriteManager.prototype.skirtInputDisable = function()
 {   
     this.theSkirtImage.inputEnabled = false;
-    this.theSkirtImage.frame = 2;
+    this.theSkirtImage.frame = 3;
 };
 SpriteManager.prototype.specsInputDisable = function()
 {   
     this.theSpecsImage.inputEnabled = false;
-    this.theSpecsImage.frame = 2;
+    this.theSpecsImage.frame = 3;
 };
 SpriteManager.prototype.shoseInputDisable = function()
 {   
     this.theShoseImage.inputEnabled = false;
-    this.theShoseImage.frame = 2;
+    this.theShoseImage.frame = 3;
 };
 ////////////////////////////////////////////////
 

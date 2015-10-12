@@ -42,7 +42,20 @@ theGame.GameEnd.prototype =
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel2);
+        
+        //draw depend on era
+        if(theGame.currentLevel == 1)
+        {
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel2);
+        }
+        else if(theGame.currentLevel == 2)
+        {
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel3);
+        }
+//        else if(theGame.currentLevel == 3)
+//        {
+//            //go to end page
+//        }
         
         this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Time taken: ' + theGame.tempTimeMin + ':' + theGame.tempTimeSec + 's', { fill: '#000000' });
         

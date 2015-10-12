@@ -7,6 +7,7 @@ theGame.Preloader = function(game)
     
     this.tempTimeSec = 0;
     this.tempTimeMin = 0;
+    this.currentLevel = 0;
 };
 
 theGame.Preloader.prototype = 
@@ -71,10 +72,10 @@ theGame.Preloader.prototype =
         this.load.image('GoParty', 'Assets/images/goParty.png');
         
         //Object button
-        this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 49, 49);
-        this.load.spritesheet('SkirtButton', 'Assets/images/skirtsButtons.png', 49, 49);
-        this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 49, 49);
-        this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 49, 49);
+        this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 50, 51);
+        this.load.spritesheet('SkirtButton', 'Assets/images/skirtsButtons.png', 50, 54);
+        this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 50, 52);
+        this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 50, 53);
         
         //Objects
         this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);

@@ -119,10 +119,10 @@ theGame.Game2.prototype =
         
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
-        this.spriteManager.createClothes(this.world.width*0.22, this.world.height*0.375, 'ClothesButton');
-        this.spriteManager.createSkirts(this.world.width*0.22, this.world.height*0.46, 'SkirtButton');
-        this.spriteManager.createSpecs(this.world.width*0.22, this.world.height*0.55, 'SpecsButton');
-        this.spriteManager.createShose(this.world.width*0.22, this.world.height*0.63, 'ShoseButton');
+        this.spriteManager.createClothes(this.world.width*0.221, this.world.height*0.373, 'ClothesButton');
+        this.spriteManager.createSkirts(this.world.width*0.221, this.world.height*0.46, 'SkirtButton');
+        this.spriteManager.createShose(this.world.width*0.221, this.world.height*0.547, 'ShoseButton');
+        this.spriteManager.createSpecs(this.world.width*0.221, this.world.height*0.633, 'SpecsButton');
         this.spriteManager.specsInputDisable();
         
         //set the images into different era array
@@ -175,27 +175,27 @@ theGame.Game2.prototype =
     {
         switch(this.Era)
         {
-            case 1:
-                this.seventysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970s');
-                this.seventysTheme.anchor.set(0.5,0.5);
-                //Create tween. This will fade the sprite to alpha 0 over the duration of 3 seconds
-                var tween = this.game.add.tween(this.seventysTheme).to( { alpha: 0 }, 4000, "Linear", true, 0, 0);
-                break;
+//            case 1:
+//                this.seventysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970s');
+//                this.seventysTheme.anchor.set(0.5,0.5);
+//                //Create tween. This will fade the sprite to alpha 0 over the duration of few seconds
+//                var tween = this.game.add.tween(this.seventysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+//                break;
             case 2:
                 this.eightysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1980s');
                 this.eightysTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.eightysTheme).to( { alpha: 0 }, 4000, "Linear", true, 0, 0);
+                var tween = this.game.add.tween(this.eightysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
                 break;
-            case 3:
-                this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
-                this.ninetysTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.ninetysTheme).to( { alpha: 0 }, 4000, "Linear", true, 0, 0);
-                break;
-            case 4:
-                this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
-                this.twoThousandsTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.twoThousandsTheme).to( { alpha: 0 }, 4000, "Linear", true, 0, 0);
-                break;
+//            case 3:
+//                this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
+//                this.ninetysTheme.anchor.set(0.5,0.5);
+//                var tween = this.game.add.tween(this.ninetysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+//                break;
+//            case 4:
+//                this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
+//                this.twoThousandsTheme.anchor.set(0.5,0.5);
+//                var tween = this.game.add.tween(this.twoThousandsTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+//                break;
         }
     },
     
@@ -594,6 +594,7 @@ theGame.Game2.prototype =
         if(this.buttonManager.clicked == true) 
         {
             this.buttonManager.destroyButton();
+            theGame.currentLevel = 2;
         }
     }
 }
