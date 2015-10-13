@@ -81,7 +81,7 @@ theGame.Tutorial.prototype =
 
     tutor4: function()
     {
-        this.tween = this.game.add.tween(this.toturial4).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
+        this.tween = this.game.add.tween(this.toturial4).to( { alpha: 0 }, 500, "Linear", true, 0, 0);
         this.toturial4.inputEnabled = false;
         this.buttonManager.createButton(this.world.width*0.4, this.world.height*0.85, 'StartGameButton', this.buttonManager.StartGame);
     }, 
