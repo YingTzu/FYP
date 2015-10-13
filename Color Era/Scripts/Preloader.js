@@ -14,16 +14,13 @@ theGame.Preloader.prototype =
 {
     preload: function()
     {
-        //sound mute
-        theGame.Game_Mute = false;
-        
         //Loading Screen Background
         this.background = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'LoadingScreenBackGround');
         this.background.anchor.set(0.5,0.5);
         
         //Draw Loading bar
-        this.preloadBarEmpty = this.add.sprite(this.world.width*0.2, this.world.height*0.8, 'LoadingBar'); 
-        this.preloadBar = this.add.sprite(this.world.width*0.2, this.world.height*0.8, 'LoadingBarCover'); 
+        this.preloadBarEmpty = this.add.sprite(this.world.width*0.2, this.world.height*0.6, 'LoadingBar');
+        this.preloadBar = this.add.sprite(this.world.width*0.2, this.world.height*0.6, 'LoadingBarCover'); 
 
         //use this.loadingBar as a sprite for loadingbar
         this.load.setPreloadSprite(this.preloadBar); 
@@ -32,8 +29,17 @@ theGame.Preloader.prototype =
         //Background
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
         this.load.image('GameBackGround', 'Assets/images/game.png');
-        this.load.image('ToturialBackGround', 'Assets/images/tutorial.png');
+        this.load.image('Toturial1', 'Assets/images/tutorial_1.png');
+        this.load.image('Toturial2', 'Assets/images/tutorial_2.png');
+        this.load.image('Toturial3', 'Assets/images/tutorial_3.png');
+        this.load.image('Toturial4', 'Assets/images/tutorial_4.png');
         this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
+        
+        //End Background
+        this.load.image('70sEnd', 'Assets/images/70sEnd.png');
+        this.load.image('80sEnd', 'Assets/images/80sEnd.png');
+        this.load.image('90sEnd', 'Assets/images/90sEnd.png');
+        this.load.image('2000sEnd', 'Assets/images/2000sEnd.png');
         
         //ThemeHint
         this.load.image('1970s', 'Assets/images/1970s.png');
@@ -68,8 +74,9 @@ theGame.Preloader.prototype =
         
         //UI button
         this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 196, 132);
-        this.load.image('StartGameButton', 'Assets/images/startGame.png');
-        this.load.image('GoParty', 'Assets/images/goParty.png');
+        this.load.spritesheet('StartGameButton', 'Assets/images/startGame.png', 204, 73);
+        this.load.spritesheet('GoParty', 'Assets/images/goParty.png', 204, 73);
+        this.load.spritesheet('NextParty', 'Assets/images/nextParty.png', 204, 73);
         
         //Object button
         this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 50, 51);
@@ -83,14 +90,13 @@ theGame.Preloader.prototype =
         this.load.spritesheet('GlassesTiles', 'Assets/images/glassesIcon.png', 128, 128);
         this.load.spritesheet('ShoseTiles', 'Assets/images/shoseIcon.png', 128, 128);
         
-        //time bar
-        this.load.image('TimeBar', 'Assets/images/timeBar.png');
-        
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
         
-        //Wrong feedback
+        //Feedback
         this.load.image('ClickWrong', 'Assets/images/wrong.png');
+        this.load.image('CorrectSpeech', 'Assets/images/speech_right.png');
+        this.load.image('WrongSpeech', 'Assets/images/Speech_wrong.png');
         
         //star
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');

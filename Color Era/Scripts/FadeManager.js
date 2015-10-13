@@ -82,6 +82,11 @@ FadeManager.prototype.fadeOut = function(FadeToStateNum)
 			    	this.OnStart = true;
 			        this.game.state.start('GameEnd');
 			    }break;
+                case 6:
+			    {
+			    	this.OnStart = true;
+			        this.game.state.start('EndScene');
+			    }break;
 			}
 		}
 	}

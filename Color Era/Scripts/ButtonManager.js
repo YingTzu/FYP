@@ -50,6 +50,13 @@ ButtonManager.prototype.GoToGameEnd = function()
     this.clicked = true;
 };
 
+ButtonManager.prototype.GoToEndScreen= function()
+{
+    this.gametype = 6;
+    theGame.FadeScreen.OnEnd = true;
+    this.clicked = true;
+};
+
 ButtonManager.prototype.destroyButton = function()
 {
     this.theButton.destroy();

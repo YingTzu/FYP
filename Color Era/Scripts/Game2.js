@@ -67,6 +67,8 @@ theGame.Game2 = function(game)
     this.shoseCorrect = false;
     
     this.clickWrong = false;
+    this.rightSpeech = null;
+    this.wrongSpeech = null;
 };
 
 theGame.Game2.prototype = 
@@ -114,8 +116,16 @@ theGame.Game2.prototype =
         this.wrongImage.anchor.set(0.5,0.5);
         this.wrongImage.alpha = 0.0;
         
-        this.buttonManager = new ButtonManager(this);
+        //Speech
+        this.rightSpeech = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CorrectSpeech');
+        this.rightSpeech.anchor.set(0.5,0.5);
+        this.rightSpeech.visible = false;
+     
+        this.wrongSpeech = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'WrongSpeech');
+        this.wrongSpeech.anchor.set(0.5,0.5);
+        this.wrongSpeech.visible = false;
         
+        this.buttonManager = new ButtonManager(this);
         
         //the clothes icons
         this.spriteManager = new SpriteManager(this);
@@ -433,6 +443,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
+                    this.rightSpeech.visible = true;
+                    this.wrongSpeech.visible = false;
                 }
                 else
                 {
@@ -440,6 +452,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
+                    this.rightSpeech.visible = false;
+                    this.wrongSpeech.visible = true;
                 }
                 //console.log( "1970s " + sprite.frame);
             }
@@ -467,6 +481,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
+                    this.rightSpeech.visible = true;
+                    this.wrongSpeech.visible = false;
                 }
                 else
                 {
@@ -474,6 +490,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
+                    this.rightSpeech.visible = false;
+                    this.wrongSpeech.visible = true;
                 }
             }
             else if(sprite.frame == this.ninetysArray[i]) //if clicked on 90s clothes
@@ -500,6 +518,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
+                    this.rightSpeech.visible = true;
+                    this.wrongSpeech.visible = false;
                   }
                 else
                 {
@@ -507,6 +527,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
+                    this.rightSpeech.visible = false;
+                    this.wrongSpeech.visible = true;
                 }
             }
             else if(sprite.frame == this.twoThousandsArray[i]) //if clicked on 2000s clothes
@@ -533,6 +555,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
                     this.clickWrong = false;
+                    this.rightSpeech.visible = true;
+                    this.wrongSpeech.visible = false;
                  }
                 else
                 {
@@ -540,6 +564,8 @@ theGame.Game2.prototype =
                     this.soundManager.createSound('WrongSFX');
                     this.person.frame = 1;
                     this.clickWrong = true;
+                    this.rightSpeech.visible = false;
+                    this.wrongSpeech.visible = true;
                 }
             }
         }

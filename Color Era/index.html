@@ -23,6 +23,7 @@
     <script src = "Scripts/Game2.js"></script>
     <script src = "Scripts/Game3.js"></script>
     <script src = "Scripts/GameEnd.js"></script>
+    <script src = "Scripts/EndScene.js"></script>
 </head>
 <body>
 	<div id = "gameContainer"></div>
@@ -39,6 +40,7 @@
         game.state.add('Game3',theGame.Game3);
 		game.state.add('Tutorial',theGame.Tutorial);
         game.state.add('GameEnd',theGame.GameEnd);
+        game.state.add('EndScene',theGame.EndScene);
 		//Start state
 		game.state.start('Boot');
 	};

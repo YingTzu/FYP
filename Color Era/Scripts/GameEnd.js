@@ -1,10 +1,10 @@
 theGame.GameEnd = function(game)
 {
-    this.timeManager = null;
     this.buttonManager = null;
     this.soundManager = null;
     
-    this.toturialBackground = null;
+    this.gameEndBG = null;
+    this.gameEndPerson = null;
     this.emptyStar = [];
     this.fullStar = null;
     this.fullStar2 = null;
@@ -20,13 +20,14 @@ theGame.GameEnd.prototype =
     create: function()
     {
         //Screen Background
-        this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameEndBackGround');
-        this.toturialBackground.anchor.set(0.5,0.5);
+        this.gameEndBG = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameEndBackGround');
+        this.gameEndBG.anchor.set(0.5,0.5);
         
         for(i = 0; i < 3; i++)
         {
-            this.emptyStar[i] = this.add.sprite(this.world.width *0.3 + 100 *i, this.world.height*0.2, 'StarEmpty');
+            this.emptyStar[i] = this.add.sprite(this.world.width *0.5 + 100 *i, this.world.height*0.2, 'StarEmpty');
             this.emptyStar[i].anchor.setTo(0.5,0.5);
+            this.emptyStar[i].aplha = 0.5;
         }
         this.fullStar = this.add.sprite(this.emptyStar[0].x, this.emptyStar[0].y, 'StarFull');
         this.fullStar.anchor.setTo(0.5,0.5);
@@ -46,16 +47,22 @@ theGame.GameEnd.prototype =
         //draw depend on era
         if(theGame.currentLevel == 1)
         {
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel2);
+            this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '70sEnd');
+            this.gameEndPerson.anchor.set(0.5,0.5);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToLevel2);
         }
         else if(theGame.currentLevel == 2)
         {
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'GoParty', this.buttonManager.GoToLevel3);
+            this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '80sEnd');
+            this.gameEndPerson.anchor.set(0.5,0.5);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToLevel3);
         }
-//        else if(theGame.currentLevel == 3)
-//        {
-//            //go to end page
-//        }
+        else if(theGame.currentLevel == 3)
+        {
+            this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '80sEnd');
+            this.gameEndPerson.anchor.set(0.5,0.5);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToEndScreen);
+        }
         
         this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Time taken: ' + theGame.tempTimeMin + ':' + theGame.tempTimeSec + 's', { fill: '#000000' });
         
