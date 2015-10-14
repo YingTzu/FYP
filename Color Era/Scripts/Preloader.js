@@ -8,6 +8,17 @@ theGame.Preloader = function(game)
     this.tempTimeSec = 0;
     this.tempTimeMin = 0;
     this.currentLevel = 0;
+    
+    this.level1Secs = 0;
+    this.level1Mins = 0;
+    this.level2Secs = 0;
+    this.level2Mins = 0;
+    this.level3Secs = 0;
+    this.level3Mins = 0;
+    
+    this.lvl1Star = 0;
+    this.lvl2Star = 0;
+    this.lvl3Star = 0;
 };
 
 theGame.Preloader.prototype = 
@@ -28,12 +39,19 @@ theGame.Preloader.prototype =
         //Imagae Assets preload here
         //Background
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
+        this.load.image('CutrainClose', 'Assets/images/Curtain_close.png');
+        this.load.image('CutrainOpen1', 'Assets/images/Curtain_open1.png');
+        this.load.image('CutrainOpen2', 'Assets/images/Curtain_open2.png');
+        this.load.image('CutrainOpen3', 'Assets/images/Curtain_open3.png');
+        this.load.spritesheet('test', 'Assets/images/spriteTest.png', 960, 640);
+        
         this.load.image('GameBackGround', 'Assets/images/game.png');
         this.load.image('Toturial1', 'Assets/images/tutorial_1.png');
         this.load.image('Toturial2', 'Assets/images/tutorial_2.png');
         this.load.image('Toturial3', 'Assets/images/tutorial_3.png');
         this.load.image('Toturial4', 'Assets/images/tutorial_4.png');
         this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
+        this.load.image('EndSceneBackGround', 'Assets/images/endScene.png');
         
         //End Background
         this.load.image('70sEnd', 'Assets/images/70sEnd.png');
@@ -73,7 +91,7 @@ theGame.Preloader.prototype =
         this.load.image('2000Shoes', 'Assets/images/2000s/2000s_shoes.png');
         
         //UI button
-        this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 196, 132);
+        this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 192, 71);
         this.load.spritesheet('StartGameButton', 'Assets/images/startGame.png', 204, 73);
         this.load.spritesheet('GoParty', 'Assets/images/goParty.png', 204, 73);
         this.load.spritesheet('NextParty', 'Assets/images/nextParty.png', 204, 73);
@@ -104,6 +122,9 @@ theGame.Preloader.prototype =
         
         //Music
         this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
+        
+        //Time
+        this.load.image('TimeTaken', 'Assets/images/TimeTaken.png');
         
         //SFX
         this.load.audio('CorrectSFX', 'Assets/audio/Correct_SFX.mp3');

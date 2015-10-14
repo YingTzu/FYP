@@ -10,9 +10,12 @@ theGame.GameEnd = function(game)
     this.fullStar2 = null;
     this.fullStar3 = null;
     
+    this.timePicture = null;
     this.timeText = null;
     
     this.tween = null;
+    
+    this.starNum = 0;
 };
 
 theGame.GameEnd.prototype = 
@@ -49,22 +52,40 @@ theGame.GameEnd.prototype =
         {
             this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '70sEnd');
             this.gameEndPerson.anchor.set(0.5,0.5);
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToLevel2);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'NextParty', this.buttonManager.GoToLevel2);
+            
+            theGame.level1Secs = theGame.tempTimeSec;
+            theGame.level1Mins = theGame.tempTimeMin;
+            
+            //theGame.lvl1Star = this.starNum;
         }
         else if(theGame.currentLevel == 2)
         {
             this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '80sEnd');
             this.gameEndPerson.anchor.set(0.5,0.5);
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToLevel3);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'NextParty', this.buttonManager.GoToLevel3);
+            
+            theGame.level2Secs = theGame.tempTimeSec;
+            theGame.level2Mins = theGame.tempTimeMin;
+            
+            //theGame.lvl2Star = this.starNum;
         }
         else if(theGame.currentLevel == 3)
         {
             this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '80sEnd');
             this.gameEndPerson.anchor.set(0.5,0.5);
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'NextParty', this.buttonManager.GoToEndScreen);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'NextParty', this.buttonManager.GoToEndScreen);
+            
+            theGame.level3Secs = theGame.tempTimeSec;
+            theGame.level3Mins = theGame.tempTimeMin;
+            
+            //theGame.lvl3Star = this.starNum;
         }
         
-        this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Time taken: ' + theGame.tempTimeMin + ':' + theGame.tempTimeSec + 's', { fill: '#000000' });
+        this.timePicture = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TimeTaken');
+        this.timePicture.anchor.set(0.5,0.5);
+        
+        this.timeText= this.add.text(this.world.width*0.38, this.world.height*0.5, "Time Taken: " + theGame.tempTimeMin + ' : ' + theGame.tempTimeSec + 's', { fill: '#000000' });
         
         this.soundManager = new SoundManager(this);
 
@@ -77,6 +98,7 @@ theGame.GameEnd.prototype =
     
     update: function()
     {
+        this.updateStar();
         theGame.FadeScreen.update(this.buttonManager.gametype);          
     },
     
@@ -86,6 +108,8 @@ theGame.GameEnd.prototype =
         this.tween = this.game.add.tween(this.fullStar.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.tween.onComplete.add(this.showStar2, this);
         this.soundManager.createSound('StarSFX');
+        
+        this.starNum = 1;
     }
     ,
     showStar2: function()
@@ -96,6 +120,8 @@ theGame.GameEnd.prototype =
             this.tween = this.game.add.tween(this.fullStar2.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.tween.onComplete.add(this.showStar3, this);
             this.soundManager.createSound('StarSFX');
+            
+            this.starNum = 2;
         }
     },
     
@@ -106,6 +132,25 @@ theGame.GameEnd.prototype =
             this.fullStar3.visible = true;
             this.tween = this.game.add.tween(this.fullStar3.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.soundManager.createSound('StarSFX');
+            
+            this.starNum = 3;
         }
+    }, 
+    
+    updateStar: function()
+    {
+        if(theGame.currentLevel == 1)
+        {
+            theGame.lvl1Star = this.starNum;
+        }
+        else if(theGame.currentLevel == 2)
+        {
+            theGame.lvl2Star = this.starNum;
+        }
+        else if(theGame.currentLevel == 3)
+        {
+            theGame.lvl3Star = this.starNum;
+        }
+
     }
 }

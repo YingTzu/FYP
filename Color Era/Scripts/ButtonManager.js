@@ -27,9 +27,9 @@ ButtonManager.prototype.GoToTutorial = function()
 };
 ButtonManager.prototype.StartGame = function()
 {   
+    this.clicked = true;
     this.gametype = 2;
     theGame.FadeScreen.OnEnd = true;
-    this.clicked = true;
 };
 ButtonManager.prototype.GoToLevel2 = function()
 {   
