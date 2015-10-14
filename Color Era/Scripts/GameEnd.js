@@ -28,7 +28,7 @@ theGame.GameEnd.prototype =
         
         for(i = 0; i < 3; i++)
         {
-            this.emptyStar[i] = this.add.sprite(this.world.width *0.5 + 100 *i, this.world.height*0.2, 'StarEmpty');
+            this.emptyStar[i] = this.add.sprite(this.world.width *0.38 + 125 *i, this.world.height*0.12, 'StarEmpty');
             this.emptyStar[i].anchor.setTo(0.5,0.5);
             this.emptyStar[i].aplha = 0.5;
         }
@@ -43,6 +43,11 @@ theGame.GameEnd.prototype =
         this.fullStar3 = this.add.sprite(this.emptyStar[2].x, this.emptyStar[2].y, 'StarFull');
         this.fullStar3.anchor.setTo(0.5,0.5);
         this.fullStar3.visible = false;
+        
+        this.timePicture = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TimeTaken');
+        this.timePicture.anchor.set(0.5,0.5);
+        
+        this.timeText= this.add.text(this.world.width*0.38, this.world.height*0.5, "Time Taken: " + theGame.tempTimeMin + ' : ' + theGame.tempTimeSec + 's', {fill: '#ffffff'});
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -82,11 +87,6 @@ theGame.GameEnd.prototype =
             //theGame.lvl3Star = this.starNum;
         }
         
-        this.timePicture = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TimeTaken');
-        this.timePicture.anchor.set(0.5,0.5);
-        
-        this.timeText= this.add.text(this.world.width*0.38, this.world.height*0.5, "Time Taken: " + theGame.tempTimeMin + ' : ' + theGame.tempTimeSec + 's', { fill: '#000000' });
-        
         this.soundManager = new SoundManager(this);
 
         this.showStar();
@@ -105,7 +105,7 @@ theGame.GameEnd.prototype =
     showStar: function()
     {
         this.fullStar.visible = true;
-        this.tween = this.game.add.tween(this.fullStar.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.tween = this.game.add.tween(this.fullStar.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.tween.onComplete.add(this.showStar2, this);
         this.soundManager.createSound('StarSFX');
         
@@ -117,7 +117,7 @@ theGame.GameEnd.prototype =
         if(theGame.tempTimeMin <= 1 && theGame.tempTimeSec <= 60)
         {
             this.fullStar2.visible = true;
-            this.tween = this.game.add.tween(this.fullStar2.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
+            this.tween = this.game.add.tween(this.fullStar2.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.tween.onComplete.add(this.showStar3, this);
             this.soundManager.createSound('StarSFX');
             
@@ -130,7 +130,7 @@ theGame.GameEnd.prototype =
         if(theGame.tempTimeMin <= 0 && theGame.tempTimeSec <= 30)
         {
             this.fullStar3.visible = true;
-            this.tween = this.game.add.tween(this.fullStar3.scale).to( { x: 2, y: 2 }, 1000, Phaser.Easing.Bounce.Out, true);
+            this.tween = this.game.add.tween(this.fullStar3.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.soundManager.createSound('StarSFX');
             
             this.starNum = 3;
