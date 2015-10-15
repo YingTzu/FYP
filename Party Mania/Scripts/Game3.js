@@ -183,34 +183,39 @@ theGame.Game3.prototype =
     
     randomEraFunc: function(min, max) //random a Era theme
     {
-        this.Era = this.game.rnd.integerInRange(min, max);
+        this.Era =           this.game.rnd.integerInRange(min, max);
     },
     
     eraSwitch:  function() //check era theme
     {
         switch(this.Era)
         {
-//            case 1:
-//                this.seventysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970s');
-//                this.seventysTheme.anchor.set(0.5,0.5);
-//                //Create tween. This will fade the sprite to alpha 0 over the duration of few seconds
-//                var tween = this.game.add.tween(this.seventysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
-//                break;
-//            case 2:
-//                this.eightysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1980s');
-//                this.eightysTheme.anchor.set(0.5,0.5);
-//                var tween = this.game.add.tween(this.eightysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
-//                break;
             case 3:
                 this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
                 this.ninetysTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.ninetysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+                this.ninetysTheme.inputEnabled = true;
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 1, this.disableTheme, this);
                 break;
             case 4:
                 this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
                 this.twoThousandsTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.twoThousandsTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+                this.twoThousandsTheme.inputEnabled = true;
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 1, this.disableTheme, this);
                 break;
+        }
+    },
+    
+    disableTheme: function()
+    {
+        if(this.Era == 3)
+        {
+            this.ninetysTheme.inputEnabled = false;
+            this.ninetysTheme.visible = false; 
+        }
+        if(this.Era == 4)
+        {
+            this.twoThousandsTheme.inputEnabled = false;
+            this.twoThousandsTheme.visible = false; 
         }
     },
     

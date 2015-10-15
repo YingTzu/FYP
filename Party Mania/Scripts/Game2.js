@@ -185,28 +185,19 @@ theGame.Game2.prototype =
     {
         switch(this.Era)
         {
-//            case 1:
-//                this.seventysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970s');
-//                this.seventysTheme.anchor.set(0.5,0.5);
-//                //Create tween. This will fade the sprite to alpha 0 over the duration of few seconds
-//                var tween = this.game.add.tween(this.seventysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
-//                break;
             case 2:
                 this.eightysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1980s');
                 this.eightysTheme.anchor.set(0.5,0.5);
-                var tween = this.game.add.tween(this.eightysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
+                this.eightysTheme.inputEnabled = true;
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 2, this.disableTheme, this);
                 break;
-//            case 3:
-//                this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
-//                this.ninetysTheme.anchor.set(0.5,0.5);
-//                var tween = this.game.add.tween(this.ninetysTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
-//                break;
-//            case 4:
-//                this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
-//                this.twoThousandsTheme.anchor.set(0.5,0.5);
-//                var tween = this.game.add.tween(this.twoThousandsTheme).to( { alpha: 0 }, 5000, "Linear", true, 0, 0);
-//                break;
         }
+    },
+    
+    disableTheme: function()
+    {
+        this.eightysTheme.inputEnabled = false;
+        this.eightysTheme.visible = false;
     },
     
     //check the Icons are open and close
