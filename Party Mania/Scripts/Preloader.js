@@ -39,11 +39,8 @@ theGame.Preloader.prototype =
         //Imagae Assets preload here
         //Background
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
-        this.load.image('CutrainClose', 'Assets/images/Curtain_close.png');
-        this.load.image('CutrainOpen1', 'Assets/images/Curtain_open1.png');
-        this.load.image('CutrainOpen2', 'Assets/images/Curtain_open2.png');
-        this.load.image('CutrainOpen3', 'Assets/images/Curtain_open3.png');
-        this.load.spritesheet('test', 'Assets/images/spriteTest.png', 960, 640);
+        this.load.spritesheet('CurtainSprite', 'Assets/images/curtainSprite.png', 960, 640);
+        this.load.spritesheet('TitleSprite', 'Assets/images/titleSprite.png', 960, 640);
         
         this.load.image('GameBackGround', 'Assets/images/game.png');
         this.load.image('Toturial1', 'Assets/images/tutorial_1.png');
@@ -54,36 +51,36 @@ theGame.Preloader.prototype =
         this.load.image('EndSceneBackGround', 'Assets/images/endScene.png');
         
         //End Background
-        this.load.image('70sEnd', 'Assets/images/70sEnd.png');
-        this.load.image('80sEnd', 'Assets/images/80sEnd.png');
-        this.load.image('90sEnd', 'Assets/images/90sEnd.png');
-        this.load.image('2000sEnd', 'Assets/images/2000sEnd.png');
+        this.load.image('70sEnd', 'Assets/images/1970s/70sEnd.png');
+        this.load.image('80sEnd', 'Assets/images/1980s/80sEnd.png');
+        this.load.image('90sEnd', 'Assets/images/1990s/90sEnd.png');
+        this.load.image('2000sEnd', 'Assets/images/2000s/2000sEnd.png');
         
         //ThemeHint
-        this.load.image('1970s', 'Assets/images/1970s.png');
-        this.load.image('1980s', 'Assets/images/1980s.png');
-        this.load.image('1990s', 'Assets/images/1990s.png');
-        this.load.image('2000s', 'Assets/images/2000s.png');
+        this.load.image('1970s', 'Assets/images/1970s/1970s.png');
+        this.load.image('1980s', 'Assets/images/1980s/1980s.png');
+        this.load.image('1990s', 'Assets/images/1990s/1990s.png');
+        this.load.image('2000s', 'Assets/images/2000s/2000s.png');
         
         //Person & Clothes
         this.load.spritesheet('CharacterSprite', 'Assets/images/characterSprite.png', 960, 640);
         this.load.spritesheet('CharacterSprite2', 'Assets/images/characterSprite2.png', 960, 640);
         this.load.spritesheet('CharacterSprite3', 'Assets/images/characterSprite3.png', 960, 640);
         
-        this.load.image('70Accessories', 'Assets/images/70s/70s_accessories.png');
-        this.load.image('70Shirt', 'Assets/images/70s/70s_shirt.png');
-        this.load.image('70Skirt', 'Assets/images/70s/70s_skirt.png');
-        this.load.image('70Shoes', 'Assets/images/70s/70s_shoes.png');
+        this.load.image('70Accessories', 'Assets/images/1970s/70s_accessories.png');
+        this.load.image('70Shirt', 'Assets/images/1970s/70s_shirt.png');
+        this.load.image('70Skirt', 'Assets/images/1970s/70s_skirt.png');
+        this.load.image('70Shoes', 'Assets/images/1970s/70s_shoes.png');
         
-        this.load.image('80Accessories', 'Assets/images/80s/80s_accessories.png');
-        this.load.image('80Shirt', 'Assets/images/80s/80s_shirt.png');
-        this.load.image('80Skirt', 'Assets/images/80s/80s_skirt.png');
-        this.load.image('80Shoes', 'Assets/images/80s/80s_shoes.png');
+        this.load.image('80Accessories', 'Assets/images/1980s/80s_accessories.png');
+        this.load.image('80Shirt', 'Assets/images/1980s/80s_shirt.png');
+        this.load.image('80Skirt', 'Assets/images/1980s/80s_skirt.png');
+        this.load.image('80Shoes', 'Assets/images/1980s/80s_shoes.png');
         
-        this.load.image('90Accessories', 'Assets/images/90s/90s_accessories.png');
-        this.load.image('90Shirt', 'Assets/images/90s/90s_shirt.png');
-        this.load.image('90Skirt', 'Assets/images/90s/90s_skirt.png');
-        this.load.image('90Shoes', 'Assets/images/90s/90s_shoes.png');
+        this.load.image('90Accessories', 'Assets/images/1990s/90s_accessories.png');
+        this.load.image('90Shirt', 'Assets/images/1990s/90s_shirt.png');
+        this.load.image('90Skirt', 'Assets/images/1990s/90s_skirt.png');
+        this.load.image('90Shoes', 'Assets/images/1990s/90s_shoes.png');
         
         this.load.image('2000Accessories', 'Assets/images/2000s/2000s_accessories.png');
         this.load.image('2000Shirt', 'Assets/images/2000s/2000s_shirt.png');
@@ -103,16 +100,17 @@ theGame.Preloader.prototype =
         this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 50, 53);
         
         //Objects
-        this.load.spritesheet('ClothesTiles', 'Assets/images/clothesIcon.png', 128, 128);
-        this.load.spritesheet('SkirtTiles', 'Assets/images/skirtsIcon.png', 128, 128);
-        this.load.spritesheet('GlassesTiles', 'Assets/images/glassesIcon.png', 128, 128);
-        this.load.spritesheet('ShoseTiles', 'Assets/images/shoseIcon.png', 128, 128);
+        this.load.spritesheet('ClothesTiles', 'Assets/images/1970s/clothesIcon.png', 128, 128);
+        this.load.spritesheet('SkirtTiles', 'Assets/images/1970s/skirtsIcon.png', 128, 128);
+        this.load.spritesheet('GlassesTiles', 'Assets/images/1970s/glassesIcon.png', 128, 128);
+        this.load.spritesheet('ShoseTiles', 'Assets/images/1970s/shoseIcon.png', 128, 128);
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
         
         //Feedback
         this.load.image('ClickWrong', 'Assets/images/wrong.png');
+        this.load.image('ClickCorrect', 'Assets/images/correct.png');
         this.load.image('CorrectSpeech', 'Assets/images/speech_right.png');
         this.load.image('WrongSpeech', 'Assets/images/Speech_wrong.png');
         

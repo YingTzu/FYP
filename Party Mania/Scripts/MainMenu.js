@@ -2,6 +2,7 @@ theGame.MainMenu = function(game)
 {
     this.mainmenuBackground = null;
     this.open = null;
+    this.titleSprite = null;
     
     this.uiManager = null;
     this.buttonManager = null;
@@ -13,12 +14,17 @@ theGame.MainMenu.prototype =
     create: function()
     {
         //Screen Background
-        this.open = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'test');
+        this.open = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CurtainSprite');
         this.open.anchor.set(0.5,0.5);
         this.open.animations.add('open', [1, 2, 3]);
         
         this.mainmenuBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'MainMenuBackGround');
         this.mainmenuBackground.anchor.set(0.5,0.5);
+        
+        this.titleSprite = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TitleSprite');
+        this.titleSprite.anchor.set(0.5,0.5);
+        this.titleSprite.animations.add('light', [0, 1]);
+        this.titleSprite.animations.play('light', 2, true);
         
         //Button
         this.buttonManager = new ButtonManager(this);

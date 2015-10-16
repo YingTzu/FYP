@@ -13,6 +13,7 @@ theGame.Game3 = function(game)
     this.shoesImage = null;
     this.accessoriesImage = null;
     this.wrongImage = null;
+    this.correctImage = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -67,6 +68,7 @@ theGame.Game3 = function(game)
     this.shoseCorrect = false;
     
     this.clickWrong = false;
+    this.clickCorrect  = false;
     this.rightSpeech = null;
     this.wrongSpeech = null;
 };
@@ -115,6 +117,10 @@ theGame.Game3.prototype =
         this.wrongImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickWrong');
         this.wrongImage.anchor.set(0.5,0.5);
         this.wrongImage.alpha = 0.0;
+        
+        this.correctImage = this.add.sprite(this.world.width*0.401, this.world.height*0.51, 'ClickCorrect');
+        this.correctImage.anchor.set(0.5,0.5);
+        this.correctImage.alpha = 0.0;
         
         //Speech
         this.rightSpeech = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CorrectSpeech');
@@ -178,6 +184,7 @@ theGame.Game3.prototype =
         this.gameEndSetting();
         this.stopTiming();
         this.showWrong();
+        this.showCorrect();
         theGame.FadeScreen.update(this.buttonManager.gametype);
     },
     
@@ -501,7 +508,6 @@ theGame.Game3.prototype =
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
-                    this.clickWrong = false;
                     this.rightSpeech.visible = true;
                     this.wrongSpeech.visible = false;
                 }
@@ -544,7 +550,6 @@ theGame.Game3.prototype =
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
-                    this.clickWrong = false;
                     this.rightSpeech.visible = true;
                     this.wrongSpeech.visible = false;
                 }
@@ -586,9 +591,9 @@ theGame.Game3.prototype =
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
-                    this.clickWrong = false;
                     this.rightSpeech.visible = true;
                     this.wrongSpeech.visible = false;
+                    this.clickCorrect = true;
                   }
                 else
                 {
@@ -628,9 +633,9 @@ theGame.Game3.prototype =
                     //check correct
                     this.soundManager.createSound('CorrectSFX');
                     this.person.frame = 0;
-                    this.clickWrong = false;
                     this.rightSpeech.visible = true;
                     this.wrongSpeech.visible = false;
+                    this.clickCorrect = true;
                  }
                 else
                 {
@@ -661,6 +666,22 @@ theGame.Game3.prototype =
         }
     },
     
+    showCorrect: function()
+    {
+        if(this.clickCorrect == true)
+        {
+            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:1},80, Phaser.Easing.linear, true);
+            if(this.correctImage.alpha >= 0.8)
+            {
+                this.clickCorrect = false;
+            }
+        }
+        if(this.clickCorrect == false)
+        {
+            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:0},80, Phaser.Easing.linear, true);
+        }
+    },
+    
     destroyTheGrid: function()
     {
         //when shirt / pants / specs / shose is correct disable the clothes button.
@@ -682,9 +703,7 @@ theGame.Game3.prototype =
     
     stopTiming: function() //stop timing when all clothes wear
     {
-        if(this.shirtWear70 == true && this.skirtWear70 == true && this.shoesWear70 == true && this.accessoriesWear70 == true
-           || this.shirtWear80 == true && this.skirtWear80 == true && this.shoesWear80 == true && this.accessoriesWear80 == true
-           || this.shirtWear90 == true && this.skirtWear90 == true && this.shoesWear90 == true && this.accessoriesWear90 == true
+        if(this.shirtWear90 == true && this.skirtWear90 == true && this.shoesWear90 == true && this.accessoriesWear90 == true
            || this.shirtWear == true && this.skirtWear == true && this.shoesWear == true && this.accessoriesWear == true)
         {
             this.timeManager.stopUpTime();
