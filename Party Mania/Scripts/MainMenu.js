@@ -23,12 +23,12 @@ theGame.MainMenu.prototype =
         
         this.titleSprite = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TitleSprite');
         this.titleSprite.anchor.set(0.5,0.5);
-        this.titleSprite.animations.add('light', [0, 1]);
-        this.titleSprite.animations.play('light', 2, true);
+        this.titleSprite.animations.add('light', [0, 1, 2]);
+        this.titleSprite.animations.play('light', 3, true);
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'PlayGame', this.buttonManager.GoToTutorial);
+        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.7, 'PlayGame', this.buttonManager.GoToTutorial);
         this.buttonManager.clicked = false;
         
         this.soundManager = new SoundManager(this);

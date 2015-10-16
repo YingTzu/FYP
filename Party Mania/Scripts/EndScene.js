@@ -40,10 +40,10 @@ theGame.EndScene.prototype =
             this.totalSec -= 60;
         }
         
-        this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Total Time taken: ' + this.totalMin + ':' + this.totalSec + 's', { fill: '#ffffff' });
+        //this.timeText= this.add.text(this.world.width*0.3, this.world.height*0.08, 'Total Time taken: ' + this.totalMin + ':' + this.totalSec + 's', { fill: '#ffffff' });
         
         this.totalStars = theGame.lvl1Star + theGame.lvl2Star + theGame.lvl3Star;
-        this.starText= this.add.text(this.world.width*0.3, this.world.height*0.2, 'Total Stars: ' + this.totalStars, { fill: '#ffffff' });
+        //this.starText= this.add.text(this.world.width*0.3, this.world.height*0.2, 'Total Stars: ' + this.totalStars, { fill: '#ffffff' });
         
         //Fade in and out
 //        theGame.FadeScreen = new FadeManager(this);

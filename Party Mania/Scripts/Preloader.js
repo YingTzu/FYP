@@ -99,11 +99,11 @@ theGame.Preloader.prototype =
         this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 50, 52);
         this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 50, 53);
         
-        //Objects
-        this.load.spritesheet('ClothesTiles', 'Assets/images/1970s/clothesIcon.png', 128, 128);
-        this.load.spritesheet('SkirtTiles', 'Assets/images/1970s/skirtsIcon.png', 128, 128);
-        this.load.spritesheet('GlassesTiles', 'Assets/images/1970s/glassesIcon.png', 128, 128);
-        this.load.spritesheet('ShoseTiles', 'Assets/images/1970s/shoseIcon.png', 128, 128);
+        //Tiles
+        this.load.spritesheet('ClothesTiles', 'Assets/images/1970s/70s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('SkirtTiles', 'Assets/images/1970s/70s_skirtIcon.png', 128, 128);
+        this.load.spritesheet('ShoseTiles', 'Assets/images/1970s/70s_shoesIcon.png', 128, 128);
+        this.load.spritesheet('GlassesTiles', 'Assets/images/1970s/70s_accessoriesIcon.png', 128, 128);
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
