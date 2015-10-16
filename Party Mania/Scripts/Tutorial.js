@@ -44,10 +44,6 @@ theGame.Tutorial.prototype =
         //Screen Background
         this.gameBG = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBG.anchor.set(0.5,0.5);
-        
-        //character
-        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite3');
-        this.person.anchor.set(0.5,0.5);
      
         this.tutorial3 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial3');
         this.tutorial3.anchor.set(0.5,0.5);
@@ -58,9 +54,20 @@ theGame.Tutorial.prototype =
         this.tutorial1 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial1');
         this.tutorial1.anchor.set(0.5,0.5);
         
-        //the shirt icon
+        //character
+        this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite3');
+        this.person.anchor.set(0.5,0.5);
+        
+        //the icons
         this.spriteManager = new SpriteManager(this);
-        this.spriteManager.createClothes(this.world.width*0.221, this.world.height*0.373, 'ClothesButton'); 
+        this.spriteManager.createClothes(this.world.width*0.221, this.world.height*0.373, 'ClothesButton');
+        this.spriteManager.createSkirts(this.world.width*0.221, this.world.height*0.46, 'SkirtButton');
+        this.spriteManager.createShose(this.world.width*0.221, this.world.height*0.547, 'ShoseButton');
+        this.spriteManager.createSpecs(this.world.width*0.221, this.world.height*0.633, 'SpecsButton');
+     
+        this.spriteManager.skirtInputDisable();
+        this.spriteManager.shoseInputDisable();
+        this.spriteManager.specsInputDisable();
         
         //set the images into different era array
         for(i = 0; i < 2; i++)
@@ -108,11 +115,11 @@ theGame.Tutorial.prototype =
     {
         if(this.spriteManager.onClothes == true)
         {
-            this.drawGrids('ClothesTiles');
+            this.drawGrids('70ClothesTiles');
             this.spriteManager.onClothes = false;
             
             this.clothesOpened = true;
-            this.tween = this.game.add.tween(this.tutorial2).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
+            this.tween = this.game.add.tween(this.tutorial1).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
         }
     },
     
@@ -223,7 +230,7 @@ theGame.Tutorial.prototype =
                     this.person.frame = 2;
                     this.selectedCorrect = true;
                     this.spriteManager.shirtInputDisable();
-                    this.tween = this.game.add.tween(this.tutorial3).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
+                    this.tween = this.game.add.tween(this.tutorial2).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
                 }
             }
             else if(sprite.frame == this.eightysArray[i] || 

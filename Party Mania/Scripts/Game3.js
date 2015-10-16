@@ -198,12 +198,14 @@ theGame.Game3.prototype =
         switch(this.Era)
         {
             case 3:
+                theGame.theEra = 3;
                 this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
                 this.ninetysTheme.anchor.set(0.5,0.5);
                 this.ninetysTheme.inputEnabled = true;
                 var themeTime = this.time.events.add(Phaser.Timer.SECOND * 1, this.disableTheme, this);
                 break;
             case 4:
+                theGame.theEra = 4;
                 this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
                 this.twoThousandsTheme.anchor.set(0.5,0.5);
                 this.twoThousandsTheme.inputEnabled = true;
@@ -232,7 +234,14 @@ theGame.Game3.prototype =
         if(this.spriteManager.onClothes == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('ClothesTiles');
+            if(this.Era == 3)
+            {
+                this.drawGrids('90ClothesTiles');
+            }
+            else if(this.Era == 4)
+            {
+                this.drawGrids('ClothesTiles');
+            }
             this.spriteManager.onClothes = false;
             
             this.shirtOpened = true;
@@ -243,7 +252,14 @@ theGame.Game3.prototype =
        else if(this.spriteManager.onSkirt == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('SkirtTiles');
+            if(this.Era == 3)
+            {
+                this.drawGrids('90SkirtTiles');
+            }
+            else if(this.Era == 4)
+            {
+                this.drawGrids('SkirtTiles');
+            }
             this.spriteManager.onSkirt = false;
             
             this.shirtOpened = false;
@@ -254,7 +270,15 @@ theGame.Game3.prototype =
         else if(this.spriteManager.onAccessories == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('GlassesTiles');
+            if(this.Era == 3)
+            {
+                this.drawGrids('90AccessoriesTiles');
+            }
+            else if(this.Era == 4)
+            {
+                this.drawGrids('AccessoriesTiles');
+            }
+            
             this.spriteManager.onAccessories = false;
             
             this.shirtOpened = false;
@@ -265,7 +289,14 @@ theGame.Game3.prototype =
         else if(this.spriteManager.onShoes == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('ShoseTiles');
+            if(this.Era == 3)
+            {
+                this.drawGrids('90ShoseTiles');
+            }
+            else if(this.Era == 4)
+            {
+                this.drawGrids('ShoseTiles');
+            }
             this.spriteManager.onShoes = false;
             
             this.shirtOpened = false;
@@ -275,7 +306,7 @@ theGame.Game3.prototype =
         }
     },
     
-    //check each shirt / pants / specs / shose not draw again
+    //check each shirt / pants / accessories / shose not draw again
     drawClothes: function(shirtSprite)
     {
         var tempShirt = null;

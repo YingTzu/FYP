@@ -213,7 +213,7 @@ theGame.Game2.prototype =
         if(this.spriteManager.onClothes == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('ClothesTiles');
+            this.drawGrids('80ClothesTiles');
             this.spriteManager.onClothes = false;
             
             this.shirtOpened = true;
@@ -224,7 +224,7 @@ theGame.Game2.prototype =
        else if(this.spriteManager.onSkirt == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('SkirtTiles');
+            this.drawGrids('80SkirtTiles');
             this.spriteManager.onSkirt = false;
             
             this.shirtOpened = false;
@@ -235,7 +235,7 @@ theGame.Game2.prototype =
         else if(this.spriteManager.onShoes == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('ShoseTiles');
+            this.drawGrids('80ShoseTiles');
             this.spriteManager.onShoes = false;
             
             this.shirtOpened = false;

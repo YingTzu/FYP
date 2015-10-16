@@ -77,7 +77,14 @@ theGame.GameEnd.prototype =
         }
         else if(theGame.currentLevel == 3)
         {
-            this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '80sEnd');
+            if(theGame.theEra == 3)
+            {
+                this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '90sEnd');
+            }
+            if(theGame.theEra == 4)
+            {
+                this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000sEnd');
+            }
             this.gameEndPerson.anchor.set(0.5,0.5);
             this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'NextParty', this.buttonManager.GoToEndScreen);
             

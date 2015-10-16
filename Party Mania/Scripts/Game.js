@@ -1,5 +1,6 @@
 theGame.Game = function(game)
 {
+    //some 'specs' was changed to 'accessories'
     this.music = null;
     this.uiManager = null;
     this.spriteManager = null;
@@ -221,7 +222,7 @@ theGame.Game.prototype =
         if(this.spriteManager.onClothes == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('ClothesTiles');
+            this.drawGrids('70ClothesTiles');
             this.spriteManager.onClothes = false;
             
             this.shirtOpened = true;
@@ -232,7 +233,7 @@ theGame.Game.prototype =
        else if(this.spriteManager.onSkirt == true)
         {
             this.soundManager.createSound('ClickSFX');
-            this.drawGrids('SkirtTiles');
+            this.drawGrids('70SkirtTiles');
             this.spriteManager.onSkirt = false;
             
             this.shirtOpened = false;

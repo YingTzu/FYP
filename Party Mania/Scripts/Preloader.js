@@ -19,6 +19,8 @@ theGame.Preloader = function(game)
     this.lvl1Star = 0;
     this.lvl2Star = 0;
     this.lvl3Star = 0;
+    
+    this.theEra = 0;
 };
 
 theGame.Preloader.prototype = 
@@ -46,7 +48,6 @@ theGame.Preloader.prototype =
         this.load.image('Toturial1', 'Assets/images/tutorial_1.png');
         this.load.image('Toturial2', 'Assets/images/tutorial_2.png');
         this.load.image('Toturial3', 'Assets/images/tutorial_3.png');
-        this.load.image('Toturial4', 'Assets/images/tutorial_4.png');
         this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
         this.load.image('EndSceneBackGround', 'Assets/images/endScene.png');
         
@@ -99,11 +100,26 @@ theGame.Preloader.prototype =
         this.load.spritesheet('ShoseButton', 'Assets/images/shoseButtons.png', 50, 52);
         this.load.spritesheet('SpecsButton', 'Assets/images/specsButtons.png', 50, 53);
         
-        //Tiles
-        this.load.spritesheet('ClothesTiles', 'Assets/images/1970s/70s_ShirtIcon.png', 128, 128);
-        this.load.spritesheet('SkirtTiles', 'Assets/images/1970s/70s_skirtIcon.png', 128, 128);
-        this.load.spritesheet('ShoseTiles', 'Assets/images/1970s/70s_shoesIcon.png', 128, 128);
-        this.load.spritesheet('GlassesTiles', 'Assets/images/1970s/70s_accessoriesIcon.png', 128, 128);
+        //Tiles 1970s - 2000s
+        this.load.spritesheet('70ClothesTiles', 'Assets/images/1970s/70s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('70SkirtTiles', 'Assets/images/1970s/70s_skirtIcon.png', 128, 128);
+        this.load.spritesheet('70ShoseTiles', 'Assets/images/1970s/70s_shoesIcon.png', 128, 128);
+        this.load.spritesheet('70AccessoriesTiles', 'Assets/images/1970s/70s_accessoriesIcon.png', 128, 128);
+        
+        this.load.spritesheet('80ClothesTiles', 'Assets/images/1980s/80s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('80SkirtTiles', 'Assets/images/1980s/80s_skirtIcon.png', 128, 128);
+        this.load.spritesheet('80ShoseTiles', 'Assets/images/1980s/80s_shoesIcon.png', 128, 128);
+        this.load.spritesheet('80AccessoriesTiles', 'Assets/images/1980s/80s_accessoriesIcon.png', 128, 128);
+        
+        this.load.spritesheet('90ClothesTiles', 'Assets/images/1990s/90s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('90SkirtTiles', 'Assets/images/1990s/90s_skirtIcon.png', 128, 128);
+        this.load.spritesheet('90ShoseTiles', 'Assets/images/1990s/90s_shoesIcon.png', 128, 128);
+        this.load.spritesheet('90AccessoriesTiles', 'Assets/images/1990s/90s_accessoriesIcon.png', 128, 128);
+        
+        this.load.spritesheet('ClothesTiles', 'Assets/images/2000s/2000s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('SkirtTiles', 'Assets/images/2000s/2000s_skirtIcon.png', 128, 128);
+        this.load.spritesheet('ShoseTiles', 'Assets/images/2000s/2000s_shoesIcon.png', 128, 128);
+        this.load.spritesheet('AccessoriesTiles', 'Assets/images/2000s/2000s_accessoriesIcon.png', 128, 128);
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
