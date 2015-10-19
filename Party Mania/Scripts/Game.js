@@ -531,7 +531,7 @@ theGame.Game.prototype =
     {
         if(this.clickCorrect == true)
         {
-            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:1},80, Phaser.Easing.linear, true);
+            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:1},100, Phaser.Easing.linear, true);
             if(this.correctImage.alpha >= 0.8)
             {
                 this.clickCorrect = false;
@@ -539,7 +539,7 @@ theGame.Game.prototype =
         }
         if(this.clickCorrect == false)
         {
-            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:0},80, Phaser.Easing.linear, true);
+            this.correctImage.alphain = this.game.add.tween(this.correctImage).to({alpha:0},100, Phaser.Easing.linear, true);
         }
     },
     

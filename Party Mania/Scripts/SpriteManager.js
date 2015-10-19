@@ -150,4 +150,7 @@ SpriteManager.prototype.shoseInputDisable = function()
 SpriteManager.prototype.destroySprite = function()
 {   
     this.theClothesImage.destroy();
+    this.theSkirtImage.destroy();
+    this.theSpecsImage.destroy();
+    this.theShoseImage.destroy();
 };
