@@ -89,10 +89,11 @@ theGame.Preloader.prototype =
         this.load.image('2000Shoes', 'Assets/images/2000s/2000s_shoes.png');
         
         //UI button
-        this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 192, 71);
+        this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 171, 66);
         this.load.spritesheet('StartGameButton', 'Assets/images/startGame.png', 204, 73);
-        this.load.spritesheet('GoParty', 'Assets/images/goParty.png', 204, 73);
-        this.load.spritesheet('NextParty', 'Assets/images/nextParty.png', 204, 73);
+        this.load.image('GoParty', 'Assets/images/goParty.png');
+        this.load.image('NextParty', 'Assets/images/nextParty.png');
+        this.load.image('EndGame', 'Assets/images/endGame.png');
         
         //Object button
         this.load.spritesheet('ClothesButton', 'Assets/images/clothesButtons.png', 50, 51);

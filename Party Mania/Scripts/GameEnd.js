@@ -86,7 +86,7 @@ theGame.GameEnd.prototype =
                 this.gameEndPerson = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000sEnd');
             }
             this.gameEndPerson.anchor.set(0.5,0.5);
-            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'NextParty', this.buttonManager.GoToEndScreen);
+            this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.8, 'EndGame', this.buttonManager.GoToEndScreen);
             
             theGame.level3Secs = theGame.tempTimeSec;
             theGame.level3Mins = theGame.tempTimeMin;
@@ -112,7 +112,7 @@ theGame.GameEnd.prototype =
     showStar: function()
     {
         this.fullStar.visible = true;
-        this.tween = this.game.add.tween(this.fullStar.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.tween = this.game.add.tween(this.fullStar.scale).to( { x: 1.2, y: 1.2}, 1000, Phaser.Easing.Bounce.Out, true);
         this.tween.onComplete.add(this.showStar2, this);
         this.soundManager.createSound('StarSFX');
         
@@ -124,7 +124,7 @@ theGame.GameEnd.prototype =
         if(theGame.tempTimeMin <= 1 && theGame.tempTimeSec <= 60)
         {
             this.fullStar2.visible = true;
-            this.tween = this.game.add.tween(this.fullStar2.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
+            this.tween = this.game.add.tween(this.fullStar2.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.tween.onComplete.add(this.showStar3, this);
             this.soundManager.createSound('StarSFX');
             
@@ -137,7 +137,7 @@ theGame.GameEnd.prototype =
         if(theGame.tempTimeMin <= 0 && theGame.tempTimeSec <= 30)
         {
             this.fullStar3.visible = true;
-            this.tween = this.game.add.tween(this.fullStar3.scale).to( { x: 1.5, y: 1.5 }, 1000, Phaser.Easing.Bounce.Out, true);
+            this.tween = this.game.add.tween(this.fullStar3.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.soundManager.createSound('StarSFX');
             
             this.starNum = 3;
