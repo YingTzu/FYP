@@ -2,8 +2,8 @@ function SoundManager(game)
 {
     this.game = game;
     
-    this.gameSound = null;
-    this.menuSound = null;
+    this.theSound = null;
+   // this.menuSound = null;
     this.gameEnd = null;
     
     this.soundSFX = null;
@@ -17,12 +17,12 @@ SoundManager.prototype.createSound = function(key)
 
 SoundManager.prototype.createMusic = function(key)
 {
-    this.menuSound = this.game.add.audio(key);
-    this.menuSound.play(null, 0, 1, true);
+    this.theSound = this.game.add.audio(key);
+    this.theSound.play(null, 0, 1, true);
 };
 
 SoundManager.prototype.stopMusic = function()
 {
-    this.menuSound.stop();
+    this.theSound.stop();
 };
 

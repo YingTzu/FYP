@@ -47,7 +47,7 @@ theGame.GameEnd.prototype =
         this.timePicture = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TimeTaken');
         this.timePicture.anchor.set(0.5,0.5);
         
-        this.timeText= this.add.text(this.world.width*0.38, this.world.height*0.5, "Time Taken: " + theGame.tempTimeMin + ' : ' + theGame.tempTimeSec + 's', {fill: '#ffffff'});
+        this.timeText= this.add.text(this.world.width*0.38, this.world.height*0.5, "Time Taken: " + theGame.tempTimeMin + ':' + theGame.tempTimeSec + 's', {fill: '#ffffff'});
         
         //Button
         this.buttonManager = new ButtonManager(this);

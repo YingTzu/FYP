@@ -15,6 +15,8 @@ theGame.Game = function(game)
     this.accessoriesImage = null;
     this.wrongImage = null;
     this.correctImage = null;
+    this.seventysHint = null;
+    this.glowing = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -72,6 +74,8 @@ theGame.Game = function(game)
     this.clickCorrect  = false;
     this.rightSpeech = null;
     this.wrongSpeech = null;
+    
+    this.guideTween = null;
 };
 
 theGame.Game.prototype = 
@@ -110,6 +114,9 @@ theGame.Game.prototype =
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
+        
+        this.seventysHint = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970sHint');
+        this.seventysHint.anchor.set(0.5,0.5);
         
         //Draw character
         this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite');
@@ -171,11 +178,12 @@ theGame.Game.prototype =
         }
         
         this.eraSwitch();
-        
+        var unstartTime = this.time.events.add(Phaser.Timer.SECOND * 10, this.checkClickIcons, this);
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
         
         this.soundManager = new SoundManager(this);
+        this.soundManager.createMusic('GameMusic');
     },
     
     /////////////////////////////////////////////////////
@@ -210,10 +218,28 @@ theGame.Game.prototype =
         }
     },
     
+    //disable the era that player have to memories
     disableTheme: function()
     {
         this.seventysTheme.inputEnabled = false;
         this.seventysTheme.visible = false;
+    },
+    
+    //if player didn't do anything guide them
+    checkClickIcons: function()
+    {
+        if(this.skirtOpened == false && this.shirtOpened == false)
+        {
+            this.glowing = this.add.sprite(this.world.width*0.221, this.world.height*0.415, 'Glowinglevel1');
+            this.glowing.anchor.set(0.5,0.5);
+            this.guideTween = this.game.add.tween(this.glowing).to( { alpha: 0 }, 500, "Linear", true, 0, -1);
+            this.guideTween.yoyo(true, 500);
+        }
+        else
+        {
+            if(this.guideTween != null)
+                this.guideTween.stop();
+        }
     },
     
     //check the Icons are open and close
@@ -223,6 +249,11 @@ theGame.Game.prototype =
         {
             this.soundManager.createSound('ClickSFX');
             this.drawGrids('70ClothesTiles');
+            if(this.guideTween != null)
+            {
+                this.guideTween.stop();
+                this.glowing.visible = false;
+            }
             this.spriteManager.onClothes = false;
             
             this.shirtOpened = true;
@@ -230,10 +261,15 @@ theGame.Game.prototype =
             this.shoesOpened = false;
             this.accessoriesOpened = false;
         }
-       else if(this.spriteManager.onSkirt == true)
+        else if(this.spriteManager.onSkirt == true)
         {
             this.soundManager.createSound('ClickSFX');
             this.drawGrids('70SkirtTiles');
+            if(this.guideTween != null)
+            {
+                this.guideTween.stop();
+                this.glowing.visible = false;
+            }
             this.spriteManager.onSkirt = false;
             
             this.shirtOpened = false;
@@ -340,15 +376,15 @@ theGame.Game.prototype =
                     this.skirtWear70 = true;
                     break;
                 case 1:
-                    this.drawPants('80Skirt');
+                    //this.drawPants('80Skirt');
                     this.skirtWear80 = true;
                     break;
                 case 2:
-                    this.drawPants('90Skirt');
+                    //this.drawPants('90Skirt');
                     this.skirtWear90 = true;
                     break;
                 case 3:
-                    this.drawPants('2000Skirt');
+                   // this.drawPants('2000Skirt');
                     this.skirtWear = true;
                     break;
             }
@@ -363,15 +399,15 @@ theGame.Game.prototype =
                     this.shirtWear70 = true;
                     break;
                 case 1:
-                    this.drawClothes('80Shirt');
+                    //this.drawClothes('80Shirt');
                     this.shirtWear80 = true;
                     break;
                 case 2:
-                    this.drawClothes('90Shirt');
+                    //this.drawClothes('90Shirt');
                     this.shirtWear90 = true;
                     break;
                 case 3:
-                    this.drawClothes('2000Shirt');
+                    //this.drawClothes('2000Shirt');
                     this.shirtWear = true;
                     break;
             }
@@ -576,6 +612,7 @@ theGame.Game.prototype =
         if(this.buttonManager.clicked == true) 
         {
             this.buttonManager.destroyButton();
+            this.soundManager.stopMusic();
             theGame.currentLevel = 1;
         }
     }

@@ -7,6 +7,7 @@ theGame.MainMenu = function(game)
     this.uiManager = null;
     this.buttonManager = null;
     this.soundManager = null;
+    this.btnSFX = false;
 };
 
 theGame.MainMenu.prototype = 
@@ -45,6 +46,11 @@ theGame.MainMenu.prototype =
         if(this.buttonManager.clicked == true)
         {
             this.open.animations.play('open', 4, false);
+            if(this.btnSFX == false)
+            {
+                this.soundManager.createSound('ClickSFX');
+                this.btnSFX = true;
+            }
             this.soundManager.stopMusic();
         }
     }

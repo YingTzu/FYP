@@ -14,6 +14,7 @@ theGame.Game3 = function(game)
     this.accessoriesImage = null;
     this.wrongImage = null;
     this.correctImage = null;
+    this.theHint = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -110,6 +111,14 @@ theGame.Game3.prototype =
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
         
+        this.randomEraFunc(3, 4);
+        
+        if(this.Era == 3)
+            this.theHint = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990sHint');
+        else if(this.Era == 4)
+            this.theHint = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000sHint');
+        this.theHint.anchor.set(0.5,0.5);
+        
         //Draw character
         this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite3');
         this.person.anchor.set(0.5,0.5);
@@ -164,7 +173,6 @@ theGame.Game3.prototype =
                 }
             }
         }
-        this.randomEraFunc(3, 4);
         
         this.eraSwitch();
         
@@ -172,6 +180,7 @@ theGame.Game3.prototype =
         this.timeManager.createTimerUp();
         
         this.soundManager = new SoundManager(this);
+        this.soundManager.createMusic('GameMusic');
     },
     
     /////////////////////////////////////////////////////
@@ -421,19 +430,21 @@ theGame.Game3.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawPants('70Skirt');
+                    //this.drawPants('70Skirt');
                     this.skirtWear70 = true;
                     break;
                 case 1:
-                    this.drawPants('80Skirt');
+                    //this.drawPants('80Skirt');
                     this.skirtWear80 = true;
                     break;
                 case 2:
-                    this.drawPants('90Skirt');
+                    if(this.Era == 3)
+                        this.drawPants('90Skirt');
                     this.skirtWear90 = true;
                     break;
                 case 3:
-                    this.drawPants('2000Skirt');
+                    if(this.Era == 4)
+                        this.drawPants('2000Skirt');
                     this.skirtWear = true;
                     break;
             }
@@ -444,19 +455,21 @@ theGame.Game3.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawClothes('70Shirt');
+                    //this.drawClothes('70Shirt');
                     this.shirtWear70 = true;
                     break;
                 case 1:
-                    this.drawClothes('80Shirt');
+                    //this.drawClothes('80Shirt');
                     this.shirtWear80 = true;
                     break;
                 case 2:
-                    this.drawClothes('90Shirt');
+                    if(this.Era == 3)
+                        this.drawClothes('90Shirt');
                     this.shirtWear90 = true;
                     break;
                 case 3:
-                    this.drawClothes('2000Shirt');
+                    if(this.Era == 4)
+                        this.drawClothes('2000Shirt');
                     this.shirtWear = true;
                     break;
             }
@@ -466,19 +479,21 @@ theGame.Game3.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawSpecs('70Accessories');
+                    //this.drawSpecs('70Accessories');
                     this.accessoriesWear70 = true;
                     break;
                 case 1:
-                    this.drawSpecs('80Accessories');
+                    //this.drawSpecs('80Accessories');
                     this.accessoriesWear80 = true;
                     break;
                 case 2:
-                    this.drawSpecs('90Accessories');
+                    if(this.Era == 3)
+                        this.drawSpecs('90Accessories');
                     this.accessoriesWear90 = true;
                     break;
                 case 3:
-                    this.drawSpecs('2000Accessories');
+                    if(this.Era == 4)
+                        this.drawSpecs('2000Accessories');
                     this.accessoriesWear = true;
                     break;
             }
@@ -488,19 +503,21 @@ theGame.Game3.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawShose('70Shoes');
+                    //this.drawShose('70Shoes');
                     this.shoesWear70 = true;
                     break;
                 case 1:
-                    this.drawShose('80Shoes');
+                    //this.drawShose('80Shoes');
                     this.shoesWear80 = true;
                     break;
                 case 2:
-                    this.drawShose('90Shoes');
+                    if(this.Era == 3)
+                        this.drawShose('90Shoes');
                     this.shoesWear90 = true;
                     break;
                 case 3:
-                    this.drawShose('2000Shoes');
+                    if(this.Era == 4)
+                        this.drawShose('2000Shoes');
                     this.shoesWear = true;
                     break;
             } 
@@ -747,6 +764,7 @@ theGame.Game3.prototype =
         if(this.buttonManager.clicked == true) 
         {
             this.buttonManager.destroyButton();
+            this.soundManager.stopMusic();
             theGame.currentLevel = 3;
         }
     }

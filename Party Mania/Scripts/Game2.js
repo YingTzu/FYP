@@ -14,6 +14,7 @@ theGame.Game2 = function(game)
     this.accessoriesImage = null;
     this.wrongImage = null;
     this.correctImage = null;
+    this.eightysHint = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -110,6 +111,9 @@ theGame.Game2.prototype =
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
         
+        this.eightysHint = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1980sHint');
+        this.eightysHint.anchor.set(0.5,0.5);
+        
         //Draw character
         this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite2');
         this.person.anchor.set(0.5,0.5);
@@ -172,6 +176,7 @@ theGame.Game2.prototype =
         this.timeManager.createTimerUp();
         
         this.soundManager = new SoundManager(this);
+        this.soundManager.createMusic('GameMusic');
     },
     
     /////////////////////////////////////////////////////
@@ -349,7 +354,7 @@ theGame.Game2.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawPants('70Skirt');
+                    //this.drawPants('70Skirt');
                     this.skirtWear70 = true;
                     break;
                 case 1:
@@ -357,11 +362,11 @@ theGame.Game2.prototype =
                     this.skirtWear80 = true;
                     break;
                 case 2:
-                    this.drawPants('90Skirt');
+                    //this.drawPants('90Skirt');
                     this.skirtWear90 = true;
                     break;
                 case 3:
-                    this.drawPants('2000Skirt');
+                    //this.drawPants('2000Skirt');
                     this.skirtWear = true;
                     break;
             }
@@ -372,7 +377,7 @@ theGame.Game2.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawClothes('70Shirt');
+                    //this.drawClothes('70Shirt');
                     this.shirtWear70 = true;
                     break;
                 case 1:
@@ -380,11 +385,11 @@ theGame.Game2.prototype =
                     this.shirtWear80 = true;
                     break;
                 case 2:
-                    this.drawClothes('90Shirt');
+                    //this.drawClothes('90Shirt');
                     this.shirtWear90 = true;
                     break;
                 case 3:
-                    this.drawClothes('2000Shirt');
+                    //this.drawClothes('2000Shirt');
                     this.shirtWear = true;
                     break;
             }
@@ -394,7 +399,7 @@ theGame.Game2.prototype =
             switch(sprite.frame)
             {
                 case 0:
-                    this.drawShose('70Shoes');
+                    //this.drawShose('70Shoes');
                     this.shoesWear70 = true;
                     break;
                 case 1:
@@ -402,11 +407,11 @@ theGame.Game2.prototype =
                     this.shoesWear80 = true;
                     break;
                 case 2:
-                    this.drawShose('90Shoes');
+                    //this.drawShose('90Shoes');
                     this.shoesWear90 = true;
                     break;
                 case 3:
-                    this.drawShose('2000Shoes');
+                    //this.drawShose('2000Shoes');
                     this.shoesWear = true;
                     break;
             } 
@@ -632,6 +637,7 @@ theGame.Game2.prototype =
         {
             this.buttonManager.destroyButton();
             theGame.currentLevel = 2;
+            this.soundManager.stopMusic();
         }
     }
 }

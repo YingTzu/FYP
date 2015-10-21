@@ -16,6 +16,7 @@ theGame.Tutorial = function(game)
     this.shirtImage =null;
     this.wrongImage = null;
     this.correctImage = null;
+    this.glowing = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -38,6 +39,7 @@ theGame.Tutorial = function(game)
     this.selectedCorrect = false;
     this.clickWrong = false;
     this.clickCorrect  = false;
+    this.btnSFX = false;
 };
 
 theGame.Tutorial.prototype = 
@@ -57,6 +59,9 @@ theGame.Tutorial.prototype =
         
         this.tutorial1 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial1');
         this.tutorial1.anchor.set(0.5,0.5);
+        
+        this.glowing = this.add.sprite(this.world.width*0.221, this.world.height*0.373, 'GlowingTutorial');
+        this.glowing.anchor.set(0.5,0.5);
         
         //character
         this.person = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CharacterSprite3');
@@ -136,6 +141,7 @@ theGame.Tutorial.prototype =
             
             this.clothesOpened = true;
             this.tween = this.game.add.tween(this.tutorial1).to( { alpha: 0 }, 1000, "Linear", true, 0, 0);
+            this.glowing.visible = false;
         }
     },
     
@@ -320,6 +326,11 @@ theGame.Tutorial.prototype =
             this.spriteManager.destroySprite();
             this.buttonManager.destroyButton();
             this.buttonManager.clicked = false;
+            if(this.btnSFX == false)
+            {
+                this.soundManager.createSound('ClickSFX');
+                this.btnSFX = true;
+            }
         }
     }
 }

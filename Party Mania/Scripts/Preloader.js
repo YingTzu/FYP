@@ -48,6 +48,10 @@ theGame.Preloader.prototype =
         this.load.image('Toturial1', 'Assets/images/tutorial_1.png');
         this.load.image('Toturial2', 'Assets/images/tutorial_2.png');
         this.load.image('Toturial3', 'Assets/images/tutorial_3.png');
+        this.load.image('1970sHint', 'Assets/images/1970s/1970sHint.png');
+        this.load.image('1980sHint', 'Assets/images/1980s/1980sHint.png');
+        this.load.image('1990sHint', 'Assets/images/1990s/1990sHint.png');
+        this.load.image('2000sHint', 'Assets/images/2000s/2000sHint.png');
         this.load.image('GameEndBackGround', 'Assets/images/gameEnd.png');
         this.load.image('EndSceneBackGround', 'Assets/images/endScene.png');
         
@@ -90,7 +94,7 @@ theGame.Preloader.prototype =
         
         //UI button
         this.load.spritesheet('PlayGame', 'Assets/images/Play_button.png', 171, 66);
-        this.load.spritesheet('StartGameButton', 'Assets/images/startGame.png', 204, 73);
+        this.load.spritesheet('StartGameButton', 'Assets/images/startGame.png');
         this.load.image('GoParty', 'Assets/images/goParty.png');
         this.load.image('NextParty', 'Assets/images/nextParty.png');
         this.load.image('EndGame', 'Assets/images/endGame.png');
@@ -117,7 +121,7 @@ theGame.Preloader.prototype =
         this.load.spritesheet('90ShoseTiles', 'Assets/images/1990s/90s_shoesIcon.png', 128, 128);
         this.load.spritesheet('90AccessoriesTiles', 'Assets/images/1990s/90s_accessoriesIcon.png', 128, 128);
         
-        this.load.spritesheet('ClothesTiles', 'Assets/images/2000s/2000s_ShirtIcon.png', 128, 128);
+        this.load.spritesheet('ClothesTiles', 'Assets/images/2000s/2000s_shirtIcon.png', 128, 128);
         this.load.spritesheet('SkirtTiles', 'Assets/images/2000s/2000s_skirtIcon.png', 128, 128);
         this.load.spritesheet('ShoseTiles', 'Assets/images/2000s/2000s_shoesIcon.png', 128, 128);
         this.load.spritesheet('AccessoriesTiles', 'Assets/images/2000s/2000s_accessoriesIcon.png', 128, 128);
@@ -130,6 +134,8 @@ theGame.Preloader.prototype =
         this.load.image('ClickCorrect', 'Assets/images/correct.png');
         this.load.image('CorrectSpeech', 'Assets/images/speech_right.png');
         this.load.image('WrongSpeech', 'Assets/images/Speech_wrong.png');
+        this.load.image('GlowingTutorial', 'Assets/images/glowing.png');
+        this.load.image('Glowinglevel1', 'Assets/images/glowingLevel1.png');
         
         //star
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
@@ -137,6 +143,7 @@ theGame.Preloader.prototype =
         
         //Music
         this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
+        this.load.audio('GameMusic', 'Assets/audio/gameMusic.mp3');
         
         //Time
         this.load.image('TimeTaken', 'Assets/images/TimeTaken.png');
@@ -146,7 +153,6 @@ theGame.Preloader.prototype =
         this.load.audio('WrongSFX', 'Assets/audio/Wrong_SFX.mp3');
         this.load.audio('ClickSFX', 'Assets/audio/IconClick_SFX.mp3');
         this.load.audio('StarSFX', 'Assets/audio/Star_SFX.mp3');
-        this.load.audio('ButtonClickSFX', 'Assets/audio/ButtonClick_SFX.mp3');
     }, 
     
     create: function()
