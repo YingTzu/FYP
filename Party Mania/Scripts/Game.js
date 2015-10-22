@@ -178,7 +178,9 @@ theGame.Game.prototype =
         }
         
         this.eraSwitch();
+        
         var unstartTime = this.time.events.add(Phaser.Timer.SECOND * 10, this.checkClickIcons, this);
+        
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
         

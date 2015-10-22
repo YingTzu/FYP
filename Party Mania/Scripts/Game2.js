@@ -15,6 +15,7 @@ theGame.Game2 = function(game)
     this.wrongImage = null;
     this.correctImage = null;
     this.eightysHint = null;
+    this.glowing = null;
     
     this.tileSize = 128;
     this.theTile = null;
@@ -72,6 +73,8 @@ theGame.Game2 = function(game)
     this.clickCorrect  = false;
     this.rightSpeech = null;
     this.wrongSpeech = null;
+    
+    this.guideTween = null;
 };
 
 theGame.Game2.prototype = 
@@ -172,6 +175,8 @@ theGame.Game2.prototype =
         
         this.eraSwitch();
         
+        var unstartTime = this.time.events.add(Phaser.Timer.SECOND * 10, this.checkClickIcons, this);
+        
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerUp();
         
@@ -212,6 +217,22 @@ theGame.Game2.prototype =
         this.eightysTheme.visible = false;
     },
     
+    checkClickIcons: function()
+    {
+        if(this.skirtOpened == false && this.shirtOpened == false && this.shoesOpened == false)
+        {
+            this.glowing = this.add.sprite(this.world.width*0.221, this.world.height*0.458, 'Glowinglevel2');
+            this.glowing.anchor.set(0.5,0.5);
+            this.guideTween = this.game.add.tween(this.glowing).to( { alpha: 0 }, 500, "Linear", true, 0, -1);
+            this.guideTween.yoyo(true, 500);
+        }
+        else
+        {
+            if(this.guideTween != null)
+                this.guideTween.stop();
+        }
+    },
+    
     //check the Icons are open and close
     checkOpen: function()
     {
@@ -219,6 +240,11 @@ theGame.Game2.prototype =
         {
             this.soundManager.createSound('ClickSFX');
             this.drawGrids('80ClothesTiles');
+            if(this.guideTween != null)
+            {
+                this.guideTween.stop();
+                this.glowing.visible = false;
+            }
             this.spriteManager.onClothes = false;
             
             this.shirtOpened = true;
@@ -230,6 +256,11 @@ theGame.Game2.prototype =
         {
             this.soundManager.createSound('ClickSFX');
             this.drawGrids('80SkirtTiles');
+            if(this.guideTween != null)
+            {
+                this.guideTween.stop();
+                this.glowing.visible = false;
+            }
             this.spriteManager.onSkirt = false;
             
             this.shirtOpened = false;
@@ -241,6 +272,11 @@ theGame.Game2.prototype =
         {
             this.soundManager.createSound('ClickSFX');
             this.drawGrids('80ShoseTiles');
+            if(this.guideTween != null)
+            {
+                this.guideTween.stop();
+                this.glowing.visible = false;
+            }
             this.spriteManager.onShoes = false;
             
             this.shirtOpened = false;

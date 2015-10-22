@@ -136,6 +136,8 @@ theGame.Preloader.prototype =
         this.load.image('WrongSpeech', 'Assets/images/Speech_wrong.png');
         this.load.image('GlowingTutorial', 'Assets/images/glowing.png');
         this.load.image('Glowinglevel1', 'Assets/images/glowingLevel1.png');
+        this.load.image('Glowinglevel2', 'Assets/images/glowingLevel2.png');
+        this.load.image('Glowinglevel3', 'Assets/images/glowingLevel3.png');
         
         //star
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
