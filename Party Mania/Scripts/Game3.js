@@ -216,14 +216,14 @@ theGame.Game3.prototype =
                 this.ninetysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1990s');
                 this.ninetysTheme.anchor.set(0.5,0.5);
                 this.ninetysTheme.inputEnabled = true;
-                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 1, this.disableTheme, this);
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 4, this.disableTheme, this);
                 break;
             case 4:
                 theGame.theEra = 4;
                 this.twoThousandsTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '2000s');
                 this.twoThousandsTheme.anchor.set(0.5,0.5);
                 this.twoThousandsTheme.inputEnabled = true;
-                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 1, this.disableTheme, this);
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 4, this.disableTheme, this);
                 break;
         }
     },

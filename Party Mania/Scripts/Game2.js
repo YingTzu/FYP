@@ -206,7 +206,7 @@ theGame.Game2.prototype =
                 this.eightysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1980s');
                 this.eightysTheme.anchor.set(0.5,0.5);
                 this.eightysTheme.inputEnabled = true;
-                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 2, this.disableTheme, this);
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 5, this.disableTheme, this);
                 break;
         }
     },

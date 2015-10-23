@@ -215,7 +215,7 @@ theGame.Game.prototype =
                 this.seventysTheme = this.add.sprite(this.world.width*0.5, this.world.height*0.5, '1970s');
                 this.seventysTheme.anchor.set(0.5,0.5);
                 this.seventysTheme.inputEnabled = true; //to ensure the buttons unable to click behind the hint
-                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 3, this.disableTheme, this);
+                var themeTime = this.time.events.add(Phaser.Timer.SECOND * 5, this.disableTheme, this);
                 break;
         }
     },
