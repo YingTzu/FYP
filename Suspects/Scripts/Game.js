@@ -53,7 +53,7 @@ theGame.Game.prototype =
     update: function()
     {
         this.suspectCheck();
-        console.log(this.suspectsManager.lvlOneCorrect);
+        //console.log(this.suspectsManager.suspectsNo);
     },
     
     pauseClick: function()

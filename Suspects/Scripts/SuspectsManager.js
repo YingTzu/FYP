@@ -4,6 +4,7 @@ function SuspectsManager(game)
     this.theSuspects = null;
     this.suspectsNo = null;
     this.lvlOneCorrect = false;
+    this.suspectKey = null;
 }
 
 SuspectsManager.prototype.create = function(posx, posy, suspects)
@@ -13,20 +14,21 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
         case 0:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect1');
-                this.suspectsNo = 1;
-                
+                //this.suspectsNo = 1;
+                this.suspectKey = 'Suspect1';
             }
             break;
         case 1:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect2');
-                this.suspectsNo = 2;
+                //this.suspectsNo = 2;
+                this.suspectKey = 'Suspect2';
             }
             break;
         case 2:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
-                this.suspectsNo = 3;
+                //this.suspectsNo = 3;
             }
             break; 
     }
@@ -50,20 +52,29 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
 SuspectsManager.prototype.click = function()
 {
     //this.lvlOneCorrect = true;
-    if(this.suspectsNo == 1)
+//    if(this.suspectsNo == 1)
+//    {
+//        console.log("left suspect");
+//        this.lvlOneCorrect = true;
+//        console.log(this.lvlOneCorrect);
+//        this.suspectsNo = 1;
+//    }
+//    console.log(this.lvlOneCorrect);
+//    if(this.suspectsNo == 2)
+//    {
+//        console.log("middle suspect");
+//    }
+//    
+//    if(this.suspectsNo == 3)
+//    {
+//        console.log("right suspect");
+//    }
+    
+    if(this.suspectKey == 'Suspect1');
     {
         console.log("left suspect");
         this.lvlOneCorrect = true;
         console.log(this.lvlOneCorrect);
-    }
-    console.log(this.lvlOneCorrect);
-    if(this.suspectsNo == 2)
-    {
-        console.log("middle suspect");
-    }
-    
-    if(this.suspectsNo == 3)
-    {
-       console.log("right suspect");
+        //this.suspectsNo = 1;
     }
 }
