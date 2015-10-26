@@ -52,9 +52,6 @@ theGame.Preloader.prototype =
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
-        
-        //Script
-        //this.load.script('Gray', 'Scripts/pixi.js');
     }, 
     
     create: function()

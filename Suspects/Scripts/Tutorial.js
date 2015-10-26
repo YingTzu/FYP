@@ -25,6 +25,6 @@ theGame.Tutorial.prototype =
     
     update: function()
     {
-      theGame.FadeScreen.update(this.buttonManager.gametype);          
+        theGame.FadeScreen.update(this.buttonManager.gametype);          
     }
 }

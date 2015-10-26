@@ -4,7 +4,6 @@ function SuspectsManager(game)
     this.theSuspects = null;
     this.suspectsNo = null;
     this.lvlOneCorrect = false;
-    this.suspectKey = null;
 }
 
 SuspectsManager.prototype.create = function(posx, posy, suspects)
@@ -15,14 +14,12 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect1');
                 //this.suspectsNo = 1;
-                this.suspectKey = 'Suspect1';
             }
             break;
         case 1:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect2');
                 //this.suspectsNo = 2;
-                this.suspectKey = 'Suspect2';
             }
             break;
         case 2:
@@ -37,7 +34,6 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     this.theSuspects.inputEnabled = true;
     this.theSuspects.events.onInputDown.add(this.click, this);
     
-    
     //HHHHHHHHHHHHHHHHSSSSSSSSSSSSSSSSLLLLLLLLLLLLLLLLL
 //    var bmd = this.game.add.bitmapData(100, 200);
 //    var Rect = new Phaser.Rectangle(100, 300, 100, 200);
@@ -46,20 +42,16 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
 //    this.MySprite = this.game.add.sprite(500, 500, bmd);
 //    this.MySprite._bitmap = bmd;
 //    this.MySprite._name = 'Suspect1';
-//    this.MySprite._saturation = 0;
 }
 
 SuspectsManager.prototype.click = function()
 {
-    //this.lvlOneCorrect = true;
-//    if(this.suspectsNo == 1)
-//    {
-//        console.log("left suspect");
-//        this.lvlOneCorrect = true;
-//        console.log(this.lvlOneCorrect);
-//        this.suspectsNo = 1;
-//    }
-//    console.log(this.lvlOneCorrect);
+    //if(this.theSuspects.get)
+    //{
+        //console.log("left suspect");
+        this.lvlOneCorrect = true;
+    //}
+    
 //    if(this.suspectsNo == 2)
 //    {
 //        console.log("middle suspect");
@@ -69,12 +61,4 @@ SuspectsManager.prototype.click = function()
 //    {
 //        console.log("right suspect");
 //    }
-    
-    if(this.suspectKey == 'Suspect1');
-    {
-        console.log("left suspect");
-        this.lvlOneCorrect = true;
-        console.log(this.lvlOneCorrect);
-        //this.suspectsNo = 1;
-    }
 }

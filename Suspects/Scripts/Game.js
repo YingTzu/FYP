@@ -6,6 +6,7 @@ theGame.Game = function(game)
     this.gameBackground = null;
     this.pause = null;
     this.correct = null;
+    this.wrong = null;
     this.jailRailing = null;
     
     this.suspect1 = 0;
@@ -53,7 +54,6 @@ theGame.Game.prototype =
     update: function()
     {
         this.suspectCheck();
-        //console.log(this.suspectsManager.suspectsNo);
     },
     
     pauseClick: function()
@@ -67,9 +67,8 @@ theGame.Game.prototype =
         {
             this.correctSuspect();
         }
-        else
-        {
-        }
+        //else if(this.suspectsManager.lvlOneWrong == true)
+            //this.wrongSuspect();
     }, 
     
     correctSuspect: function()
@@ -86,6 +85,18 @@ theGame.Game.prototype =
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDwon, this);
+    },
+    
+    wrongSuspect: function()
+    {
+        //wrong = false in suspectManager
+        this.wrong.visible = true;
+        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.wrongVisible, this);
+    }, 
+                                                    
+    wrongVisible: function()
+    {
+        this.wrong.visible = false;
     }, 
     
     whenDwon: function()
