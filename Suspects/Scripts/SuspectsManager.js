@@ -13,19 +13,16 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
         case 0:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect1');
-                //this.suspectsNo = 1;
             }
             break;
         case 1:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect2');
-                //this.suspectsNo = 2;
             }
             break;
         case 2:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
-                //this.suspectsNo = 3;
             }
             break; 
     }
@@ -33,6 +30,7 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     this.theSuspects.scale.setTo(0.2,0.2);
     this.theSuspects.inputEnabled = true;
     this.theSuspects.events.onInputDown.add(this.click, this);
+    this.suspectsNo = suspects;
     
     //HHHHHHHHHHHHHHHHSSSSSSSSSSSSSSSSLLLLLLLLLLLLLLLLL
 //    var bmd = this.game.add.bitmapData(100, 200);
@@ -46,19 +44,20 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
 
 SuspectsManager.prototype.click = function()
 {
-    //if(this.theSuspects.get)
-    //{
-        //console.log("left suspect");
+    //this.lvlOneCorrect = true;
+    if(this.suspectsNo == 0)
+    {
+        console.log("left suspect");
         this.lvlOneCorrect = true;
-    //}
+    }
     
-//    if(this.suspectsNo == 2)
-//    {
-//        console.log("middle suspect");
-//    }
-//    
-//    if(this.suspectsNo == 3)
-//    {
-//        console.log("right suspect");
-//    }
+    if(this.suspectsNo == 1)
+    {
+        console.log("middle suspect");
+    }
+    
+    if(this.suspectsNo == 2)
+    {
+        console.log("right suspect");
+    }
 }

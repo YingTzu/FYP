@@ -12,7 +12,7 @@ theGame.Game = function(game)
     this.suspect1 = 0;
     this.suspect2 = 1;
     this.suspect3 = 2;
-    
+    this.noOfSuspect = 3;
     this.gray = null;
 };
 
@@ -29,14 +29,12 @@ theGame.Game.prototype =
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimeBar(40, 600, 'Timer', 50);
         
-        this.suspectsManager = new SuspectsManager(this);
-        this.suspectsManager.create(this.world.width*0.3, this.world.height*0.65, this.suspect1);
-        
-        this.suspectsManager = new SuspectsManager(this);
-        this.suspectsManager.create(this.world.width*0.5, this.world.height*0.65, this.suspect2);
-        
-        this.suspectsManager = new SuspectsManager(this);   
-        this.suspectsManager.create(this.world.width*0.7, this.world.height*0.65, this.suspect3);
+        for(i = 0; i < this.noOfSuspect; i++)
+        {
+            this.suspectsManager = new SuspectsManager(this);
+            this.suspectsManager.create(250+this.world.width*0.2 * i, this.world.height*0.65, i);
+            console.log(this.suspectsManager.suspectsNo);
+        }
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
