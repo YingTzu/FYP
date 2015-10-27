@@ -37,6 +37,8 @@ TimeManager.prototype.timeBarCountDown = function()
     {   
         this.timeSet --;
         this.currentTime = this.timeSet;
+        //this.timeBar.cropEnabled = true;
+        //this.timeBar.height = (this.currentTime/this.totalTime)* this.timeBarComplete;
         this.timeBar.height = ((this.currentTime * this.timeBarComplete)/this.totalTime);
         var cropRect = new Phaser.Rectangle(0, 0, this.timeBar.width, this.timeBar.height);
         this.timeBar.crop(cropRect);
@@ -95,22 +97,24 @@ TimeManager.prototype.timeCountUp = function()
 /////////Time Pause / Resume / Stop ///////////////
 TimeManager.prototype.timePause = function()
 {
+    this.isPuase = true;
     this.timer.pause();
 }
 
 TimeManager.prototype.timeResume = function()
 {
+    this.isPuase = false;
     this.timer.resume();
 }
 
 TimeManager.prototype.timeStop = function()
 {
     this.timer.stop();
+    this.timer.remove();
+    this.timeBar.destroy();
 }
 
 TimeManager.prototype.timeReset = function()
 {
-    this.timeUp = 0;
+    this.timeSet = this.totalTime;
 }
-
-

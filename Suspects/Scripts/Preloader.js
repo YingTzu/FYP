@@ -42,6 +42,7 @@ theGame.Preloader.prototype =
         
         //Images
         this.load.image('Correct', 'Assets/images/correct.png');
+        this.load.image('Wrong', 'Assets/images/wrong.png')
         this.load.image('JailRailing', 'Assets/images/jail.png');
         
         //Time Bar
