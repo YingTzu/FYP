@@ -15,11 +15,11 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
 ButtonManager.prototype.StartGame = function()
 {    
     this.gametype = 1;
-    theGame.FadeScreen.OnEnd = true;
+    Suspects.FadeScreen.OnEnd = true;
 };
 
 ButtonManager.prototype.GoToTutorial = function()
 {
     this.gametype = 2;
-    theGame.FadeScreen.OnEnd = true;
+    Suspects.FadeScreen.OnEnd = true;
 };

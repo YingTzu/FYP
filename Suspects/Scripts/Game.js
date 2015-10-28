@@ -1,4 +1,4 @@
-theGame.Game = function(game)
+Suspects.Game = function(game)
 {
     this.timeManager = null;
     this.suspectsManager = null;
@@ -19,7 +19,7 @@ theGame.Game = function(game)
     this.level = 1;
 };
 
-theGame.Game.prototype = 
+Suspects.Game.prototype = 
 {
     create: function()
     {
@@ -70,7 +70,7 @@ theGame.Game.prototype =
         this.jailRailing.anchor.set(0.5,0.5);
         
         //Fade in and out
-        theGame.FadeScreen = new FadeManager(this);
+        Suspects.FadeScreen = new FadeManager(this);
     }, 
     
     update: function()

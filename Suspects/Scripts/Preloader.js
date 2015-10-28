@@ -1,4 +1,4 @@
-theGame.Preloader = function(game)
+Suspects.Preloader = function(game)
 {
     this.background = null;
     this.preloadBar = null;
@@ -7,12 +7,12 @@ theGame.Preloader = function(game)
     this.ready = false;
 };
 
-theGame.Preloader.prototype = 
+Suspects.Preloader.prototype = 
 {
     preload: function()
     {
         //sound mute
-        theGame.Game_Mute = false;
+        Suspects.Game_Mute = false;
         
         //Loading Screen Background
         this.preloadCover = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'LoadingScreenBackGround');

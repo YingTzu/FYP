@@ -1,6 +1,6 @@
-var theGame = {};
+var Suspects = {};
 
-theGame.Boot = function(game)
+Suspects.Boot = function(game)
 {
     Game_Mute: false;
     Game_Pause: false;
@@ -9,7 +9,7 @@ theGame.Boot = function(game)
     Popup:null;
 };
 
-theGame.Boot.prototype = 
+Suspects.Boot.prototype = 
 {  
     init: function ()
     {

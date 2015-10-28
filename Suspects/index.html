@@ -24,11 +24,11 @@
 	{
 		var game = new Phaser.Game(960, 640, Phaser.AUTO);
 		//States
-		game.state.add('Boot',theGame.Boot);
-		game.state.add('Preloader',theGame.Preloader);
-		game.state.add('MainMenu',theGame.MainMenu);
-		game.state.add('Game',theGame.Game);
-		game.state.add('Tutorial',theGame.Tutorial);
+		game.state.add('Boot',Suspects.Boot);
+		game.state.add('Preloader',Suspects.Preloader);
+		game.state.add('MainMenu',Suspects.MainMenu);
+		game.state.add('Game',Suspects.Game);
+		game.state.add('Tutorial',Suspects.Tutorial);
 		//Start state
 		game.state.start('Boot');
 	};

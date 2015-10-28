@@ -1,11 +1,11 @@
-theGame.Tutorial = function(game)
+Suspects.Tutorial = function(game)
 {
     this.toturialBackground = null;
     this.uiManager = null;
     this.buttonManager = null;
 };
 
-theGame.Tutorial.prototype = 
+Suspects.Tutorial.prototype = 
 {
     create: function()
     {
@@ -19,12 +19,12 @@ theGame.Tutorial.prototype =
         this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'SkipButton', this.buttonManager.StartGame);
         
         //Fade in and out
-        theGame.FadeScreen = new FadeManager(this);
-        theGame.FadeScreen.create();
+        Suspects.FadeScreen = new FadeManager(this);
+        Suspects.FadeScreen.create();
     }, 
     
     update: function()
     {
-        theGame.FadeScreen.update(this.buttonManager.gametype);
+        Suspects.FadeScreen.update(this.buttonManager.gametype);
     }
 }

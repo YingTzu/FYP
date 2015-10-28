@@ -1,11 +1,11 @@
-theGame.MainMenu = function(game)
+Suspects.MainMenu = function(game)
 {
     this.mainmenuBackground = null;
     this.uiManager = null;
     this.buttonManager = null;
 };
 
-theGame.MainMenu.prototype = 
+Suspects.MainMenu.prototype = 
 {
     create: function()
     {
@@ -18,12 +18,12 @@ theGame.MainMenu.prototype =
         this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToTutorial);
         
         //Fade in and out
-        theGame.FadeScreen = new FadeManager(this);
-        theGame.FadeScreen.create();
+        Suspects.FadeScreen = new FadeManager(this);
+        Suspects.FadeScreen.create();
     }, 
     
     update: function()
     {
-        theGame.FadeScreen.update(this.buttonManager.gametype);
+        Suspects.FadeScreen.update(this.buttonManager.gametype);
     }
 };
