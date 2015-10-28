@@ -3,8 +3,8 @@ Suspects.Preloader = function(game)
     this.background = null;
     this.preloadBar = null;
     this.PreloadBarempty = null;
-    this.preloadBar = null;
-    this.ready = false;
+
+    this.starFull = null;
 };
 
 Suspects.Preloader.prototype = 

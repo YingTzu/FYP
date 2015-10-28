@@ -16,6 +16,7 @@
 	<script src = "Scripts/MainMenu.js"></script>
 	<script src = "Scripts/Tutorial.js"></script>
     <script src = "Scripts/Game.js"></script>
+    <script src = "Scripts/Game2.js"></script>
 </head>
 <body>
 	<div id = "gameContainer"></div>
@@ -28,6 +29,7 @@
 		game.state.add('Preloader',Suspects.Preloader);
 		game.state.add('MainMenu',Suspects.MainMenu);
 		game.state.add('Game',Suspects.Game);
+        game.state.add('Game2',Suspects.Game2);
 		game.state.add('Tutorial',Suspects.Tutorial);
 		//Start state
 		game.state.start('Boot');

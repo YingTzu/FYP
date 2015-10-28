@@ -1,4 +1,4 @@
-Suspects.Game = function(game)
+Suspects.Game2 = function(game)
 {
     this.timeManager = null;
     this.suspectsManager = null;
@@ -8,22 +8,22 @@ Suspects.Game = function(game)
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
+    this.starEmpty = [];
+    this.starFull = null;
     
-    this.noOfSuspect = 3;
+    this.noOfSuspect = 4;
     this.gray = null;
     
-    this.starEmpty = [];
     this.suspectGroup = null;
-    
     this.gameScene = 0;
 };
 
-Suspects.Game.prototype = 
+Suspects.Game2.prototype = 
 {
     create: function()
     {
-        console.log("game");
-        
+        console.log("game2");
+    
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
@@ -47,9 +47,9 @@ Suspects.Game.prototype =
             this.starEmpty[i].anchor.set(0.5,0.5);
         }
         
-        Suspects.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
-        Suspects.starFull.anchor.set(0.5,0.5);
-        Suspects.starFull.visible = false;
+        this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
+        this.starFull.anchor.set(0.5,0.5);
+        this.starFull.visible = false;
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
@@ -69,7 +69,6 @@ Suspects.Game.prototype =
         
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
-        Suspects.FadeScreen.create();
     }, 
     
     update: function()
@@ -82,8 +81,6 @@ Suspects.Game.prototype =
         else
         {//game paused
         }
-        
-        Suspects.FadeScreen.update(this.gameScene);
     },
     
     pauseClick: function()
@@ -127,12 +124,12 @@ Suspects.Game.prototype =
                                                     
     correctVisible: function()
     {
-        Suspects.starFull.visible = true;
-        this.tween = this.add.tween(Suspects.starFull.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.starFull.visible = true;
+        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.correct.visible = false;
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
-        tween.onComplete.add(this.whenDown, this);
+        tween.onComplete.add(this.stopTime, this);
     },
     
     wrongSuspect: function()
@@ -147,17 +144,16 @@ Suspects.Game.prototype =
         this.wrong.visible = false;
         
         //start fade and go to next level
-        this.gameScene = 3;
-        Suspects.FadeScreen.OnEnd = true;
+//        this.gameScene = 4;
+//        Suspects.FadeScreen.OnEnd = true;
     }, 
     
-    whenDown: function()
+    stopTime: function()
     {
         //start fade and go to next level
-        this.gameScene = 3;
-        Suspects.FadeScreen.OnEnd = true;
+//        this.gameScene = 4;
+//        Suspects.FadeScreen.OnEnd = true;
         
-        //this.suspectGroup.destroy();
         this.timeManager.timeStop();
     }
 }

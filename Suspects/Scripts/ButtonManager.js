@@ -11,15 +11,15 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
     this.theButton.anchor.set(0.5,0.5);
     this.theButton.inputEnbled = true;
 }
-    
-ButtonManager.prototype.StartGame = function()
-{    
+
+ButtonManager.prototype.GoToTutorial = function()
+{
     this.gametype = 1;
     Suspects.FadeScreen.OnEnd = true;
 };
 
-ButtonManager.prototype.GoToTutorial = function()
-{
+ButtonManager.prototype.StartGame = function()
+{    
     this.gametype = 2;
     Suspects.FadeScreen.OnEnd = true;
 };

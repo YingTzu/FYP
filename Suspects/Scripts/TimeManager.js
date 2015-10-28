@@ -110,8 +110,6 @@ TimeManager.prototype.timeResume = function()
 TimeManager.prototype.timeStop = function()
 {
     this.timer.stop();
-    this.timer.remove();
-    this.timeBar.destroy();
 }
 
 TimeManager.prototype.timeReset = function()
