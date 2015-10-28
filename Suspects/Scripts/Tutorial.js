@@ -11,7 +11,7 @@ theGame.Tutorial.prototype =
     {
         console.log("tutorial");
         //Screen Background
-        this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'ToturialBackGround');
+        this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.toturialBackground.anchor.set(0.5,0.5);
         
         //Button

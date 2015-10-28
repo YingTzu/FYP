@@ -27,8 +27,7 @@ theGame.Preloader.prototype =
         //Imagae Assets preload here
         //Background
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
-        this.load.image('GameBackGround', 'Assets/images/game.png');
-        this.load.image('ToturialBackGround', 'Assets/images/tutorial.png');
+        this.load.image('GameBackGround', 'Assets/images/gameBackground.png');
         
         //button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
@@ -50,6 +49,10 @@ theGame.Preloader.prototype =
         
         //UI
         this.load.image('Pause', 'Assets/images/pause.png');
+        
+        //stars
+        this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
+        this.load.image('StarFull', 'Assets/images/starFull.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
