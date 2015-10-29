@@ -10,6 +10,7 @@ Suspects.Game2 = function(game)
     this.jailRailing = null;
     this.starEmpty = [];
     this.starFull = null;
+    this.starFull2 = null;
     
     this.noOfSuspect = 4;
     this.gray = null;
@@ -29,7 +30,7 @@ Suspects.Game2.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimeBar(40, 600, 'Timer', 100);
+        this.timeManager.createTimeBar(25, 507, 'Timer', 100);
         
         this.suspectGroup = this.add.group();
         this.suspectGroup2 = this.add.group();
@@ -37,19 +38,21 @@ Suspects.Game2.prototype =
         for(i = 0; i < this.noOfSuspect; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(250+this.world.width*0.2 * i, this.world.height*0.65, i);
+            this.suspectsManager.create(this.world.width*0.15+ 200*i, this.world.height*0.65, i);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
         for(i = 0; i < 5; i++)
         {
-            this.starEmpty[i]= this.game.add.sprite(250+this.world.width*0.1 * i, this.world.height*0.2, 'StarEmpty');
+            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.35 + 80*i, this.world.height*0.2, 'StarEmpty');
             this.starEmpty[i].anchor.set(0.5,0.5);
         }
         
-        this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
-        this.starFull.anchor.set(0.5,0.5);
-        this.starFull.visible = false;
+        this.checkStar();
+        
+        this.starFull2 = this.game.add.sprite(this.starEmpty[1].x, this.starEmpty[1].y, 'StarFull');
+        this.starFull2.anchor.set(0.5,0.5);
+        this.starFull2.visible = false;
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
@@ -76,7 +79,7 @@ Suspects.Game2.prototype =
         //console.log(this.timeManager.timeBar.height);
         if(!this.timeManager.isPuase)
         {
-            this.levelOneSuspectCheck();
+            this.suspectCheck();
         }
         else
         {//game paused
@@ -88,7 +91,17 @@ Suspects.Game2.prototype =
         this.timeManager.timePause();
     },
     
-    levelOneSuspectCheck: function()
+    checkStar: function()
+    {
+        if(Suspects.firstStar == true)
+        {
+            this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
+            this.starFull.anchor.set(0.5,0.5);
+            this.starFull.visible = true;
+        }
+    },
+    
+    suspectCheck: function()
     { 
         //check clicking of each suspect
         this.suspectGroup.forEach(function(suspects)
@@ -110,6 +123,10 @@ Suspects.Game2.prototype =
                 {
                     this.wrongSuspect();
                 }
+                if(suspects.name == "person3")
+                {
+                    this.wrongSuspect();
+                }
                 suspects.clicked = false;
             }
         },this);
@@ -124,8 +141,9 @@ Suspects.Game2.prototype =
                                                     
     correctVisible: function()
     {
-        this.starFull.visible = true;
-        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.starFull2.visible = true;
+        Suspects.secondStar = true;
+        this.tween = this.add.tween(this.starFull2.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.correct.visible = false;
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
@@ -142,7 +160,7 @@ Suspects.Game2.prototype =
     wrongVisible: function()
     {
         this.wrong.visible = false;
-        
+        this.timeManager.timeStop();                                                                                                                                         
         //start fade and go to next level
 //        this.gameScene = 4;
 //        Suspects.FadeScreen.OnEnd = true;

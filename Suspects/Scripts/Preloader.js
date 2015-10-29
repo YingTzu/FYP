@@ -3,8 +3,9 @@ Suspects.Preloader = function(game)
     this.background = null;
     this.preloadBar = null;
     this.PreloadBarempty = null;
-
-    this.starFull = null;
+    
+    this.firstStar = false;
+    this.secondStar = false;
 };
 
 Suspects.Preloader.prototype = 
@@ -45,14 +46,15 @@ Suspects.Preloader.prototype =
         this.load.image('JailRailing', 'Assets/images/jail.png');
         
         //Time Bar
-        this.load.image('Timer', 'Assets/images/timer.png');
+        this.load.image('Timer', 'Assets/images/timeBar.png');
         
         //UI
         this.load.image('Pause', 'Assets/images/pause.png');
-        
-        //stars
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
         this.load.image('StarFull', 'Assets/images/starFull.png');
+        
+        //Objects
+        this.load.image('Arrow', 'Assets/images/arrow.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');

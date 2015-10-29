@@ -37,15 +37,14 @@ TimeManager.prototype.timeBarCountDown = function()
     {   
         this.timeSet --;
         this.currentTime = this.timeSet;
-        //this.timeBar.cropEnabled = true;
-        //this.timeBar.height = (this.currentTime/this.totalTime)* this.timeBarComplete;
-        this.timeBar.height = ((this.currentTime * this.timeBarComplete)/this.totalTime);
-        var cropRect = new Phaser.Rectangle(0, 0, this.timeBar.width, this.timeBar.height);
-        this.timeBar.crop(cropRect);
-        this.timeBar.updateCrop();
-
-      //  console.log("time down: " + this.totalTime);
-       // console.log(this.timeBar.width, this.timeBar.height);
+        this.timeBar.cropEnabled = true;
+        this.timeBar.height = (this.currentTime/this.totalTime)* this.timeBarComplete;
+//        this.timeBar.height = ((this.currentTime * this.timeBarComplete)/this.totalTime);
+//        var cropRect = new Phaser.Rectangle(0, 0, this.timeBar.width, this.timeBar.height);
+//        this.timeBar.crop(cropRect);
+//        this.timeBar.updateCrop();
+        
+       // console.log(this.timeSet);
     }
     if(this.totalTime <= 0)
     {
