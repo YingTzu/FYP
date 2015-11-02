@@ -43,47 +43,52 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
             break;
         case 6:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv2Suspect_3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv3Suspect_1');
             }
             break;
         case 7:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv3Suspect_2');
             }
             break;
         case 8:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect1');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv3Suspect_3');
             }
             break;
         case 9:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect2');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl4Suspect_1');
             }
             break;
         case 10:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl4Suspect_2');
             }
             break;
         case 11:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl4Suspect_3');
             }
             break;
         case 12:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl5Suspect_1');
             }
             break;
         case 13:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl5Suspect_2');
             }
             break;
         case 14:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl5Suspect_3');
+            }
+            break;
+        case 15:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lvl5Suspect_4');
             }
             break;
     }

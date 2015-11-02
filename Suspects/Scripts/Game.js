@@ -10,7 +10,8 @@ Suspects.Game = function(game)
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
-    
+    this.caseClosed = null;
+    this.faceTest = null;
     this.noOfSuspect = 2;
     this.gray = null;
     
@@ -63,16 +64,27 @@ Suspects.Game.prototype =
         this.pause.inputEnabled = true;
         this.pause.events.onInputDown.add(this.pauseClick, this);
         
-        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Correct');
+        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
         this.correct.anchor.set(0.5,0.5);
+        this.correct.scale.setTo(0.5, 0.5);
         this.correct.visible = false;
         
-        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Wrong');
+        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.65, 'Wrong');
         this.wrong.anchor.set(0.5,0.5);
+        this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
+        
+        this.faceTest = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Test');
+        this.faceTest.scale.setTo(1, 0.9);
+        this.faceTest.anchor.set(0.5,0.5);
+        this.faceTest.visible = false;
         
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
+        
+        this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'CaseClosed');
+        this.caseClosed.anchor.set(0.5,0.5);
+        this.caseClosed.visible = false;
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -138,22 +150,33 @@ Suspects.Game.prototype =
     {
         this.correct.visible = true;
         var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
+        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
     correctVisible: function()
     {
         this.starFull.visible = true;
+        tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
+        tween.onComplete.add(this.starAppear, this);
         Suspects.firstStar = true;
-        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.correct.visible = false;
+        
+    },
+    
+    starAppear: function()
+    {
+        this.faceTest.visible = true;
+        this.destroyItems();
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
+        this.timeManager.timeStop();
     },
     
     wrongSuspect: function()
     {
+        this.timeManager.timeStop();
         this.wrong.visible = true;
         var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongVisible, this);
         this.suspectsManager.isClicked = true;
@@ -162,7 +185,6 @@ Suspects.Game.prototype =
     wrongVisible: function()
     {
         this.wrong.visible = false;
-        
         //start fade and go to next level
         //this.gameScene = 3;
         //Suspects.FadeScreen.OnEnd = true;
@@ -175,10 +197,21 @@ Suspects.Game.prototype =
         //start fade and go to next level
         //this.gameScene = 3;
         //Suspects.FadeScreen.OnEnd = true;
-        
+        var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseOut, this);
+    }, 
+    
+    caseOut: function()
+    {
+        this.caseClosed.visible = true;
+        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.55, y: 0.55 }, 500, Phaser.Easing.Linear.None, true);
         this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
-        
-        //this.suspectGroup.destroy();
-        this.timeManager.timeStop();
+    },
+    
+    destroyItems: function()
+    {
+        this.suspectGroup.destroy();
+        this.gameBackground.destroy();
+        this.reference.destroy();
+        this.timeManager.timeBar.destroy();
     }
 }

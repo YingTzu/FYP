@@ -10,10 +10,12 @@ Suspects.Tutorial = function(game)
     this.tutorial3 = null;
     this.tutorial4 = null;
     
+    this.gray = null;
     this.reference = null;
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
+    
     this.suspectGroup = null;
 };
 
@@ -42,12 +44,14 @@ Suspects.Tutorial.prototype =
         this.reference.anchor.set(0.5,0.5);
         this.reference.visible = false;
         
-        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Correct');
+        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.63, 'Correct');
         this.correct.anchor.set(0.5,0.5);
+        this.correct.scale.setTo(0.5, 0.5);
         this.correct.visible = false;
         
-        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Wrong');
+        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.63, 'Wrong');
         this.wrong.anchor.set(0.5,0.5);
+        this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
@@ -73,6 +77,11 @@ Suspects.Tutorial.prototype =
         this.tutorial1.anchor.set(0.5,0.5);
         this.tutorial1.inputEnabled = true;
         this.tutorial1.events.onInputDown.add(this.tutor1Click, this);
+        
+        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TutorialGary');
+        //this.gray.scale.setTo(0.3,0.3);
+        this.gray.anchor.set(0.5,0.5);
+        this.gray.visible = false;
         
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
@@ -132,11 +141,18 @@ Suspects.Tutorial.prototype =
     },
     correctSuspect: function()
     {
-        this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
+        this.gray.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctAppear, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
+    correctAppear: function()
+    {
+        this.correct.visible = true;
+        this.gray.visible = false;
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
+    },
+    
     correctVisible: function()
     {
         this.correct.visible = false;

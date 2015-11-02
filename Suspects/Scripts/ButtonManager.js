@@ -28,6 +28,10 @@ ButtonManager.prototype.GoToLevel2 = function()
 {    
     this.gametype = 3;
     Suspects.FadeScreen.OnEnd = true;
-    
-    console.log(this.gametype);
+};
+
+ButtonManager.prototype.GoToLevel3 = function()
+{    
+    this.gametype = 4;
+    Suspects.FadeScreen.OnEnd = true;
 };

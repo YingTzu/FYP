@@ -1,4 +1,4 @@
-Suspects.Game2 = function(game)
+Suspects.Game3 = function(game)
 {
     this.timeManager = null;
     this.suspectsManager = null;
@@ -8,22 +8,24 @@ Suspects.Game2 = function(game)
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
+    
     this.starEmpty = [];
     this.starFull = null;
     this.starFull2 = null;
+    this.starFull3 = null;
     
-    this.noOfSuspect = 2;
+    this.noOfSuspect = 3;
     this.gray = null;
     
     this.suspectGroup = null;
     this.gameScene = 0;
 };
 
-Suspects.Game2.prototype = 
+Suspects.Game3.prototype = 
 {
     create: function()
     {
-        console.log("game2");
+        console.log("level3");
     
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
@@ -38,7 +40,7 @@ Suspects.Game2.prototype =
         for(i = 0; i < this.noOfSuspect; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i+4);
+            this.suspectsManager.create(this.world.width*0.26+200*i, this.world.height*0.777, i+6);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
@@ -50,9 +52,9 @@ Suspects.Game2.prototype =
         
         this.checkStar();
         
-        this.starFull2 = this.game.add.sprite(this.starEmpty[1].x, this.starEmpty[1].y, 'StarFull');
-        this.starFull2.anchor.set(0.5,0.5);
-        this.starFull2.visible = false;
+        this.starFull3 = this.game.add.sprite(this.starEmpty[2].x, this.starEmpty[2].y, 'StarFull');
+        this.starFull3.anchor.set(0.5,0.5);
+        this.starFull3.visible = false;
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
@@ -72,12 +74,8 @@ Suspects.Game2.prototype =
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
         
-        //Button
-        this.buttonManager = new ButtonManager(this);
-        
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
-        Suspects.FadeScreen.create();
     }, 
     
     update: function()
@@ -90,8 +88,6 @@ Suspects.Game2.prototype =
         else
         {//game paused
         }
-        
-        Suspects.FadeScreen.update(this.buttonManager.gametype);
     },
     
     pauseClick: function()
@@ -107,6 +103,12 @@ Suspects.Game2.prototype =
             this.starFull.anchor.set(0.5,0.5);
             this.starFull.visible = true;
         }
+        if(Suspects.secondStar == true)
+        {
+            this.starFull2 = this.game.add.sprite(this.starEmpty[1].x, this.starEmpty[1].y, 'StarFull');
+            this.starFull2.anchor.set(0.5,0.5);
+            this.starFull2.visible = true;
+        }
     },
     
     suspectCheck: function()
@@ -119,11 +121,15 @@ Suspects.Game2.prototype =
             {   
                 this.suspectsManager.isClicked = true;
                 //check which suspect is clicked
-                if(suspects.name == "person4")
+                if(suspects.name == "person7")
                 {
                     this.correctSuspect();
                 }
-                if(suspects.name == "person5")
+                if(suspects.name == "person8")
+                {
+                    this.wrongSuspect();
+                }
+                if(suspects.name == "person9")
                 {
                     this.wrongSuspect();
                 }
@@ -164,7 +170,6 @@ Suspects.Game2.prototype =
         //start fade and go to next level
 //        this.gameScene = 4;
 //        Suspects.FadeScreen.OnEnd = true;
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel3);
     }, 
     
     stopTime: function()
@@ -172,7 +177,7 @@ Suspects.Game2.prototype =
         //start fade and go to next level
 //        this.gameScene = 4;
 //        Suspects.FadeScreen.OnEnd = true;
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel3);
+        
         this.timeManager.timeStop();
     }
 }

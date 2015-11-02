@@ -34,6 +34,9 @@ Suspects.Preloader.prototype =
         this.load.image('Toturial3', 'Assets/images/tutorial3.png');
         this.load.image('Toturial4', 'Assets/images/tutorial4.png');
         
+        //Gray
+        this.load.image('TutorialGary', 'Assets/images/tutorialGary.png');
+        
         //button
         this.load.spritesheet('Play', 'Assets/images/Play_button.png', 196, 132);
         this.load.image('StartGame', 'Assets/images/skipButton.png');
@@ -42,16 +45,32 @@ Suspects.Preloader.prototype =
         //Suspects
         this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
         this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
-        this.load.image('Suspect3', 'Assets/images/suspects/suspect_3.png');
+        
         this.load.image('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png');
         this.load.image('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png');
+        
         this.load.image('Lv2Suspect_1', 'Assets/images/suspects/lvl2Suspect_1.png');
         this.load.image('Lv2Suspect_2', 'Assets/images/suspects/lvl2Suspect_2.png');
         
+        this.load.image('Lv3Suspect_1', 'Assets/images/suspects/lvl3Suspect_1.png');
+        this.load.image('Lv3Suspect_2', 'Assets/images/suspects/lvl3Suspect_2.png');
+        this.load.image('Lv3Suspect_3', 'Assets/images/suspects/lvl3Suspect_3.png');
+        
+        this.load.image('Lv4Suspect_1', 'Assets/images/suspects/lvl4Suspect_1.png');
+        this.load.image('Lv4Suspect_2', 'Assets/images/suspects/lvl4Suspect_2.png');
+        this.load.image('Lv4Suspect_3', 'Assets/images/suspects/lvl4Suspect_3.png');
+        
+        this.load.image('Lv5Suspect_1', 'Assets/images/suspects/lvl5Suspect_1.png');
+        this.load.image('Lv5Suspect_2', 'Assets/images/suspects/lvl5Suspect_2.png');
+        this.load.image('Lv5Suspect_3', 'Assets/images/suspects/lvl5Suspect_3.png');
+        this.load.image('Lv5Suspect_4', 'Assets/images/suspects/lvl5Suspect_4.png');
+        
         //Images
         this.load.image('Correct', 'Assets/images/correct.png');
-        this.load.image('Wrong', 'Assets/images/wrong.png')
+        this.load.image('Wrong', 'Assets/images/wrong.png');
         this.load.image('JailRailing', 'Assets/images/jail.png');
+        this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
+        this.load.image('Test', 'Assets/images/test.png');
         
         //Time Bar
         this.load.image('Timer', 'Assets/images/timeBar.png');
@@ -62,7 +81,7 @@ Suspects.Preloader.prototype =
         this.load.image('StarFull', 'Assets/images/starFull.png');
         
         //Objects
-        this.load.image('TutorialReference', 'Assets/images/reference/tutorialReference2.png');
+        this.load.image('TutorialReference', 'Assets/images/reference/tutorialReference.png');
         this.load.image('Lvl1Reference', 'Assets/images/reference/lvl1Reference.png');
         
         //Fade In/Out
