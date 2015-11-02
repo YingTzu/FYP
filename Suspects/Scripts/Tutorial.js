@@ -106,7 +106,7 @@ Suspects.Tutorial.prototype =
     tutor4Click: function()
     {
         this.tutorial4.inputEnabled = false;
-        this.buttonManager.createButton(this.world.width*0.2, this.world.height*0.9, 'SkipButton', this.buttonManager.StartGame);
+        this.buttonManager.createButton(this.world.width*0.2, this.world.height*0.9, 'StartGame', this.buttonManager.StartGame);
     },
 
     suspectCheck: function()

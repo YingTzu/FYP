@@ -23,3 +23,11 @@ ButtonManager.prototype.StartGame = function()
     this.gametype = 2;
     Suspects.FadeScreen.OnEnd = true;
 };
+
+ButtonManager.prototype.GoToLevel2 = function()
+{    
+    this.gametype = 3;
+    Suspects.FadeScreen.OnEnd = true;
+    
+    console.log(this.gametype);
+};

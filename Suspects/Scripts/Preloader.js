@@ -35,9 +35,9 @@ Suspects.Preloader.prototype =
         this.load.image('Toturial4', 'Assets/images/tutorial4.png');
         
         //button
-        this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
-        this.load.spritesheet('StartButton', 'Assets/images/Start_button.png', 455, 188);
-        this.load.image('SkipButton', 'Assets/images/skipButton.png');
+        this.load.spritesheet('Play', 'Assets/images/Play_button.png', 196, 132);
+        this.load.image('StartGame', 'Assets/images/skipButton.png');
+        this.load.image('NextLevel', 'Assets/images/nextLevel.png');
         
         //Suspects
         this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
@@ -63,6 +63,7 @@ Suspects.Preloader.prototype =
         
         //Objects
         this.load.image('TutorialReference', 'Assets/images/reference/tutorialReference2.png');
+        this.load.image('Lvl1Reference', 'Assets/images/reference/lvl1Reference.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');

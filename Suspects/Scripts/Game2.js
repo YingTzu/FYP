@@ -44,7 +44,7 @@ Suspects.Game2.prototype =
         
         for(i = 0; i < 5; i++)
         {
-            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.35 + 80*i, this.world.height*0.2, 'StarEmpty');
+            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.417 + 41*i, this.world.height*0.191, 'StarEmpty');
             this.starEmpty[i].anchor.set(0.5,0.5);
         }
         

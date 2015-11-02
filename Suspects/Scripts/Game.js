@@ -2,8 +2,10 @@ Suspects.Game = function(game)
 {
     this.timeManager = null;
     this.suspectsManager = null;
+    this.buttonManager = null;
     
     this.gameBackground = null;
+    this.reference = null;
     this.pause = null;
     this.correct = null;
     this.wrong = null;
@@ -42,11 +44,14 @@ Suspects.Game.prototype =
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
+        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'Lvl1Reference');
+        this.reference.anchor.set(0.5,0.5);
+        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
+        
         for(i = 0; i < 5; i++)
         {
-            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.35 + 50*i, this.world.height*0.15, 'StarEmpty');
+            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.417 + 41*i, this.world.height*0.191, 'StarEmpty');
             this.starEmpty[i].anchor.set(0.5,0.5);
-            //this.starEmpty[i].visible = false;
         }
         
         this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
@@ -69,6 +74,9 @@ Suspects.Game.prototype =
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
         
+        //Button
+        this.buttonManager = new ButtonManager(this);
+        
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
         Suspects.FadeScreen.create();
@@ -85,7 +93,8 @@ Suspects.Game.prototype =
         {//game paused
         }
         
-        Suspects.FadeScreen.update(this.gameScene);
+        //Suspects.FadeScreen.update(this.gameScene);
+        Suspects.FadeScreen.update(this.buttonManager.gametype);
     },
     
     pauseClick: function()
@@ -155,15 +164,19 @@ Suspects.Game.prototype =
         this.wrong.visible = false;
         
         //start fade and go to next level
-        this.gameScene = 3;
-        Suspects.FadeScreen.OnEnd = true;
+        //this.gameScene = 3;
+        //Suspects.FadeScreen.OnEnd = true;
+        
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel2);
     }, 
     
     whenDown: function()
     {
         //start fade and go to next level
-        this.gameScene = 3;
-        Suspects.FadeScreen.OnEnd = true;
+        //this.gameScene = 3;
+        //Suspects.FadeScreen.OnEnd = true;
+        
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
         
         //this.suspectGroup.destroy();
         this.timeManager.timeStop();
