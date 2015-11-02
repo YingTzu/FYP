@@ -1,11 +1,16 @@
 Suspects.Tutorial = function(game)
 {
-    this.toturialBackground = null;
     this.uiManager = null;
     this.buttonManager = null;
     this.suspectsManager = null;
     
-    this.arrow = null;
+    this.toturialBackground = null;
+    this.tutorial1 = null;
+    this.tutorial2 = null;
+    this.tutorial3 = null;
+    this.tutorial4 = null;
+    
+    this.reference = null;
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
@@ -29,11 +34,13 @@ Suspects.Tutorial.prototype =
         for(i = 0; i < 2; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.65, i);
+            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
-        //this.arrow = this.add.sprite(this.world.width*0.75, this.world.height*0.6, 'Arrow');
-        //var tween = this.add.tween(this.arrow.scale).to( { x: 1.1, y: 1.1 }, 700, Phaser.Easing.Linear.None, true).loop(true);
+        
+        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'TutorialReference');
+        this.reference.anchor.set(0.5,0.5);
+        this.reference.visible = false;
         
         this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Correct');
         this.correct.anchor.set(0.5,0.5);
@@ -46,6 +53,27 @@ Suspects.Tutorial.prototype =
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
         
+        this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
+        this.tutorial4.anchor.set(0.5,0.5);
+        this.tutorial4.visible = false;
+        
+        this.tutorial4.events.onInputDown.add(this.tutor4Click, this);
+        
+        this.tutorial3 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial3');
+        this.tutorial3.anchor.set(0.5,0.5);
+        this.tutorial3.inputEnabled = true;
+        this.tutorial3.events.onInputDown.add(this.tutor3Click, this);
+        
+        this.tutorial2 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial2');
+        this.tutorial2.anchor.set(0.5,0.5);
+        this.tutorial2.inputEnabled = true;
+        this.tutorial2.events.onInputDown.add(this.tutor2Click, this);
+        
+        this.tutorial1 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial1');
+        this.tutorial1.anchor.set(0.5,0.5);
+        this.tutorial1.inputEnabled = true;
+        this.tutorial1.events.onInputDown.add(this.tutor1Click, this);
+        
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
         Suspects.FadeScreen.create();
@@ -55,6 +83,30 @@ Suspects.Tutorial.prototype =
     {
         this.suspectCheck();
         Suspects.FadeScreen.update(this.buttonManager.gametype);
+    },
+    
+    tutor1Click: function()
+    {
+        this.tutorial1.destroy();
+    },
+    
+    tutor2Click: function()
+    {
+        this.tutorial2.destroy();
+    },
+    
+    tutor3Click: function()
+    {
+        this.tutorial3.destroy();
+        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
+        this.tutorial4.inputEnabled = true;
+        this.reference.visible = true;
+    },
+    
+    tutor4Click: function()
+    {
+        this.tutorial4.inputEnabled = false;
+        this.buttonManager.createButton(this.world.width*0.2, this.world.height*0.9, 'SkipButton', this.buttonManager.StartGame);
     },
 
     suspectCheck: function()
@@ -81,7 +133,7 @@ Suspects.Tutorial.prototype =
     correctSuspect: function()
     {
         this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctVisible, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
@@ -96,7 +148,7 @@ Suspects.Tutorial.prototype =
     wrongSuspect: function()
     {
         this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.wrongVisible, this);
+        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongVisible, this);
     }, 
                                                     
     wrongVisible: function()
@@ -106,6 +158,6 @@ Suspects.Tutorial.prototype =
     
     whenDown: function()
     {
-        this.buttonManager.createButton(this.world.width*0.2, this.world.height*0.9, 'SkipButton', this.buttonManager.StartGame);
+        this.tutorial4.visible = true;
     }
 }

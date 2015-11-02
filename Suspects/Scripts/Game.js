@@ -9,7 +9,7 @@ Suspects.Game = function(game)
     this.wrong = null;
     this.jailRailing = null;
     
-    this.noOfSuspect = 3;
+    this.noOfSuspect = 2;
     this.gray = null;
     
     this.starEmpty = [];
@@ -31,20 +31,22 @@ Suspects.Game.prototype =
         
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimeBar(25, 507, 'Timer', 60);
+        console.log(this.timeManager.isPuase);
         
         this.suspectGroup = this.add.group();
         
         for(i = 0; i < this.noOfSuspect; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(this.world.width*0.3 + 200* i, this.world.height*0.65, i);
+            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i+2);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
         for(i = 0; i < 5; i++)
         {
-            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.35 + 80*i, this.world.height*0.2, 'StarEmpty');
+            this.starEmpty[i]= this.game.add.sprite(this.world.width*0.35 + 50*i, this.world.height*0.15, 'StarEmpty');
             this.starEmpty[i].anchor.set(0.5,0.5);
+            //this.starEmpty[i].visible = false;
         }
         
         this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
@@ -74,7 +76,7 @@ Suspects.Game.prototype =
     
     update: function()
     {
-        //console.log(this.timeManager.timeBar.height);
+        //console.log(this.timeManager.isPause);
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
@@ -88,7 +90,16 @@ Suspects.Game.prototype =
     
     pauseClick: function()
     {
-        this.timeManager.timePause();
+        if(this.timeManager.isPuase == false)
+        {
+            this.timeManager.timePause();
+            //this.suspectsManager.theSuspects.inputEnabled = false;
+        }
+        else if(this.timeManager.isPuase == true)
+        {
+            this.timeManager.timeResume();
+            this.timeManager.isPuase = false;
+        }
     },
     
     suspectCheck: function()
@@ -101,17 +112,13 @@ Suspects.Game.prototype =
             {   
                 //this.suspectsManager.isClicked = true;
                 //check which suspect is clicked
-                if(suspects.name == "person0")
-                {
-                    this.correctSuspect();
-                }
-                if(suspects.name == "person1")
-                {
-                    this.wrongSuspect();
-                }
                 if(suspects.name == "person2")
                 {
                     this.wrongSuspect();
+                }
+                if(suspects.name == "person3")
+                {
+                    this.correctSuspect();
                 }
                 suspects.clicked = false;
             }
@@ -121,7 +128,7 @@ Suspects.Game.prototype =
     correctSuspect: function()
     {
         this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctVisible, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
@@ -129,7 +136,7 @@ Suspects.Game.prototype =
     {
         this.starFull.visible = true;
         Suspects.firstStar = true;
-        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.correct.visible = false;
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
@@ -139,7 +146,7 @@ Suspects.Game.prototype =
     wrongSuspect: function()
     {
         this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.wrongVisible, this);
+        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongVisible, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     

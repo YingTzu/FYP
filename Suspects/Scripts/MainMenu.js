@@ -15,7 +15,7 @@ Suspects.MainMenu.prototype =
         
         //Button
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.GoToTutorial);
+        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', this.buttonManager.StartGame);
         
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);

@@ -23,10 +23,65 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
             break;
         case 2:
             {
-                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv1Suspect_1');
             }
             break;
         case 3:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv1Suspect_2');
+            }
+            break;
+        case 4:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv2Suspect_1');
+            }
+            break;
+        case 5:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv2Suspect_2');
+            }
+            break;
+        case 6:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Lv2Suspect_3');
+            }
+            break;
+        case 7:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+            }
+            break;
+        case 8:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect1');
+            }
+            break;
+        case 9:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect2');
+            }
+            break;
+        case 10:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+            }
+            break;
+        case 11:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+            }
+            break;
+        case 12:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+            }
+            break;
+        case 13:
+            {
+                this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
+            }
+            break;
+        case 14:
             {
                 this.theSuspects = this.game.add.sprite(posx, posy, 'Suspect3');
             }
@@ -36,10 +91,14 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     this.theSuspects.name = "person" + suspects;
     this.theSuspects.clicked = false;
     this.theSuspects.anchor.set(0.5,0.5);
-    this.theSuspects.scale.setTo(0.2,0.2);
+    this.theSuspects.scale.setTo(0.3,0.3);
     this.theSuspects.inputEnabled = true;
     this.theSuspects.events.onInputDown.add(this.click, this);
     this.theSuspects.clicked = false;
+    //Pixel perfect check
+    //This will check the pixel every time the mouse moves, which is really expensive!
+    this.theSuspects.input.pixelPerfectOver = true;
+    this.theSuspects.input.useHandCursor = true;
     //HHHHHHHHHHHHHHHHSSSSSSSSSSSSSSSSLLLLLLLLLLLLLLLLL
 //    var bmd = this.game.add.bitmapData(100, 200);
 //    var Rect = new Phaser.Rectangle(100, 300, 100, 200);
@@ -56,7 +115,7 @@ SuspectsManager.prototype.checkname = function()
 };
 SuspectsManager.prototype.click = function()
 {
-    if(this.theSuspects.clicked == false)
+    if(this.theSuspects.clicked == false)// && Suspects.timeManager.isPuase == false)
     {
         this.theSuspects.clicked = true;
     }

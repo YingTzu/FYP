@@ -12,7 +12,7 @@ Suspects.Game2 = function(game)
     this.starFull = null;
     this.starFull2 = null;
     
-    this.noOfSuspect = 4;
+    this.noOfSuspect = 2;
     this.gray = null;
     
     this.suspectGroup = null;
@@ -38,7 +38,7 @@ Suspects.Game2.prototype =
         for(i = 0; i < this.noOfSuspect; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(this.world.width*0.15+ 200*i, this.world.height*0.65, i);
+            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i+4);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
@@ -111,19 +111,11 @@ Suspects.Game2.prototype =
             {   
                 this.suspectsManager.isClicked = true;
                 //check which suspect is clicked
-                if(suspects.name == "person0")
+                if(suspects.name == "person4")
                 {
                     this.correctSuspect();
                 }
-                if(suspects.name == "person1")
-                {
-                    this.wrongSuspect();
-                }
-                if(suspects.name == "person2")
-                {
-                    this.wrongSuspect();
-                }
-                if(suspects.name == "person3")
+                if(suspects.name == "person5")
                 {
                     this.wrongSuspect();
                 }
@@ -135,7 +127,7 @@ Suspects.Game2.prototype =
     correctSuspect: function()
     {
         this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctVisible, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
@@ -143,7 +135,7 @@ Suspects.Game2.prototype =
     {
         this.starFull2.visible = true;
         Suspects.secondStar = true;
-        this.tween = this.add.tween(this.starFull2.scale).to( { x: 1.2, y: 1.2 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.tween = this.add.tween(this.starFull2.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         this.correct.visible = false;
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
@@ -153,7 +145,7 @@ Suspects.Game2.prototype =
     wrongSuspect: function()
     {
         this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.wrongVisible, this);
+        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongVisible, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     

@@ -29,6 +29,10 @@ Suspects.Preloader.prototype =
         //Background
         this.load.image('MainMenuBackGround', 'Assets/images/mainmenu.png');
         this.load.image('GameBackGround', 'Assets/images/gameBackground.png');
+        this.load.image('Toturial1', 'Assets/images/tutorial1.png');
+        this.load.image('Toturial2', 'Assets/images/tutorial2.png');
+        this.load.image('Toturial3', 'Assets/images/tutorial3.png');
+        this.load.image('Toturial4', 'Assets/images/tutorial4.png');
         
         //button
         this.load.spritesheet('StartGame', 'Assets/images/Play_button.png', 196, 132);
@@ -39,6 +43,10 @@ Suspects.Preloader.prototype =
         this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
         this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
         this.load.image('Suspect3', 'Assets/images/suspects/suspect_3.png');
+        this.load.image('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png');
+        this.load.image('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png');
+        this.load.image('Lv2Suspect_1', 'Assets/images/suspects/lvl2Suspect_1.png');
+        this.load.image('Lv2Suspect_2', 'Assets/images/suspects/lvl2Suspect_2.png');
         
         //Images
         this.load.image('Correct', 'Assets/images/correct.png');
@@ -54,7 +62,7 @@ Suspects.Preloader.prototype =
         this.load.image('StarFull', 'Assets/images/starFull.png');
         
         //Objects
-        this.load.image('Arrow', 'Assets/images/arrow.png');
+        this.load.image('TutorialReference', 'Assets/images/reference/tutorialReference2.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
