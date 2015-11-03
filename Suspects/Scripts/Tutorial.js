@@ -130,10 +130,10 @@ Suspects.Tutorial.prototype =
                 {
                     this.correctSuspect();
                 }
-                if(suspects.name == "person1")
-                {
-                    this.wrongSuspect();
-                }
+//                if(suspects.name == "person1")
+//                {
+//                    this.wrongSuspect();
+//                }
                 suspects.clicked = false;
             }
         },this);

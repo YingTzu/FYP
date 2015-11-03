@@ -45,17 +45,21 @@ Suspects.Preloader.prototype =
 //        this.load.image('Lvl5Gray', 'Assets/images/lvl5Gray.png');
       
         //button
-        this.load.spritesheet('Play', 'Assets/images/Play_button.png', 196, 132);
+        this.load.spritesheet('Play', 'Assets/images/Play_button.png', 320, 382);
         this.load.image('StartGame', 'Assets/images/skipButton.png');
         this.load.image('NextLevel', 'Assets/images/nextLevel.png');
         
         //Suspects
-        //this.load.spritesheet('Suspect1', 'Assets/images/suspects/suspect_1.png', 521, 1083);
-        this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
-        this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
+        this.load.spritesheet('Suspect1', 'Assets/images/suspects/suspect_1.png', 521, 1083);
+        this.load.spritesheet('Suspect2', 'Assets/images/suspects/suspect_2.png', 521, 1083);
         
-        this.load.image('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png');
-        this.load.image('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png');
+        this.load.spritesheet('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png', 521, 1083);
+        this.load.spritesheet('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png', 521, 1083);
+//        this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
+//        this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
+//        
+//        this.load.image('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png');
+//        this.load.image('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png');
         
         this.load.image('Lv2Suspect_1', 'Assets/images/suspects/lvl2Suspect_1.png');
         this.load.image('Lv2Suspect_2', 'Assets/images/suspects/lvl2Suspect_2.png');

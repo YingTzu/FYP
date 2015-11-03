@@ -83,7 +83,7 @@ Suspects.Game3.prototype =
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
         
-        this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'CaseClosed');
+        this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseClosed');
         this.caseClosed.anchor.set(0.5,0.5);
         this.caseClosed.visible = false;
         
