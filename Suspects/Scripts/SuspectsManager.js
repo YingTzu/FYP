@@ -97,6 +97,8 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     this.theSuspects.clicked = false;
     this.theSuspects.anchor.set(0.5,0.5);
     this.theSuspects.scale.setTo(0.3,0.3);
+//    this.theSuspects.animation.add('idle', [0, 1, 2]);
+//    this.theSuspects.animation.play('idle', 3, true);
     this.theSuspects.inputEnabled = true;
     this.theSuspects.events.onInputDown.add(this.click, this);
     this.theSuspects.clicked = false;

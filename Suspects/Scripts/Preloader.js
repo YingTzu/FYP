@@ -6,6 +6,8 @@ Suspects.Preloader = function(game)
     
     this.firstStar = false;
     this.secondStar = false;
+    this.thirdStar = false;
+    this.fourthStar = false;
 };
 
 Suspects.Preloader.prototype = 
@@ -36,13 +38,19 @@ Suspects.Preloader.prototype =
         
         //Gray
         this.load.image('TutorialGary', 'Assets/images/tutorialGary.png');
-        
+        this.load.image('Lvl1Gray', 'Assets/images/lvl1Gray.png');
+        this.load.image('Lvl2Gray', 'Assets/images/lvl2Gray.png');
+        this.load.image('Lvl3Gray', 'Assets/images/lvl3Gray.png');
+//        this.load.image('Lvl4Gray', 'Assets/images/lvl4Gray.png');
+//        this.load.image('Lvl5Gray', 'Assets/images/lvl5Gray.png');
+      
         //button
         this.load.spritesheet('Play', 'Assets/images/Play_button.png', 196, 132);
         this.load.image('StartGame', 'Assets/images/skipButton.png');
         this.load.image('NextLevel', 'Assets/images/nextLevel.png');
         
         //Suspects
+        //this.load.spritesheet('Suspect1', 'Assets/images/suspects/suspect_1.png', 521, 1083);
         this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
         this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
         
@@ -83,6 +91,10 @@ Suspects.Preloader.prototype =
         //Objects
         this.load.image('TutorialReference', 'Assets/images/reference/tutorialReference.png');
         this.load.image('Lvl1Reference', 'Assets/images/reference/lvl1Reference.png');
+        this.load.image('Lvl2Reference', 'Assets/images/reference/lvl2Reference.png');
+        this.load.image('Lvl3Reference', 'Assets/images/reference/lvl3Reference.png');
+        this.load.image('Lvl4Reference', 'Assets/images/reference/lvl4Reference.png');
+        this.load.image('Lvl5Reference', 'Assets/images/reference/lvl5Reference.png');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');

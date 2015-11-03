@@ -79,7 +79,6 @@ Suspects.Tutorial.prototype =
         this.tutorial1.events.onInputDown.add(this.tutor1Click, this);
         
         this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TutorialGary');
-        //this.gray.scale.setTo(0.3,0.3);
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
         
@@ -150,10 +149,10 @@ Suspects.Tutorial.prototype =
     {
         this.correct.visible = true;
         this.gray.visible = false;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);
     },
     
-    correctVisible: function()
+    correctDisappear: function()
     {
         this.correct.visible = false;
         var tween = null;

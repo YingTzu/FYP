@@ -6,20 +6,22 @@ Suspects.Game = function(game)
     
     this.gameBackground = null;
     this.reference = null;
+    
     this.pause = null;
     this.correct = null;
     this.wrong = null;
     this.jailRailing = null;
     this.caseClosed = null;
     this.faceTest = null;
-    this.noOfSuspect = 2;
     this.gray = null;
+    
+    this.noOfSuspect = 2;
+    this.gameScene = 0;
     
     this.starEmpty = [];
     this.starFull = null;
-    this.suspectGroup = null;
     
-    this.gameScene = 0;
+    this.suspectGroup = null;
 };
 
 Suspects.Game.prototype = 
@@ -74,7 +76,7 @@ Suspects.Game.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.faceTest = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Test');
+        this.faceTest = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv1Suspect_2');
         this.faceTest.scale.setTo(1, 0.9);
         this.faceTest.anchor.set(0.5,0.5);
         this.faceTest.visible = false;
@@ -85,6 +87,10 @@ Suspects.Game.prototype =
         this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'CaseClosed');
         this.caseClosed.anchor.set(0.5,0.5);
         this.caseClosed.visible = false;
+        
+        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl1Gray');
+        this.gray.anchor.set(0.5,0.5);
+        this.gray.visible = false;
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -148,20 +154,26 @@ Suspects.Game.prototype =
     
     correctSuspect: function()
     {
-        this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctVisible, this);
-        this.tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.timeManager.timeStop();
         this.suspectsManager.isClicked = true;
+        this.gray.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctAppear, this);  
     }, 
-                                                    
-    correctVisible: function()
+                                                                                          
+    correctAppear: function()
+    {
+        this.gray.visible = false;
+        this.correct.visible = true;
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);
+    },
+    
+    correctDisappear: function()
     {
         this.starFull.visible = true;
         tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
-        tween.onComplete.add(this.starAppear, this);
+        tween.onComplete.add(this.starAppear, this); //do function after star appear
         Suspects.firstStar = true;
         this.correct.visible = false;
-        
     },
     
     starAppear: function()
@@ -176,13 +188,20 @@ Suspects.Game.prototype =
     
     wrongSuspect: function()
     {
-        this.timeManager.timeStop();
-        this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongVisible, this);
         this.suspectsManager.isClicked = true;
-    }, 
+        this.timeManager.timeStop();
+        this.gray.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.wrongAppear, this);
+    },
+    
+    wrongAppear: function()
+    {
+        this.gray.visible = false;
+        this.wrong.visible = true;
+        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongDisappear, this);
+    },
                                                     
-    wrongVisible: function()
+    wrongDisappear: function()
     {
         this.wrong.visible = false;
         //start fade and go to next level
@@ -203,7 +222,7 @@ Suspects.Game.prototype =
     caseOut: function()
     {
         this.caseClosed.visible = true;
-        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.55, y: 0.55 }, 500, Phaser.Easing.Linear.None, true);
+        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.6, y: 0.6 }, 500, Phaser.Easing.Linear.None, true);
         this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
     },
     
@@ -213,5 +232,6 @@ Suspects.Game.prototype =
         this.gameBackground.destroy();
         this.reference.destroy();
         this.timeManager.timeBar.destroy();
+        this.pause.destroy();
     }
 }
