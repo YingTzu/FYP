@@ -12,7 +12,7 @@ Suspects.Game3 = function(game)
     this.wrong = null;
     this.jailRailing = null;
     this.caseClosed = null;
-    this.faceTest = null;
+    this.guiltyFace = null;
     this.gray = null;
     
     this.gameScene = 0;
@@ -75,10 +75,10 @@ Suspects.Game3.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.faceTest = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv3Suspect_1');
-        this.faceTest.scale.setTo(1, 0.9);
-        this.faceTest.anchor.set(0.5,0.5);
-        this.faceTest.visible = false;
+        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv3Suspect_1');
+        this.guiltyFace.scale.setTo(1, 0.9);
+        this.guiltyFace.anchor.set(0.5,0.5);
+        this.guiltyFace.visible = false;
         
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
@@ -190,7 +190,7 @@ Suspects.Game3.prototype =
     correctDisappear: function()
     {
         this.starFull3.visible = true;
-        tween = this.add.tween(this.starFull2.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
+        tween = this.add.tween(this.starFull3.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this); //do function after star appear
         Suspects.thirdStar = true;
         this.correct.visible = false;
@@ -198,7 +198,7 @@ Suspects.Game3.prototype =
     
     starAppear: function()
     {
-        this.faceTest.visible = true;
+        this.guiltyFace.visible = true;
         this.destroyItems();
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
@@ -211,7 +211,7 @@ Suspects.Game3.prototype =
         this.suspectsManager.isClicked = true;
         this.timeManager.timeStop();
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.wrongAppear, this);
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 5, this.wrongAppear, this);
     },
     
     wrongAppear: function()
@@ -228,7 +228,7 @@ Suspects.Game3.prototype =
         //this.gameScene = 3;
         //Suspects.FadeScreen.OnEnd = true;
         
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel3);
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel4);
     }, 
     
     whenDown: function()
@@ -243,7 +243,7 @@ Suspects.Game3.prototype =
     {
         this.caseClosed.visible = true;
         var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.6, y: 0.6 }, 500, Phaser.Easing.Linear.None, true);
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel3);
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel4);
     },
     
     destroyItems: function()

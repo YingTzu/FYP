@@ -35,3 +35,14 @@ ButtonManager.prototype.GoToLevel3 = function()
     this.gametype = 4;
     Suspects.FadeScreen.OnEnd = true;
 };
+
+ButtonManager.prototype.GoToLevel4 = function()
+{    
+    this.gametype = 5;
+    Suspects.FadeScreen.OnEnd = true;
+};
+ButtonManager.prototype.GoToLevel5 = function()
+{    
+    this.gametype = 6;
+    Suspects.FadeScreen.OnEnd = true;
+};

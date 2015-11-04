@@ -41,8 +41,8 @@ Suspects.Preloader.prototype =
         this.load.image('Lvl1Gray', 'Assets/images/lvl1Gray.png');
         this.load.image('Lvl2Gray', 'Assets/images/lvl2Gray.png');
         this.load.image('Lvl3Gray', 'Assets/images/lvl3Gray.png');
-//        this.load.image('Lvl4Gray', 'Assets/images/lvl4Gray.png');
-//        this.load.image('Lvl5Gray', 'Assets/images/lvl5Gray.png');
+        this.load.image('Lvl4Gray', 'Assets/images/lvl4Gray.png');
+        this.load.image('Lvl5Gray', 'Assets/images/lvl5Gray.png');
       
         //button
         this.load.spritesheet('Play', 'Assets/images/Play_button.png', 320, 382);
@@ -55,27 +55,22 @@ Suspects.Preloader.prototype =
         
         this.load.spritesheet('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png', 521, 1083);
         this.load.spritesheet('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png', 521, 1083);
-//        this.load.image('Suspect1', 'Assets/images/suspects/suspect_1.png');
-//        this.load.image('Suspect2', 'Assets/images/suspects/suspect_2.png');
-//        
-//        this.load.image('Lv1Suspect_1', 'Assets/images/suspects/lvl1Suspect_1.png');
-//        this.load.image('Lv1Suspect_2', 'Assets/images/suspects/lvl1Suspect_2.png');
         
-        this.load.image('Lv2Suspect_1', 'Assets/images/suspects/lvl2Suspect_1.png');
-        this.load.image('Lv2Suspect_2', 'Assets/images/suspects/lvl2Suspect_2.png');
+        this.load.spritesheet('Lv2Suspect_1', 'Assets/images/suspects/lvl2Suspect_1.png', 521, 1083);
+        this.load.spritesheet('Lv2Suspect_2', 'Assets/images/suspects/lvl2Suspect_2.png', 521, 1205);
         
-        this.load.image('Lv3Suspect_1', 'Assets/images/suspects/lvl3Suspect_1.png');
-        this.load.image('Lv3Suspect_2', 'Assets/images/suspects/lvl3Suspect_2.png');
-        this.load.image('Lv3Suspect_3', 'Assets/images/suspects/lvl3Suspect_3.png');
+        this.load.spritesheet('Lv3Suspect_1', 'Assets/images/suspects/lvl3Suspect_1.png', 521, 1083);
+        this.load.spritesheet('Lv3Suspect_2', 'Assets/images/suspects/lvl3Suspect_2.png', 521, 1083);
+        this.load.spritesheet('Lv3Suspect_3', 'Assets/images/suspects/lvl3Suspect_3.png', 521, 1083);
         
-        this.load.image('Lv4Suspect_1', 'Assets/images/suspects/lvl4Suspect_1.png');
-        this.load.image('Lv4Suspect_2', 'Assets/images/suspects/lvl4Suspect_2.png');
-        this.load.image('Lv4Suspect_3', 'Assets/images/suspects/lvl4Suspect_3.png');
+        this.load.spritesheet('Lv4Suspect_1', 'Assets/images/suspects/lvl4Suspect_1.png', 521, 1052);
+        this.load.spritesheet('Lv4Suspect_2', 'Assets/images/suspects/lvl4Suspect_2.png', 521, 1049);
+        this.load.spritesheet('Lv4Suspect_3', 'Assets/images/suspects/lvl4Suspect_3.png', 521, 1083);
         
-        this.load.image('Lv5Suspect_1', 'Assets/images/suspects/lvl5Suspect_1.png');
-        this.load.image('Lv5Suspect_2', 'Assets/images/suspects/lvl5Suspect_2.png');
-        this.load.image('Lv5Suspect_3', 'Assets/images/suspects/lvl5Suspect_3.png');
-        this.load.image('Lv5Suspect_4', 'Assets/images/suspects/lvl5Suspect_4.png');
+        this.load.spritesheet('Lv5Suspect_1', 'Assets/images/suspects/lvl5Suspect_1.png', 521, 1023);
+        this.load.spritesheet('Lv5Suspect_2', 'Assets/images/suspects/lvl5Suspect_2.png', 521, 1001);
+        this.load.spritesheet('Lv5Suspect_3', 'Assets/images/suspects/lvl5Suspect_3.png', 521, 1003);
+        this.load.spritesheet('Lv5Suspect_4', 'Assets/images/suspects/lvl5Suspect_4.png', 521, 964);
         
         //Images
         this.load.image('Correct', 'Assets/images/correct.png');

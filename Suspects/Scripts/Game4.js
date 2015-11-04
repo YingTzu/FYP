@@ -1,4 +1,4 @@
-Suspects.Game2 = function(game)
+Suspects.Game4 = function(game)
 {
     this.timeManager = null;
     this.suspectsManager = null;
@@ -16,20 +16,22 @@ Suspects.Game2 = function(game)
     this.gray = null;
     
     this.gameScene = 0;
-    this.noOfSuspect = 2;
+    this.noOfSuspect = 3;
     
     this.starEmpty = [];
     this.starFull = null;
     this.starFull2 = null;
+    this.starFull3 = null;
+    this.starFull4 = null;
     
     this.suspectGroup = null;
 };
 
-Suspects.Game2.prototype = 
+Suspects.Game4.prototype = 
 {
     create: function()
     {
-        console.log("level2");
+        console.log("level4");
         
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
@@ -43,11 +45,11 @@ Suspects.Game2.prototype =
         for(i = 0; i < this.noOfSuspect; i++)
         {
             this.suspectsManager = new SuspectsManager(this);
-            this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i+4);
+            this.suspectsManager.create(this.world.width*0.26+200*i, this.world.height*0.777, i+9);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
-        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'Lvl2Reference');
+        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'Lvl4Reference');
         this.reference.anchor.set(0.5,0.5);
         var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
         
@@ -58,10 +60,6 @@ Suspects.Game2.prototype =
         }
         
         this.checkStar();
-        
-//        this.starFull2 = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
-//        this.starFull2.anchor.set(0.5,0.5);
-//        this.starFull2.visible = false;
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
@@ -78,10 +76,8 @@ Suspects.Game2.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv2Suspect_1');
+        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv3Suspect_1');
         this.guiltyFace.scale.setTo(1, 0.9);
-        this.guiltyFace.animations.add('guilty', [0, 1, 2]);
-        
         this.guiltyFace.anchor.set(0.5,0.5);
         this.guiltyFace.visible = false;
         
@@ -92,7 +88,7 @@ Suspects.Game2.prototype =
         this.caseClosed.anchor.set(0.5,0.5);
         this.caseClosed.visible = false;
         
-        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl2Gray');
+        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl4Gray');
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
         
@@ -140,11 +136,22 @@ Suspects.Game2.prototype =
             this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
             this.starFull.anchor.set(0.5,0.5);
         }
+        if(Suspects.secondStar == true)
+        {
+            this.starFull2 = this.game.add.sprite(this.starEmpty[1].x, this.starEmpty[1].y, 'StarFull');
+            this.starFull2.anchor.set(0.5,0.5);
+        }
         
-        this.starFull2 = this.game.add.sprite(this.starEmpty[1].x, this.starEmpty[1].y, 'StarFull');
-        this.starFull2.anchor.set(0.5,0.5);
-        this.starFull2.visible = false;
-    },
+        if(Suspects.thirdStar == true)
+        {
+            this.starFull3 = this.game.add.sprite(this.starEmpty[2].x, this.starEmpty[2].y, 'StarFull');
+            this.starFull3.anchor.set(0.5,0.5);
+        }
+        
+        this.starFull4 = this.game.add.sprite(this.starEmpty[3].x, this.starEmpty[3].y, 'StarFull');
+        this.starFull4.anchor.set(0.5,0.5);
+        this.starFull4.visible = false;
+    }, 
     
     suspectCheck: function()
     { 
@@ -156,13 +163,17 @@ Suspects.Game2.prototype =
             {   
                 //this.suspectsManager.isClicked = true;
                 //check which suspect is clicked
-                if(suspects.name == "person4")
-                {
-                    this.correctSuspect();
-                }
-                if(suspects.name == "person5")
+                if(suspects.name == "person9")
                 {
                     this.wrongSuspect();
+                }
+                if(suspects.name == "person10")
+                {
+                    this.wrongSuspect();
+                }
+                if(suspects.name == "person11")
+                {
+                    this.correctSuspect();
                 }
                 suspects.clicked = false;
             }
@@ -174,7 +185,7 @@ Suspects.Game2.prototype =
         this.timeManager.timeStop();
         this.suspectsManager.isClicked = true;
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctAppear, this);  
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 5, this.correctAppear, this);  
     }, 
                                                                                           
     correctAppear: function()
@@ -186,10 +197,10 @@ Suspects.Game2.prototype =
     
     correctDisappear: function()
     {
-        this.starFull2.visible = true;
-        tween = this.add.tween(this.starFull2.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
+        this.starFull4.visible = true;
+        tween = this.add.tween(this.starFull4.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this); //do function after star appear
-        Suspects.secondStar = true;
+        Suspects.fourthStar = true;
         this.correct.visible = false;
     },
     
@@ -197,7 +208,6 @@ Suspects.Game2.prototype =
     {
         this.guiltyFace.visible = true;
         this.destroyItems();
-        this.guiltyFace.animations.play('guilty',3, false);
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
@@ -226,7 +236,7 @@ Suspects.Game2.prototype =
         //this.gameScene = 3;
         //Suspects.FadeScreen.OnEnd = true;
         
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel3);
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel5);
     }, 
     
     whenDown: function()
@@ -241,7 +251,7 @@ Suspects.Game2.prototype =
     {
         this.caseClosed.visible = true;
         var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.6, y: 0.6 }, 500, Phaser.Easing.Linear.None, true);
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel3);
+        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel5);
     },
     
     destroyItems: function()

@@ -12,7 +12,7 @@ Suspects.Game = function(game)
     this.wrong = null;
     this.jailRailing = null;
     this.caseClosed = null;
-    this.faceTest = null;
+    this.guiltyFace = null;
     this.gray = null;
     
     this.noOfSuspect = 2;
@@ -76,10 +76,10 @@ Suspects.Game.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.faceTest = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv1Suspect_2');
-        this.faceTest.scale.setTo(1, 0.9);
-        this.faceTest.anchor.set(0.5,0.5);
-        this.faceTest.visible = false;
+        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv1Suspect_2');
+        this.guiltyFace.scale.setTo(1, 0.9);
+        this.guiltyFace.anchor.set(0.5,0.5);
+        this.guiltyFace.visible = false;
         
         this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
         this.jailRailing.anchor.set(0.5,0.5);
@@ -178,7 +178,7 @@ Suspects.Game.prototype =
     
     starAppear: function()
     {
-        this.faceTest.visible = true;
+        this.guiltyFace.visible = true;
         this.destroyItems();
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
