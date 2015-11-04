@@ -65,11 +65,13 @@ Suspects.Tutorial.prototype =
         
         this.tutorial3 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial3');
         this.tutorial3.anchor.set(0.5,0.5);
+        this.tutorial3.visible = false;
         this.tutorial3.inputEnabled = true;
         this.tutorial3.events.onInputDown.add(this.tutor3Click, this);
         
         this.tutorial2 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial2');
         this.tutorial2.anchor.set(0.5,0.5);
+        this.tutorial2.visible = false;
         this.tutorial2.inputEnabled = true;
         this.tutorial2.events.onInputDown.add(this.tutor2Click, this);
         
@@ -96,6 +98,9 @@ Suspects.Tutorial.prototype =
     tutor1Click: function()
     {
         this.tutorial1.destroy();
+        this.tutorial2.visible = true;
+        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
+        this.reference.visible = true;
     },
     
     tutor2Click: function()
@@ -106,9 +111,9 @@ Suspects.Tutorial.prototype =
     tutor3Click: function()
     {
         this.tutorial3.destroy();
-        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
+        this.tutorial4.visible = true;
         this.tutorial4.inputEnabled = true;
-        this.reference.visible = true;
+        
     },
     
     tutor4Click: function()
@@ -130,10 +135,10 @@ Suspects.Tutorial.prototype =
                 {
                     this.correctSuspect();
                 }
-//                if(suspects.name == "person1")
-//                {
-//                    this.wrongSuspect();
-//                }
+                if(suspects.name == "person1")
+                {
+                    this.wrongSuspect();
+                }
                 suspects.clicked = false;
             }
         },this);
@@ -141,7 +146,7 @@ Suspects.Tutorial.prototype =
     correctSuspect: function()
     {
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.correctAppear, this);
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this);
         this.suspectsManager.isClicked = true;
     }, 
                                                     
@@ -149,7 +154,7 @@ Suspects.Tutorial.prototype =
     {
         this.correct.visible = true;
         this.gray.visible = false;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this);
     },
     
     correctDisappear: function()
@@ -173,6 +178,8 @@ Suspects.Tutorial.prototype =
     
     whenDown: function()
     {
-        this.tutorial4.visible = true;
+        this.jailRailing.destroy();
+        this.suspectGroup.destroy();
+        this.tutorial3.visible = true;
     }
 }

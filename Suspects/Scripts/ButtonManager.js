@@ -12,6 +12,12 @@ ButtonManager.prototype.createButton = function(posx, posy, key, func)
     this.theButton.inputEnbled = true;
 }
 
+ButtonManager.prototype.GoToMenu = function()
+{
+    this.gametype = 0;
+    Suspects.FadeScreen.OnEnd = true;
+};
+
 ButtonManager.prototype.GoToTutorial = function()
 {
     this.gametype = 1;
@@ -44,5 +50,11 @@ ButtonManager.prototype.GoToLevel4 = function()
 ButtonManager.prototype.GoToLevel5 = function()
 {    
     this.gametype = 6;
+    Suspects.FadeScreen.OnEnd = true;
+};
+
+ButtonManager.prototype.GoToEndScene = function()
+{    
+    this.gametype = 8;
     Suspects.FadeScreen.OnEnd = true;
 };

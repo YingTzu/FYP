@@ -77,8 +77,9 @@ Suspects.Game5.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv3Suspect_1');
+        this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv5Suspect_2');
         this.guiltyFace.scale.setTo(1, 0.9);
+        this.guiltyFace.animations.add('guilty', [3]);
         this.guiltyFace.anchor.set(0.5,0.5);
         this.guiltyFace.visible = false;
         
@@ -103,17 +104,27 @@ Suspects.Game5.prototype =
     
     update: function()
     {
-        //console.log(this.timeManager.isPause);
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
+            if(this.timeManager.gameOver == true)
+            {
+                this.gameScene = 7;
+                Suspects.FadeScreen.OnEnd = true;
+            }
         }
         else
         {//game paused
         }
         
-        //Suspects.FadeScreen.update(this.gameScene);
-        Suspects.FadeScreen.update(this.buttonManager.gametype);
+        if(this.timeManager.gameOver == true)
+        {
+            Suspects.FadeScreen.update(this.gameScene);
+        }
+        else
+        {
+            Suspects.FadeScreen.update(this.buttonManager.gametype);
+        }
     },
     
     pauseClick: function()
@@ -203,7 +214,7 @@ Suspects.Game5.prototype =
     {
         this.gray.visible = false;
         this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this);
     },
     
     correctDisappear: function()
@@ -219,6 +230,7 @@ Suspects.Game5.prototype =
     {
         this.guiltyFace.visible = true;
         this.destroyItems();
+        this.guiltyFace.animations.play('guilty',4, false);
         var tween = null;
         tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
@@ -261,12 +273,13 @@ Suspects.Game5.prototype =
     caseOut: function()
     {
         this.caseClosed.visible = true;
-        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.6, y: 0.6 }, 500, Phaser.Easing.Linear.None, true);
+        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.7, y: 0.7 }, 500, Phaser.Easing.Linear.None, true);
         this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
     },
     
     destroyItems: function()
     {
+        this.starFull5.destroy();
         this.suspectGroup.destroy();
         this.gameBackground.destroy();
         this.reference.destroy();

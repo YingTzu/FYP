@@ -46,7 +46,7 @@ TimeManager.prototype.timeBarCountDown = function()
         
        // console.log(this.timeSet);
     }
-    if(this.totalTime <= 0)
+    if(this.currentTime <= 0)
     {
         this.gameOver = true;
     }
@@ -97,12 +97,16 @@ TimeManager.prototype.timeCountUp = function()
 TimeManager.prototype.timePause = function()
 {
     this.isPuase = true;
+    Suspects.Game_Pause = true;
+    console.log(Suspects.Game_Pause);
     this.timer.pause();
 }
 
 TimeManager.prototype.timeResume = function()
 {
     this.isPuase = false;
+    Suspects.Game_Pause = false;
+    console.log(Suspects.Game_Pause);
     this.timer.resume();
 }
 
