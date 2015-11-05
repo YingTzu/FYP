@@ -91,7 +91,13 @@ Suspects.Tutorial.prototype =
     update: function()
     {
         this.suspectCheck();
+        
         Suspects.FadeScreen.update(this.buttonManager.gametype);
+        
+        if(this.buttonManager.clicked == true)
+        {
+            this.buttonManager.DestroyButton();
+        }
     },
     
     tutor1Click: function()

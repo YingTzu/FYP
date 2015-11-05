@@ -22,8 +22,8 @@ Suspects.Preloader.prototype =
         this.preloadCover.anchor.set(0.5,0.5);
         
         //Draw Loading bar
-        this.preloadBarEmpty = this.add.sprite(this.world.width*0.2, this.world.height*0.6, 'LoadingBar');
-        this.preloadBar = this.add.sprite(this.world.width*0.2, this.world.height*0.6, 'LoadingBarCover');
+        this.preloadBarEmpty = this.add.sprite(this.world.width*0.2, this.world.height*0.4, 'LoadingBar');
+        this.preloadBar = this.add.sprite(this.world.width*0.2, this.world.height*0.4, 'LoadingBarCover');
         //use this.preloadbar as a sprite for loadingbar
         this.load.setPreloadSprite(this.preloadBar);
         
@@ -46,7 +46,7 @@ Suspects.Preloader.prototype =
       
         //button
         this.load.spritesheet('Play', 'Assets/images/Play_button.png', 320, 382);
-        this.load.image('StartGame', 'Assets/images/skipButton.png');
+        this.load.spritesheet('StartGame', 'Assets/images/startButton.png', 267, 79);
         this.load.image('NextLevel', 'Assets/images/nextLevel.png');
         this.load.image('Restart', 'Assets/images/restart.png');
         
@@ -78,7 +78,7 @@ Suspects.Preloader.prototype =
         this.load.image('Wrong', 'Assets/images/wrong.png');
         this.load.image('JailRailing', 'Assets/images/jail.png');
         this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
-        this.load.image('Test', 'Assets/images/test.png');
+        this.load.image('CaseFailed', 'Assets/images/caseFailed.png');
         
         //Time Bar
         this.load.image('Timer', 'Assets/images/timeBar.png');
@@ -97,11 +97,8 @@ Suspects.Preloader.prototype =
         this.load.image('Lvl5Reference', 'Assets/images/reference/lvl5Reference.png');
         
          //Music
-//        this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
+        this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
         this.load.audio('GameMusic', 'Assets/audio/gameMusic.mp3');
-        
-        //Time
-        this.load.image('TimeTaken', 'Assets/images/TimeTaken.png');
         
         //SFX
         this.load.audio('ChopSFX', 'Assets/audio/Chop_SFX.mp3');

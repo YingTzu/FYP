@@ -13,6 +13,7 @@ Suspects.Game = function(game)
     this.wrong = null;
     this.jailRailing = null;
     this.caseClosed = null;
+    this.caseFailed = null;
     this.guiltyFace = null;
     this.gray = null;
     
@@ -23,6 +24,9 @@ Suspects.Game = function(game)
     this.starFull = null;
     
     this.suspectGroup = null;
+    
+    this.wrong = false;
+    this.caseOutSound = false;
 };
 
 Suspects.Game.prototype = 
@@ -89,6 +93,10 @@ Suspects.Game.prototype =
         this.caseClosed.anchor.set(0.5,0.5);
         this.caseClosed.visible = false;
         
+        this.caseFailed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseFailed');
+        this.caseFailed.anchor.set(0.5,0.5);
+        this.caseFailed.visible = false;
+        
         this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl1Gray');
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
@@ -109,24 +117,17 @@ Suspects.Game.prototype =
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
-            if(this.timeManager.gameOver == true)
+            if(this.timeManager.gameOver == true && this.caseOutSound == false)
             {
-                this.gameScene = 7;
-                Suspects.FadeScreen.OnEnd = true;
+                this.caseFailedOut();
+                this.caseOutSound = true;
             }
         }
         else
         {//game paused
         }
         
-        if(this.timeManager.gameOver == true)
-        {
-            Suspects.FadeScreen.update(this.gameScene);
-        }
-        else
-        {
-            Suspects.FadeScreen.update(this.buttonManager.gametype);
-        }
+        Suspects.FadeScreen.update(this.gameScene);
     },
     
     pauseClick: function()
@@ -148,6 +149,10 @@ Suspects.Game.prototype =
         //check clicking of each suspect
         this.suspectGroup.forEach(function(suspects)
         {
+            if(this.wrong == true)
+            {
+                suspects.animations.stop();
+            }
             //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
@@ -201,6 +206,19 @@ Suspects.Game.prototype =
         this.timeManager.timeStop();
     },
     
+    whenDown: function()
+    {
+        var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseOut, this);
+    }, 
+    
+    caseOut: function()
+    {
+        this.caseClosed.visible = true;
+        this.soundManager.createSound('ChopSFX');
+        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.7, y: 0.7 }, 500, Phaser.Easing.Linear.None, true);
+        var outTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.goNextLevel, this);
+    },
+    
     wrongSuspect: function()
     {
         this.suspectsManager.isClicked = true;
@@ -219,24 +237,23 @@ Suspects.Game.prototype =
     wrongDisappear: function()
     {
         this.wrong.visible = false;
-        //start fade and go to next level
-        //this.gameScene = 3;
-        //Suspects.FadeScreen.OnEnd = true;
-        
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.85, 'NextLevel', this.buttonManager.GoToLevel2);
-    }, 
+        var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseFailedOut, this);
+    },
     
-    whenDown: function()
+    caseFailedOut: function()
     {
-        var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseOut, this);
-    }, 
-    
-    caseOut: function()
-    {
-        this.caseClosed.visible = true;
+        this.wrong = true;
+        this.caseFailed.visible = true;
         this.soundManager.createSound('ChopSFX');
-        var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.7, y: 0.7 }, 500, Phaser.Easing.Linear.None, true);
-        this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
+        var tween = this.add.tween(this.caseFailed.scale).to( { x: 0.7, y: 0.7 }, 500, Phaser.Easing.Linear.None, true);
+        var outTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.goNextLevel, this);
+    },
+    
+    goNextLevel: function()
+    {
+        this.soundManager.stopMusic();
+        this.gameScene = 3;
+        Suspects.FadeScreen.OnEnd = true;
     },
     
     destroyItems: function()

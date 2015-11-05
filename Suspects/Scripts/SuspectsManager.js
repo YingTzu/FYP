@@ -106,6 +106,8 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     this.theSuspects.scale.setTo(0.3,0.3);
     this.theSuspects.animations.add('idle', [0, 1, 2]);
     this.theSuspects.animations.play('idle', 3, true);
+    //delay the animation by secon(1000 = 1s), to let each suspect's aniamtion play by random speed.
+    this.theSuspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
     this.theSuspects.inputEnabled = true;
     this.theSuspects.events.onInputDown.add(this.click, this);
     this.theSuspects.clicked = false;
