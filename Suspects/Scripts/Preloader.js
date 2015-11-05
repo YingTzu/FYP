@@ -96,6 +96,16 @@ Suspects.Preloader.prototype =
         this.load.image('Lvl4Reference', 'Assets/images/reference/lvl4Reference.png');
         this.load.image('Lvl5Reference', 'Assets/images/reference/lvl5Reference.png');
         
+         //Music
+//        this.load.audio('MenuMusic', 'Assets/audio/menuMusic.mp3');
+        this.load.audio('GameMusic', 'Assets/audio/gameMusic.mp3');
+        
+        //Time
+        this.load.image('TimeTaken', 'Assets/images/TimeTaken.png');
+        
+        //SFX
+        this.load.audio('ChopSFX', 'Assets/audio/Chop_SFX.mp3');
+        
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
     }, 

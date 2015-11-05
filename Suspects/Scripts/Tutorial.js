@@ -40,10 +40,6 @@ Suspects.Tutorial.prototype =
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
         
-        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'TutorialReference');
-        this.reference.anchor.set(0.5,0.5);
-        this.reference.visible = false;
-        
         this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.63, 'Correct');
         this.correct.anchor.set(0.5,0.5);
         this.correct.scale.setTo(0.5, 0.5);
@@ -60,7 +56,6 @@ Suspects.Tutorial.prototype =
         this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
         this.tutorial4.anchor.set(0.5,0.5);
         this.tutorial4.visible = false;
-        
         this.tutorial4.events.onInputDown.add(this.tutor4Click, this);
         
         this.tutorial3 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial3');
@@ -74,6 +69,10 @@ Suspects.Tutorial.prototype =
         this.tutorial2.visible = false;
         this.tutorial2.inputEnabled = true;
         this.tutorial2.events.onInputDown.add(this.tutor2Click, this);
+        
+        this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'TutorialReference');
+        this.reference.anchor.set(0.5,0.5);
+        this.reference.visible = false;
         
         this.tutorial1 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial1');
         this.tutorial1.anchor.set(0.5,0.5);
@@ -99,8 +98,8 @@ Suspects.Tutorial.prototype =
     {
         this.tutorial1.destroy();
         this.tutorial2.visible = true;
-        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
         this.reference.visible = true;
+        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
     },
     
     tutor2Click: function()
@@ -111,7 +110,6 @@ Suspects.Tutorial.prototype =
     tutor3Click: function()
     {
         this.tutorial3.destroy();
-        var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
         this.tutorial4.inputEnabled = true;
         this.reference.visible = true;
         this.tutorial4.visible = true;
@@ -180,7 +178,7 @@ Suspects.Tutorial.prototype =
     
     whenDown: function()
     {
-        this.tutorial4.visible = true;
+        this.reference.destroy();
         this.jailRailing.destroy();
         this.suspectGroup.destroy();
         this.tutorial3.visible = true;

@@ -3,6 +3,7 @@ Suspects.Game = function(game)
     this.timeManager = null;
     this.suspectsManager = null;
     this.buttonManager = null;
+    this.soundManager = null;
     
     this.gameBackground = null;
     this.reference = null;
@@ -92,7 +93,9 @@ Suspects.Game.prototype =
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
         
-        //Button
+        this.soundManager = new SoundManager(this);
+        this.soundManager.createMusic('GameMusic');
+        
         this.buttonManager = new ButtonManager(this);
         
         //Fade in and out
@@ -225,15 +228,13 @@ Suspects.Game.prototype =
     
     whenDown: function()
     {
-        //start fade and go to next level
-        //this.gameScene = 3;
-        //Suspects.FadeScreen.OnEnd = true;
         var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseOut, this);
     }, 
     
     caseOut: function()
     {
         this.caseClosed.visible = true;
+        this.soundManager.createSound('ChopSFX');
         var tween = this.add.tween(this.caseClosed.scale).to( { x: 0.7, y: 0.7 }, 500, Phaser.Easing.Linear.None, true);
         this.buttonManager.createButton(this.world.width*0.8, this.world.height*0.9, 'NextLevel', this.buttonManager.GoToLevel2);
     },
