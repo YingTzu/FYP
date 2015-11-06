@@ -173,7 +173,7 @@ Suspects.Game.prototype =
             //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
-                //this.suspectsManager.isClicked = true;
+                this.soundManager.createSound('ChooseSFX');
                 //check which suspect is clicked
                 if(suspects.name == "person2")
                 {

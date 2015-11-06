@@ -180,7 +180,7 @@ Suspects.Game2.prototype =
             //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
-                //this.suspectsManager.isClicked = true;
+                this.soundManager.createSound('ChooseSFX');
                 //check which suspect is clicked
                 if(suspects.name == "person4")
                 {
@@ -215,7 +215,7 @@ Suspects.Game2.prototype =
         this.starFull2.visible = true;
         tween = this.add.tween(this.starFull2.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this); //do function after star appear
-        Suspects.firstStar = true;
+        Suspects.secondStar = true;
         this.correct.visible = false;
     },
     

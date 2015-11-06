@@ -102,6 +102,7 @@ Suspects.Preloader.prototype =
         
         //SFX
         this.load.audio('ChopSFX', 'Assets/audio/Chop_SFX.mp3');
+        this.load.audio('ChooseSFX', 'Assets/audio/Choose_SFX.mp3');
         
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');

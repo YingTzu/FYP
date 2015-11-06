@@ -185,7 +185,7 @@ Suspects.Game3.prototype =
             //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
-                //this.suspectsManager.isClicked = true;
+                this.soundManager.createSound('ChooseSFX');
                 //check which suspect is clicked
                 if(suspects.name == "person6")
                 {
@@ -224,7 +224,7 @@ Suspects.Game3.prototype =
         this.starFull3.visible = true;
         tween = this.add.tween(this.starFull3.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this); //do function after star appear
-        Suspects.firstStar = true;
+        Suspects.thirdStar = true;
         this.correct.visible = false;
     },
     

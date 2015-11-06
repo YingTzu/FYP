@@ -3,6 +3,7 @@ Suspects.Tutorial = function(game)
     this.uiManager = null;
     this.buttonManager = null;
     this.suspectsManager = null;
+    this.soundManager = null;
     
     this.toturialBackground = null;
     this.tutorial1 = null;
@@ -83,6 +84,8 @@ Suspects.Tutorial.prototype =
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
         
+        this.soundManager = new SoundManager(this);
+        
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
         Suspects.FadeScreen.create();
@@ -136,6 +139,8 @@ Suspects.Tutorial.prototype =
             //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
+                this.soundManager.createSound('ChooseSFX');
+                suspects.clicked == false;
                 //check which suspect is clicked
                 if(suspects.name == "person0")
                 {
