@@ -35,6 +35,7 @@ Suspects.Preloader.prototype =
         this.load.image('Toturial2', 'Assets/images/tutorial2.png');
         this.load.image('Toturial3', 'Assets/images/tutorial3.png');
         this.load.image('Toturial4', 'Assets/images/tutorial4.png');
+        this.load.image('EndScene', 'Assets/images/endScene.png');
         
         //Gray
         this.load.image('TutorialGary', 'Assets/images/tutorialGary.png');
@@ -77,6 +78,7 @@ Suspects.Preloader.prototype =
         this.load.image('JailRailing', 'Assets/images/jail.png');
         this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
         this.load.image('CaseFailed', 'Assets/images/caseFailed.png');
+        this.load.image('GamePaused', 'Assets/images/gamePause.png');
         
         //Time Bar
         this.load.image('Timer', 'Assets/images/timeBar.png');

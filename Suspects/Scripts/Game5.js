@@ -16,6 +16,7 @@ Suspects.Game5 = function(game)
     this.caseFailed = null;
     this.guiltyFace = null;
     this.gray = null;
+    this.gamePause = null;
     
     this.gameScene = 0;
     this.noOfSuspect = 4;
@@ -65,6 +66,10 @@ Suspects.Game5.prototype =
         }
         
         this.checkStar();
+        
+        this.gamePause = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GamePaused');
+        this.gamePause.anchor.set(0.5,0.5);
+        this.gamePause.visible = false;
         
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
@@ -118,6 +123,13 @@ Suspects.Game5.prototype =
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
+            this.gamePause.visible = false;
+            this.gamePause.inputEnabled = false;
+            this.suspectGroup.forEach(function(suspects)
+            {
+                suspects.animations.play('idle', 3, true);
+                suspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
+            },this);
             if(this.timeManager.gameOver == true && this.caseOutSound == false)
             {
                 this.caseFailedOut();
@@ -126,6 +138,12 @@ Suspects.Game5.prototype =
         }
         else
         {//game paused
+            this.gamePause.visible = true;
+            this.gamePause.inputEnabled = true;
+            this.suspectGroup.forEach(function(suspects)
+            {
+                suspects.animations.stop();
+            },this);
         }
         
         Suspects.FadeScreen.update(this.gameScene);
