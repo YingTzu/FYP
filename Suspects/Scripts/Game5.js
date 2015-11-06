@@ -28,6 +28,8 @@ Suspects.Game5 = function(game)
     this.starFull5 = null;
     
     this.suspectGroup = null;
+    
+    this.caseOutSound = false;
 };
 
 Suspects.Game5.prototype = 
@@ -116,10 +118,10 @@ Suspects.Game5.prototype =
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
-            if(this.timeManager.gameOver == true)
+            if(this.timeManager.gameOver == true && this.caseOutSound == false)
             {
                 this.caseFailedOut();
-                this.timeManager.gameOver = false;
+                this.caseOutSound = true;
             }
         }
         else

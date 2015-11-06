@@ -26,6 +26,8 @@ Suspects.Game3 = function(game)
     this.starFull3 = null;
     
     this.suspectGroup = null;
+    
+    this.caseOutSound = false;
 };
 
 Suspects.Game3.prototype = 
@@ -99,7 +101,7 @@ Suspects.Game3.prototype =
         this.gray.visible = false;
         
         this.soundManager = new SoundManager(this);
-        //this.soundManager.createMusic('GameMusic');
+        this.soundManager.createMusic('GameMusic');
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -114,10 +116,10 @@ Suspects.Game3.prototype =
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
-            if(this.timeManager.gameOver == true)
+            if(this.timeManager.gameOver == true && this.caseOutSound == false)
             {
                 this.caseFailedOut();
-                this.timeManager.gameOver = false;
+                this.caseOutSound = true;
             }
         }
         else

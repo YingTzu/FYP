@@ -25,6 +25,8 @@ Suspects.Game2 = function(game)
     this.starFull2 = null;
     
     this.suspectGroup = null;
+    
+    this.caseOutSound = false;
 };
 
 Suspects.Game2.prototype = 
@@ -113,10 +115,10 @@ Suspects.Game2.prototype =
         if(!this.timeManager.isPuase)
         {
             this.suspectCheck();
-            if(this.timeManager.gameOver == true)
+            if(this.timeManager.gameOver == true && this.caseOutSound == false)
             {
-                this.caseFailedOut;
-                this.timeManager.gameOver = false;
+                this.caseFailedOut();
+                this.caseOutSound = true;
             }
         }
         else

@@ -39,30 +39,30 @@ ButtonManager.prototype.DestroyButton = function()
 {    
     this.theButton.destroy();
 };
-//
-//ButtonManager.prototype.GoToLevel2 = function()
-//{    
-//    this.clicked = true;
-//    this.gametype = 3;
-//    Suspects.FadeScreen.OnEnd = true;
-//};
-//
-//ButtonManager.prototype.GoToLevel3 = function()
-//{   
-//    this.clicked = true;
-//    this.gametype = 4;
-//    Suspects.FadeScreen.OnEnd = true;
-//};
-//
-//ButtonManager.prototype.GoToLevel4 = function()
-//{   
-//    this.clicked = true;
-//    this.gametype = 5;
-//    Suspects.FadeScreen.OnEnd = true;
-//};
-//ButtonManager.prototype.GoToLevel5 = function()
-//{   
-//    this.clicked = true;
-//    this.gametype = 6;
-//    Suspects.FadeScreen.OnEnd = true;
-//};
+
+ButtonManager.prototype.GoToLevel2 = function()
+{    
+    this.clicked = true;
+    this.gametype = 3;
+    Suspects.FadeScreen.OnEnd = true;
+};
+
+ButtonManager.prototype.GoToLevel3 = function()
+{   
+    this.clicked = true;
+    this.gametype = 4;
+    Suspects.FadeScreen.OnEnd = true;
+};
+
+ButtonManager.prototype.GoToLevel4 = function()
+{   
+    this.clicked = true;
+    this.gametype = 5;
+    Suspects.FadeScreen.OnEnd = true;
+};
+ButtonManager.prototype.GoToLevel5 = function()
+{   
+    this.clicked = true;
+    this.gametype = 6;
+    Suspects.FadeScreen.OnEnd = true;
+};

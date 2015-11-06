@@ -47,8 +47,6 @@ Suspects.Preloader.prototype =
         //button
         this.load.spritesheet('Play', 'Assets/images/Play_button.png', 320, 382);
         this.load.spritesheet('StartGame', 'Assets/images/startButton.png', 267, 79);
-        this.load.image('NextLevel', 'Assets/images/nextLevel.png');
-        this.load.image('Restart', 'Assets/images/restart.png');
         
         //Suspects
         this.load.spritesheet('Suspect1', 'Assets/images/suspects/suspect_1.png', 521, 1083);
