@@ -38,7 +38,7 @@ Suspects.Preloader.prototype =
         this.load.image('EndScene', 'Assets/images/endScene.png');
         
         //Gray
-        this.load.image('TutorialGary', 'Assets/images/tutorialGary.png');
+        this.load.image('TutorialGary', 'Assets/images/tutorialGray.png');
         this.load.image('Lvl1Gray', 'Assets/images/lvl1Gray.png');
         this.load.image('Lvl2Gray', 'Assets/images/lvl2Gray.png');
         this.load.image('Lvl3Gray', 'Assets/images/lvl3Gray.png');
