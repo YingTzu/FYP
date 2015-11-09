@@ -35,6 +35,9 @@ theGame.Preloader.prototype =
         this.load.spritesheet('StartButton', 'Assets/images/Start_button.png', 455, 188);
         this.load.image('SkipButton', 'Assets/images/skipButton.png');
         
+        //object
+        this.load.image('Cursor', 'Assets/images/crossHairsCursor.png');
+        
         //Fade In/Out
         this.load.image('FadeInOut', 'Assets/images/Fade.png');
     }, 
