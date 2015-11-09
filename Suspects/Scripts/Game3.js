@@ -40,7 +40,7 @@ Suspects.Game3.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimeBar(25, 507, 'Timer', 60);
+        this.timeManager.createTimeBar(25, 507, 'Timer', 50);
         
         this.suspectGroup = this.add.group();
         
