@@ -75,7 +75,7 @@ Suspects.Preloader.prototype =
         //Images
         this.load.image('Correct', 'Assets/images/correct.png');
         this.load.image('Wrong', 'Assets/images/wrong.png');
-        this.load.image('JailRailing', 'Assets/images/jail.png');
+        this.load.image('JailBar', 'Assets/images/jail.png');
         this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
         this.load.image('CaseFailed', 'Assets/images/caseFailed.png');
         this.load.image('GamePaused', 'Assets/images/gamePause.png');

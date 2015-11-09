@@ -15,7 +15,7 @@ Suspects.Tutorial = function(game)
     this.reference = null;
     this.correct = null;
     this.wrong = null;
-    this.jailRailing = null;
+    this.jailBar = null;
     
     this.suspectGroup = null;
 };
@@ -24,7 +24,6 @@ Suspects.Tutorial.prototype =
 {
     create: function()
     {
-        console.log("tutorial");
         //Screen Background
         this.toturialBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.toturialBackground.anchor.set(0.5,0.5);
@@ -51,8 +50,8 @@ Suspects.Tutorial.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
-        this.jailRailing.anchor.set(0.5,0.5);
+        this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
+        this.jailBar.anchor.set(0.5,0.5);
         
         this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
         this.tutorial4.anchor.set(0.5,0.5);
@@ -172,7 +171,7 @@ Suspects.Tutorial.prototype =
     {
         this.correct.visible = false;
         var tween = null;
-        tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
     },
     
@@ -190,7 +189,7 @@ Suspects.Tutorial.prototype =
     whenDown: function()
     {
         this.reference.destroy();
-        this.jailRailing.destroy();
+        this.jailBar.destroy();
         this.suspectGroup.destroy();
         this.tutorial3.visible = true;
     }

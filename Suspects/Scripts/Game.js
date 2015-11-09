@@ -11,7 +11,7 @@ Suspects.Game = function(game)
     this.pause = null;
     this.correct = null;
     this.wrong = null;
-    this.jailRailing = null;
+    this.jailBar = null;
     this.caseClosed = null;
     this.caseFailed = null;
     this.guiltyFace = null;
@@ -26,16 +26,17 @@ Suspects.Game = function(game)
     
     this.suspectGroup = null;
     
-    this.wrong = false;
+    this.wrong = false; //clicked wrong suspect
     this.caseOutSound = false;
 };
 
 Suspects.Game.prototype = 
 {
+    /////////////////////////////////////////////////////
+    //                    Create                       //
+    /////////////////////////////////////////////////////
     create: function()
     {
-        console.log("game");
-        
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
@@ -66,15 +67,17 @@ Suspects.Game.prototype =
         this.starFull.anchor.set(0.5,0.5);
         this.starFull.visible = false;
         
+        //game paused image
         this.gamePause = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GamePaused');
         this.gamePause.anchor.set(0.5,0.5);
         this.gamePause.visible = false;
         
+        //game pause button
         this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
         this.pause.anchor.set(0.5,0.5);
         this.pause.inputEnabled = true;
         this.pause.events.onInputDown.add(this.pauseClick, this);
-        
+    
         this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
         this.correct.anchor.set(0.5,0.5);
         this.correct.scale.setTo(0.5, 0.5);
@@ -91,8 +94,8 @@ Suspects.Game.prototype =
         this.guiltyFace.animations.add('guilty', [3]);
         this.guiltyFace.visible = false;
         
-        this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
-        this.jailRailing.anchor.set(0.5,0.5);
+        this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
+        this.jailBar.anchor.set(0.5,0.5);
         
         this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseClosed');
         this.caseClosed.anchor.set(0.5,0.5);
@@ -114,8 +117,11 @@ Suspects.Game.prototype =
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);
         Suspects.FadeScreen.create();
-    }, 
+    },
     
+    /////////////////////////////////////////////////////
+    //                    Update                       //
+    /////////////////////////////////////////////////////
     update: function()
     {
         if(!this.timeManager.isPuase)
@@ -135,7 +141,7 @@ Suspects.Game.prototype =
             }
         }
         else
-        {//game paused
+        {   //game paused
             this.gamePause.visible = true;
             this.gamePause.inputEnabled = true;
             this.suspectGroup.forEach(function(suspects)
@@ -152,7 +158,6 @@ Suspects.Game.prototype =
         if(this.timeManager.isPuase == false)
         {
             this.timeManager.timePause();
-            //this.suspectsManager.theSuspects.inputEnabled = false;
         }
         else if(this.timeManager.isPuase == true)
         {
@@ -163,14 +168,14 @@ Suspects.Game.prototype =
     
     suspectCheck: function()
     { 
-        //check clicking of each suspect
+        //check every suspect in the grounp
         this.suspectGroup.forEach(function(suspects)
         {
             if(this.wrong == true)
             {
                 suspects.animations.stop();
             }
-            //if suspects is clicked and never click before
+            //if suspects image is clicked and it never been click.
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
                 this.soundManager.createSound('ChooseSFX');
@@ -188,26 +193,27 @@ Suspects.Game.prototype =
         },this);
     },
     
+    //When choose the correct susptect
     correctSuspect: function()
     {
-        this.timeManager.timeStop();
-        this.suspectsManager.isClicked = true;
-        this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this);  
+        this.timeManager.timeStop(); //stop timing
+        this.suspectsManager.isClicked = true; //To disable the click input of suspect
+        this.gray.visible = true; //grayscale visible set to true
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this); //call correctAppear function after 2 sec
     }, 
                                                                                           
     correctAppear: function()
     {
-        this.gray.visible = false;
-        this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this);
+        this.gray.visible = false; //grayscale visible set to false
+        this.correct.visible = true; //correct image visible set to true
+        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this); //call correctDisppear function after 1 sec
     },
     
     correctDisappear: function()
     {
         this.starFull.visible = true;
         tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
-        tween.onComplete.add(this.starAppear, this); //do function after star appear
+        tween.onComplete.add(this.starAppear, this); //call starAppear function after star is appear
         Suspects.firstStar = true;
         this.correct.visible = false;
     },
@@ -218,7 +224,7 @@ Suspects.Game.prototype =
         this.destroyItems();
         this.guiltyFace.animations.play('guilty',4, false);
         var tween = null;
-        tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
         this.timeManager.timeStop();
     },
@@ -236,6 +242,7 @@ Suspects.Game.prototype =
         var outTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.goNextLevel, this);
     },
     
+    //When choose the wrong susptect
     wrongSuspect: function()
     {
         this.suspectsManager.isClicked = true;

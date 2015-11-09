@@ -11,7 +11,7 @@ Suspects.Game5 = function(game)
     this.pause = null;
     this.correct = null;
     this.wrong = null;
-    this.jailRailing = null;
+    this.jailBar = null;
     this.caseClosed = null;
     this.caseFailed = null;
     this.guiltyFace = null;
@@ -37,8 +37,6 @@ Suspects.Game5.prototype =
 {
     create: function()
     {
-        console.log("level5");
-        
         //Screen Background
         this.gameBackground = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GameBackGround');
         this.gameBackground.anchor.set(0.5,0.5);
@@ -92,8 +90,8 @@ Suspects.Game5.prototype =
         this.guiltyFace.anchor.set(0.5,0.5);
         this.guiltyFace.visible = false;
         
-        this.jailRailing = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailRailing');
-        this.jailRailing.anchor.set(0.5,0.5);
+        this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
+        this.jailBar.anchor.set(0.5,0.5);
         
         this.caseClosed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseClosed');
         this.caseClosed.anchor.set(0.5,0.5);
@@ -154,7 +152,6 @@ Suspects.Game5.prototype =
         if(this.timeManager.isPuase == false)
         {
             this.timeManager.timePause();
-            //this.suspectsManager.theSuspects.inputEnabled = false;
         }
         else if(this.timeManager.isPuase == true)
         {
@@ -195,14 +192,11 @@ Suspects.Game5.prototype =
     
     suspectCheck: function()
     { 
-        //check clicking of each suspect
         this.suspectGroup.forEach(function(suspects)
         {
-            //if suspects is clicked and never click before
             if(suspects.clicked == true && this.suspectsManager.isClicked == false)
             {   
                 this.soundManager.createSound('ChooseSFX');
-                //check which suspect is clicked
                 if(suspects.name == "person12")
                 {
                     this.wrongSuspect();
@@ -243,7 +237,7 @@ Suspects.Game5.prototype =
     {
         this.starFull5.visible = true;
         tween = this.add.tween(this.starFull5.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
-        tween.onComplete.add(this.starAppear, this); //do function after star appear
+        tween.onComplete.add(this.starAppear, this);
         Suspects.firstStar = true;
         this.correct.visible = false;
     },
@@ -254,7 +248,7 @@ Suspects.Game5.prototype =
         this.destroyItems();
         this.guiltyFace.animations.play('guilty',4, false);
         var tween = null;
-        tween = this.add.tween(this.jailRailing).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
         this.timeManager.timeStop();
     },
