@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  background: #a9d18e;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.Site {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 5;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+/*Generic Classes*/
+.hide {
+  display: none;
+  visibility: none;
+}
+
+.show {
+  display: block;
+  visibility: visible;
+}
+
+.zeroAuto {
+  margin: 0 auto;
+}
+
+.droidSans {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+.sourceSansPro {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.verdana {
+  font-family: Verdana, sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.blackColor {
+  color: #000000;
+}
+
+.whiteColor {
+  color: #ffffff;
+}
+
+.greyColor {
+  color: #cccccc;
+}
+
+.orangeColor {
+  color: #fba51a;
+}
+
+header {
+  width: 100%;
+  height: 30px;
+
+}
+
+.headerBg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 30px;
+}
+
+.credits {
+  position: absolute;
+  display: block;
+  width: 110px;
+  height: 20px;
+  right: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.creditsText {
+  position: relative;
+  padding: 5px 8px;
+  color: #fff;
+  font-size: 0.9em;
+  top:5px;
+}
+
+.creditsPosition {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.mobileOverlay {
+  display: none;
+}
+
+.tabletRotate {
+  display: none;
+}
+
+.Site-content {
+  position: relative;
+  width: 100%;
+  min-height: 564px;
+  max-height: 564px;
+  height: 100%;
+  overflow: hidden;
+}

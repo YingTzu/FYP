@@ -1,0 +1,66 @@
+/* Default class for an overlay */
+.ow-overlay {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background: #424242;
+  opacity: 0.8;
+}
+
+/* Default class for both hidden overlay and modal window */
+.ow-closed {
+  display: none;
+}
+
+/* Default class for modal window */
+.modal {
+  position: fixed;
+  z-index: 100;
+  top: 100px;
+  padding: 20px 20px;
+  left: 50%;
+  margin-left: -360px;
+  width: 680px;
+  
+  background: rgba(241, 245, 170, 0.8);
+  border: 5px solid rgba(135, 197, 185, 0.6);
+}
+
+.modal-title{
+  font-size: 1.5em;
+  display:block;
+  width: 85px;
+  text-align: center;
+  margin: 0 auto;
+  color: #1d3c83;
+  text-transform: uppercase;
+  padding: 0 3px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #1d3c83;
+}
+.modal-credit-single{
+  display: block;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.modal-header{
+  position: relative;
+  display:block;
+  font-weight: bold;
+  width: 210px;
+  color: #79b6aa;
+  /*text-transform: uppercase;*/
+  font-size: 1em;
+  float: left;
+}
+.modal-credit-names{
+  display: inline-block;
+  width: 450px;
+}
+.noBorder{
+  border:none;
+}

@@ -1,0 +1,178 @@
+/*
+//Developed By
+//Ted Lai - www.mynameisted.com
+//Nanyang Polytechnic
+*/
+
+/* ============================================================================================================================
+
+ ██████╗ ███████╗███╗   ██╗███████╗██████╗ ██╗ ██████╗
+██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██║██╔════╝
+██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝██║██║     
+██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██║██║     
+╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║╚██████╗
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝                                            
+
+*/
+.bubble, .bubbleNoArrow{
+  position: relative;
+  display: inline-block;
+  max-width: 510px;
+  min-height: 1.5em;
+  padding: 15px 20px;
+  color: #000;
+  -webkit-border-radius: 20px 20px;
+  -moz-border-radius: 20px 20px;
+  border-radius: 20px 20px;
+  margin-bottom: 15px;
+}
+.bubble:after{
+  content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    border-style: solid;
+    border-width: 15px 15px 0;
+    display: block;
+    //background: #ff0;
+    width: 0;
+    z-index: 1;
+}
+
+
+
+
+/* ============================================================================================================================
+
+ ██████╗ █████╗ ██████╗ ██╗     
+██╔════╝██╔══██╗██╔══██╗██║     
+██║     ███████║██████╔╝██║     
+██║     ██╔══██║██╔══██╗██║     
+╚██████╗██║  ██║██║  ██║███████╗
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+*/
+
+.carlChat .bubble, .carlChat .bubbleNoArrow {
+    /*background: rgba(24, 37, 152, 1);
+    background: -moz-linear-gradient(top, rgba(24, 37, 152, 1) 0%, rgba(5, 11, 54, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(24, 37, 152, 1)), color-stop(100%, rgba(5, 11, 54, 1)));
+    background: -webkit-linear-gradient(top, rgba(24, 37, 152, 1) 0%, rgba(5, 11, 54, 1) 100%);
+    background: -o-linear-gradient(top, rgba(24, 37, 152, 1) 0%, rgba(5, 11, 54, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(24, 37, 152, 1) 0%, rgba(5, 11, 54, 1) 100%);
+    background: linear-gradient(to bottom, rgba(24, 37, 152, 1) 0%, rgba(5, 11, 54, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#182598', endColorstr='#050b36', GradientType=0);
+    -webkit-filter: saturate(70%) opacity(1);
+    filter: saturate(70%) opacity(1);*/
+    background: #4eb6e7;
+}
+.carlChat .bubble:after {
+    border-color: #4eb6e7 transparent;
+}
+
+
+/* ============================================================================================================================
+
+     ██╗ █████╗ ███╗   ██╗███████╗
+     ██║██╔══██╗████╗  ██║██╔════╝
+     ██║███████║██╔██╗ ██║█████╗  
+██   ██║██╔══██║██║╚██╗██║██╔══╝  
+╚█████╔╝██║  ██║██║ ╚████║███████╗
+ ╚════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝
+                                  
+*/
+
+
+.janeChat .bubble, .janeChat .bubbleNoArrow {
+    /*background: rgba(152, 24, 24, 1);
+    background: -moz-linear-gradient(top, rgba(152, 24, 24, 1) 0%, rgba(54, 5, 5, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(152, 24, 24, 1)), color-stop(100%, rgba(54, 5, 5, 1)));
+    background: -webkit-linear-gradient(top, rgba(152, 24, 24, 1) 0%, rgba(54, 5, 5, 1) 100%);
+    background: -o-linear-gradient(top, rgba(152, 24, 24, 1) 0%, rgba(54, 5, 5, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(152, 24, 24, 1) 0%, rgba(54, 5, 5, 1) 100%);
+    background: linear-gradient(to bottom, rgba(152, 24, 24, 1) 0%, rgba(54, 5, 5, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#981818', endColorstr='#360505', GradientType=0);
+    -webkit-filter: saturate(60%) opacity(1);
+    filter: saturate(60%) opacity(1);}*/
+    background: #f1a9bd;
+  }
+.janeChat .bubble:after {
+    border-color: #f1a9bd transparent;
+}
+
+
+/* ============================================================================================================================
+
+
+████████╗██╗███╗   ███╗
+╚══██╔══╝██║████╗ ████║
+   ██║   ██║██╔████╔██║
+   ██║   ██║██║╚██╔╝██║
+   ██║   ██║██║ ╚═╝ ██║
+   ╚═╝   ╚═╝╚═╝     ╚═╝
+*/                       
+
+
+
+.timChat .bubble, .timChat .bubbleNoArrow {
+   /* background: rgba(26, 134, 91, 1);
+    background: -moz-linear-gradient(top, rgba(26, 134, 91, 1) 0%, rgba(5, 54, 33, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(26, 134, 91, 1)), color-stop(100%, rgba(5, 54, 33, 1)));
+    background: -webkit-linear-gradient(top, rgba(26, 134, 91, 1) 0%, rgba(5, 54, 33, 1) 100%);
+    background: -o-linear-gradient(top, rgba(26, 134, 91, 1) 0%, rgba(5, 54, 33, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(26, 134, 91, 1) 0%, rgba(5, 54, 33, 1) 100%);
+    background: linear-gradient(to bottom, rgba(26, 134, 91, 1) 0%, rgba(5, 54, 33, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1a865b', endColorstr='#053621', GradientType=0);
+    -webkit-filter: saturate(70%) opacity(1);
+    filter: saturate(70%) opacity(1);
+*/  
+    background: #e1cc8b
+}
+.timChat .bubble:after {   
+    border-color: #e1cc8b transparent;
+}
+
+
+
+/* ============================================================================================================================
+
+ ██████╗ █████╗ ██████╗ ██╗           ██╗ █████╗ ███╗   ██╗███████╗
+██╔════╝██╔══██╗██╔══██╗██║           ██║██╔══██╗████╗  ██║██╔════╝
+██║     ███████║██████╔╝██║█████╗     ██║███████║██╔██╗ ██║█████╗  
+██║     ██╔══██║██╔══██╗██║╚════╝██   ██║██╔══██║██║╚██╗██║██╔══╝  
+╚██████╗██║  ██║██║  ██║███████╗ ╚█████╔╝██║  ██║██║ ╚████║███████╗
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  ╚════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝
+                                                                   
+                                                                      
+*/
+
+.carlJaneChat .bubble, .carlJaneChat .bubble {
+    /*background: rgba(111, 24, 152, 1);
+    background: -moz-linear-gradient(top, rgba(111, 24, 152, 1) 0%, rgba(44, 5, 54, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(111, 24, 152, 1)), color-stop(100%, rgba(44, 5, 54, 1)));
+    background: -webkit-linear-gradient(top, rgba(111, 24, 152, 1) 0%, rgba(44, 5, 54, 1) 100%);
+    background: -o-linear-gradient(top, rgba(111, 24, 152, 1) 0%, rgba(44, 5, 54, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(111, 24, 152, 1) 0%, rgba(44, 5, 54, 1) 100%);
+    background: linear-gradient(to bottom, rgba(111, 24, 152, 1) 0%, rgba(44, 5, 54, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6f1898', endColorstr='#2c0536', GradientType=0);
+    -webkit-filter: saturate(70%) opacity(1);
+    filter: saturate(70%) opacity(1);*/
+        background: #4eb6e7;
+
+}
+.carlJaneChat .bubble:before {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 20%;
+    border-style: solid;
+    border-width: 15px 15px 0;
+    border-color: #4eb6e7 transparent;
+    display: block;
+    //background: #ff0;
+    width: 0;
+    z-index: 1;
+}
+.carlJaneChat .bubble:after {
+    border-color: #4eb6e7 transparent;
+}
