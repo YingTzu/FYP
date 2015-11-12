@@ -8,7 +8,6 @@ Suspects.Game2 = function(game)
     this.gameBackground = null;
     this.reference = null;
     
-    this.pause = null;
     this.correct = null;
     this.wrong = null;
     this.jailBar = null;
@@ -16,7 +15,6 @@ Suspects.Game2 = function(game)
     this.caseFailed = null;
     this.guiltyFace = null;
     this.gray = null;
-    this.gamePause = null;
     
     this.gameScene = 0;
     this.noOfSuspect = 2;
@@ -62,15 +60,6 @@ Suspects.Game2.prototype =
         
         this.checkStar();
         
-        this.gamePause = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GamePaused');
-        this.gamePause.anchor.set(0.5,0.5);
-        this.gamePause.visible = false;
-
-        this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
-        this.pause.anchor.set(0.5,0.5);
-        this.pause.inputEnabled = true;
-        this.pause.events.onInputDown.add(this.pauseClick, this);
-        
         this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
         this.correct.anchor.set(0.5,0.5);
         this.correct.scale.setTo(0.5, 0.5);
@@ -115,46 +104,19 @@ Suspects.Game2.prototype =
     
     update: function()
     {
-        if(!this.timeManager.isPuase)
+        this.suspectCheck();
+        this.suspectGroup.forEach(function(suspects)
         {
-            this.suspectCheck();
-            this.gamePause.visible = false;
-            this.gamePause.inputEnabled = false;
-            this.suspectGroup.forEach(function(suspects)
-            {
-                suspects.animations.play('idle', 3, true);
-                suspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
-            },this);
-            if(this.timeManager.gameOver == true && this.caseOutSound == false)
-            {
-                this.caseFailedOut();
-                this.caseOutSound = true;
-            }
-        }
-        else
-        {//game paused
-            this.gamePause.visible = true;
-            this.gamePause.inputEnabled = true;
-            this.suspectGroup.forEach(function(suspects)
-            {
-                suspects.animations.stop();
-            },this);
+            suspects.animations.play('idle', 3, true);
+            suspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
+        },this);
+        if(this.timeManager.gameOver == true && this.caseOutSound == false)
+        {
+            this.caseFailedOut();
+            this.caseOutSound = true;
         }
         
         Suspects.FadeScreen.update(this.gameScene);
-    },
-    
-    pauseClick: function()
-    {
-        if(this.timeManager.isPuase == false)
-        {
-            this.timeManager.timePause();
-        }
-        else if(this.timeManager.isPuase == true)
-        {
-            this.timeManager.timeResume();
-            this.timeManager.isPuase = false;
-        }
     },
     
     checkStar: function()
@@ -281,7 +243,5 @@ Suspects.Game2.prototype =
         this.suspectGroup.destroy();
         this.gameBackground.destroy();
         this.reference.destroy();
-        this.timeManager.timeBar.destroy();
-        this.pause.destroy();
     }
 }

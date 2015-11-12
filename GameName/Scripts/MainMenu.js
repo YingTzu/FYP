@@ -18,9 +18,6 @@ theGame.MainMenu.prototype =
         this.buttonManager = new ButtonManager(this);
         this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.5, 'StartGame', 1);
         
-//        this.cursor = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Cursor');
-//        this.cursor.anchor.set(0.5,0.5);
-        
         //Fade in and out
         theGame.FadeScreen = new FadeManager(this);
         theGame.FadeScreen.create();
@@ -28,8 +25,6 @@ theGame.MainMenu.prototype =
     
     update: function()
     {
-//        this.cursor.x = this.game.input.mousePointer.x;
-//        this.cursor.y = this.game.input.mousePointer.y;
         theGame.FadeScreen.update(this.buttonManager.gametype);
     }, 
 };

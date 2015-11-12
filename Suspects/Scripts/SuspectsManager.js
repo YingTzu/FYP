@@ -115,14 +115,6 @@ SuspectsManager.prototype.create = function(posx, posy, suspects)
     //This will check the pixel every time the mouse moves, which is really expensive!
     this.theSuspects.input.pixelPerfectOver = true;
     this.theSuspects.input.useHandCursor = true;
-    //HHHHHHHHHHHHHHHHSSSSSSSSSSSSSSSSLLLLLLLLLLLLLLLLL
-//    var bmd = this.game.add.bitmapData(100, 200);
-//    var Rect = new Phaser.Rectangle(100, 300, 100, 200);
-//    bmd.copyRect('Suspect1', Rect, 111, 333);
-//    bmd.update();
-//    this.MySprite = this.game.add.sprite(500, 500, bmd);
-//    this.MySprite._bitmap = bmd;
-//    this.MySprite._name = 'Suspect1';
 };
 SuspectsManager.prototype.checkname = function()
 {

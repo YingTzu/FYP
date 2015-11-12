@@ -8,7 +8,6 @@ Suspects.Game = function(game)
     this.gameBackground = null;
     this.reference = null;
     
-    this.pause = null;
     this.correct = null;
     this.wrong = null;
     this.jailBar = null;
@@ -16,7 +15,6 @@ Suspects.Game = function(game)
     this.caseFailed = null;
     this.guiltyFace = null;
     this.gray = null;
-    this.gamePause = null;
     
     this.noOfSuspect = 2;
     this.gameScene = 0;
@@ -28,6 +26,7 @@ Suspects.Game = function(game)
     
     this.wrong = false; //clicked wrong suspect
     this.caseOutSound = false;
+//    this.timeText = null;
 };
 
 Suspects.Game.prototype = 
@@ -42,7 +41,8 @@ Suspects.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimeBar(25, 507, 'Timer', 60);
+        this.timeManager.createTimerDown(this.world.width*0.8, this.world.height*0.3, 60);
+//        this.timeText = this.add.text(this.world.width*0.8, this.world.height*0.3, '00');
         
         this.suspectGroup = this.add.group();
         
@@ -66,17 +66,6 @@ Suspects.Game.prototype =
         this.starFull = this.game.add.sprite(this.starEmpty[0].x, this.starEmpty[0].y, 'StarFull');
         this.starFull.anchor.set(0.5,0.5);
         this.starFull.visible = false;
-        
-        //game paused image
-        this.gamePause = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'GamePaused');
-        this.gamePause.anchor.set(0.5,0.5);
-        this.gamePause.visible = false;
-        
-        //game pause button
-        this.pause = this.game.add.sprite(this.world.width*0.9, this.world.height*0.1, 'Pause');
-        this.pause.anchor.set(0.5,0.5);
-        this.pause.inputEnabled = true;
-        this.pause.events.onInputDown.add(this.pauseClick, this);
     
         this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
         this.correct.anchor.set(0.5,0.5);
@@ -124,46 +113,19 @@ Suspects.Game.prototype =
     /////////////////////////////////////////////////////
     update: function()
     {
-        if(!this.timeManager.isPuase)
+        this.suspectCheck();
+        this.suspectGroup.forEach(function(suspects)
         {
-            this.suspectCheck();
-            this.gamePause.visible = false;
-            this.gamePause.inputEnabled = false;
-            this.suspectGroup.forEach(function(suspects)
-            {
-                suspects.animations.play('idle', 3, true);
-                suspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
-            },this);
-            if(this.timeManager.gameOver == true && this.caseOutSound == false)
-            {
-                this.caseFailedOut();
-                this.caseOutSound = true;
-            }
-        }
-        else
-        {   //game paused
-            this.gamePause.visible = true;
-            this.gamePause.inputEnabled = true;
-            this.suspectGroup.forEach(function(suspects)
-            {
-                suspects.animations.stop();
-            },this);
+            suspects.animations.play('idle', 3, true);
+            suspects.animations.getAnimation('idle').delay = this.game.rnd.integerInRange(1000, 1500);
+        },this);
+        if(this.timeManager.gameOver == true && this.caseOutSound == false)
+        {
+            this.caseFailedOut();
+            this.caseOutSound = true;
         }
         
         Suspects.FadeScreen.update(this.gameScene);
-    },
-    
-    pauseClick: function()
-    {
-        if(this.timeManager.isPuase == false)
-        {
-            this.timeManager.timePause();
-        }
-        else if(this.timeManager.isPuase == true)
-        {
-            this.timeManager.timeResume();
-            this.timeManager.isPuase = false;
-        }
     },
     
     suspectCheck: function()
@@ -285,7 +247,5 @@ Suspects.Game.prototype =
         this.suspectGroup.destroy();
         this.gameBackground.destroy();
         this.reference.destroy();
-        this.timeManager.timeBar.destroy();
-        this.pause.destroy();
     }
 }

@@ -78,13 +78,11 @@ Suspects.Preloader.prototype =
         this.load.image('JailBar', 'Assets/images/jail.png');
         this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
         this.load.image('CaseFailed', 'Assets/images/caseFailed.png');
-        this.load.image('GamePaused', 'Assets/images/gamePause.png');
         
         //Time Bar
         this.load.image('Timer', 'Assets/images/timeBar.png');
         
         //UI
-        this.load.image('Pause', 'Assets/images/pause.png');
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');
         this.load.image('StarFull', 'Assets/images/starFull.png');
         

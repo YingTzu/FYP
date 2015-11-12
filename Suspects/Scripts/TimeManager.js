@@ -9,6 +9,8 @@ function TimeManager(game)
     this.timeUp = 0;
     this.minutes = 0;
     
+    this.timeText = null;
+    
     this.timeBar = null;
     this.timeBarComplete = null;
     
@@ -39,12 +41,6 @@ TimeManager.prototype.timeBarCountDown = function()
         this.currentTime = this.timeSet;
         this.timeBar.cropEnabled = true;
         this.timeBar.height = (this.currentTime/this.totalTime)* this.timeBarComplete;
-//        this.timeBar.height = ((this.currentTime * this.timeBarComplete)/this.totalTime);
-//        var cropRect = new Phaser.Rectangle(0, 0, this.timeBar.width, this.timeBar.height);
-//        this.timeBar.crop(cropRect);
-//        this.timeBar.updateCrop();
-        
-       // console.log(this.timeSet);
     }
     if(this.currentTime <= 0)
     {
@@ -53,11 +49,12 @@ TimeManager.prototype.timeBarCountDown = function()
 };
 
 /////////////      Count Down Timer      /////////////
-TimeManager.prototype.createTimerDown = function(time)
+TimeManager.prototype.createTimerDown = function(posx, posy,time)
 {
+    this.timeText = this.game.add.text(posx, posy, '00');
     this.timeDown = time;
     this.countDownTimer = this.game.time.create(false);
-    this.countDownTimer.loop(100, this.timeCountDown, this);
+    this.countDownTimer.loop(Phaser.Timer.SECOND, this.timeCountDown, this);
     this.countDownTimer.start();
 }
 TimeManager.prototype.timeCountDown = function()
@@ -66,9 +63,10 @@ TimeManager.prototype.timeCountDown = function()
     {
         this.timeDown --;
     }
+    this.timeText.setText(this.timeDown);
     if(this.timeDown <= 0)
     {
-        console.log("when 0 :");
+        this.gameOver = true;
     }
 };
 TimeManager.prototype.stopDownTime = function()
@@ -108,7 +106,7 @@ TimeManager.prototype.timeResume = function()
 
 TimeManager.prototype.timeStop = function()
 {
-    this.timer.stop();
+    this.countDownTimer.stop();
 }
 
 TimeManager.prototype.timeReset = function()

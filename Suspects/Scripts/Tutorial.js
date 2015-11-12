@@ -50,9 +50,6 @@ Suspects.Tutorial.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
-        this.jailBar.anchor.set(0.5,0.5);
-        
         this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
         this.tutorial4.anchor.set(0.5,0.5);
         this.tutorial4.visible = false;
@@ -82,6 +79,9 @@ Suspects.Tutorial.prototype =
         this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'TutorialGary');
         this.gray.anchor.set(0.5,0.5);
         this.gray.visible = false;
+        
+        this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
+        this.jailBar.anchor.set(0.5,0.5);
         
         this.soundManager = new SoundManager(this);
         
