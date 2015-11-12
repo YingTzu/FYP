@@ -50,10 +50,10 @@ Suspects.Tutorial.prototype =
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
         
-        this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
-        this.tutorial4.anchor.set(0.5,0.5);
-        this.tutorial4.visible = false;
-        this.tutorial4.events.onInputDown.add(this.tutor4Click, this);
+//        this.tutorial4 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial4');
+//        this.tutorial4.anchor.set(0.5,0.5);
+//        this.tutorial4.visible = false;
+//        this.tutorial4.events.onInputDown.add(this.tutor4Click, this);
         
         this.tutorial3 = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Toturial3');
         this.tutorial3.anchor.set(0.5,0.5);
@@ -117,18 +117,20 @@ Suspects.Tutorial.prototype =
     
     tutor3Click: function()
     {
-        this.tutorial3.destroy();
-        this.tutorial4.inputEnabled = true;
-        this.reference.visible = true;
-        this.tutorial4.visible = true;
-        this.tutorial4.inputEnabled = true;
-    },
-    
-    tutor4Click: function()
-    {
-        this.tutorial4.inputEnabled = false;
+        this.tutorial3.inputEnabled = false;
+//        this.tutorial3.destroy();
+//        this.tutorial4.inputEnabled = true;
+//        this.reference.visible = true;
+//        this.tutorial4.visible = true;
+//        this.tutorial4.inputEnabled = true;
         this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.9, 'StartGame', this.buttonManager.StartGame);
     },
+    
+//    tutor4Click: function()
+//    {
+//        this.tutorial4.inputEnabled = false;
+//        this.buttonManager.createButton(this.world.width*0.5, this.world.height*0.9, 'StartGame', this.buttonManager.StartGame);
+//    },
 
     suspectCheck: function()
     { 

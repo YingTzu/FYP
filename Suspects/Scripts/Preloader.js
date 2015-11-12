@@ -34,7 +34,6 @@ Suspects.Preloader.prototype =
         this.load.image('Toturial1', 'Assets/images/tutorial1.png');
         this.load.image('Toturial2', 'Assets/images/tutorial2.png');
         this.load.image('Toturial3', 'Assets/images/tutorial3.png');
-        this.load.image('Toturial4', 'Assets/images/tutorial4.png');
         this.load.image('EndScene', 'Assets/images/endScene.png');
         
         //Gray
@@ -72,15 +71,14 @@ Suspects.Preloader.prototype =
         this.load.spritesheet('Lv5Suspect_3', 'Assets/images/suspects/lvl5Suspect_3.png', 521, 1003);
         this.load.spritesheet('Lv5Suspect_4', 'Assets/images/suspects/lvl5Suspect_4.png', 521, 964);
         
-        //Images
         this.load.image('Correct', 'Assets/images/correct.png');
+        
+        //Images
+        this.load.image('Glowing', 'Assets/images/glowing.png');
         this.load.image('Wrong', 'Assets/images/wrong.png');
         this.load.image('JailBar', 'Assets/images/jail.png');
         this.load.image('CaseClosed', 'Assets/images/caseClosed.png');
         this.load.image('CaseFailed', 'Assets/images/caseFailed.png');
-        
-        //Time Bar
-        this.load.image('Timer', 'Assets/images/timeBar.png');
         
         //UI
         this.load.image('StarEmpty', 'Assets/images/starEmpty.png');

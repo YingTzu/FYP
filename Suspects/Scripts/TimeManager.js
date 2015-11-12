@@ -51,7 +51,7 @@ TimeManager.prototype.timeBarCountDown = function()
 /////////////      Count Down Timer      /////////////
 TimeManager.prototype.createTimerDown = function(posx, posy,time)
 {
-    this.timeText = this.game.add.text(posx, posy, '00');
+    this.timeText = this.game.add.text(posx, posy, '',  {font: "bold 35px Digital", fill: "#ff0000"});
     this.timeDown = time;
     this.countDownTimer = this.game.time.create(false);
     this.countDownTimer.loop(Phaser.Timer.SECOND, this.timeCountDown, this);
@@ -63,7 +63,7 @@ TimeManager.prototype.timeCountDown = function()
     {
         this.timeDown --;
     }
-    this.timeText.setText(this.timeDown);
+    this.timeText.setText('00:' + this.timeDown);
     if(this.timeDown <= 0)
     {
         this.gameOver = true;

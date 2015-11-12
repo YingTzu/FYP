@@ -40,7 +40,7 @@ Suspects.Game5.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimeBar(25, 507, 'Timer', 40);
+        this.timeManager.createTimerDown(this.world.width*0.775, this.world.height*0.23, 40);
         
         this.suspectGroup = this.add.group();
         
@@ -271,5 +271,6 @@ Suspects.Game5.prototype =
         this.suspectGroup.destroy();
         this.gameBackground.destroy();
         this.reference.destroy();
+        this.timeManager.timeText.destroy();
     }
 }

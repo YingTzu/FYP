@@ -26,7 +26,6 @@ Suspects.Game = function(game)
     
     this.wrong = false; //clicked wrong suspect
     this.caseOutSound = false;
-//    this.timeText = null;
 };
 
 Suspects.Game.prototype = 
@@ -41,8 +40,7 @@ Suspects.Game.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimerDown(this.world.width*0.8, this.world.height*0.3, 60);
-//        this.timeText = this.add.text(this.world.width*0.8, this.world.height*0.3, '00');
+        this.timeManager.createTimerDown(this.world.width*0.775, this.world.height*0.23, 60);
         
         this.suspectGroup = this.add.group();
         
@@ -247,5 +245,6 @@ Suspects.Game.prototype =
         this.suspectGroup.destroy();
         this.gameBackground.destroy();
         this.reference.destroy();
+        this.timeManager.timeText.destroy();
     }
 }
