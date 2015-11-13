@@ -15,6 +15,7 @@ Suspects.Game4 = function(game)
     this.caseFailed = null;
     this.guiltyFace = null;
     this.gray = null;
+    this.glowing = null;
     
     this.gameScene = 0;
     this.noOfSuspect = 3;
@@ -41,6 +42,11 @@ Suspects.Game4.prototype =
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerDown(this.world.width*0.775, this.world.height*0.23, 50);
         
+        this.glowing = this.add.sprite(this.world.width*0.678, this.world.height*0.82, 'Glowing');
+        this.glowing.anchor.set(0.5,0.5);
+        this.glowing.scale.setTo(0.35,0.37);
+        this.glowing.visible = false;
+        
         this.suspectGroup = this.add.group();
         
         for(i = 0; i < this.noOfSuspect; i++)
@@ -62,21 +68,20 @@ Suspects.Game4.prototype =
         
         this.checkStar();
         
-        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
+        this.correct = this.add.sprite(this.world.width*0.68, this.world.height*0.4, 'Correct');
         this.correct.anchor.set(0.5,0.5);
-        this.correct.scale.setTo(0.5, 0.5);
+        this.correct.scale.setTo(0.4, 0.4);
         this.correct.visible = false;
-        
-        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.65, 'Wrong');
-        this.wrong.anchor.set(0.5,0.5);
-        this.wrong.scale.setTo(0.5, 0.5);
-        this.wrong.visible = false;
         
         this.guiltyFace = this.add.sprite(this.world.width*0.5, this.world.height*0.7, 'Lv4Suspect_3');
         this.guiltyFace.scale.setTo(1, 0.9);
         this.guiltyFace.animations.add('guilty', [3]);
         this.guiltyFace.anchor.set(0.5,0.5);
         this.guiltyFace.visible = false;
+        
+        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl4Gray');
+        this.gray.anchor.set(0.5,0.5);
+        this.gray.visible = false;
         
         this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
         this.jailBar.anchor.set(0.5,0.5);
@@ -88,10 +93,6 @@ Suspects.Game4.prototype =
         this.caseFailed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseFailed');
         this.caseFailed.anchor.set(0.5,0.5);
         this.caseFailed.visible = false;
-        
-        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl4Gray');
-        this.gray.anchor.set(0.5,0.5);
-        this.gray.visible = false;
         
         this.soundManager = new SoundManager(this);
         this.soundManager.createMusic('GameMusic');
@@ -145,6 +146,13 @@ Suspects.Game4.prototype =
         this.starFull4.visible = false;
     }, 
     
+    renderWrong: function(posX, posY)
+    {
+        this.wrong = this.add.sprite(posX, posY, 'Wrong');
+        this.wrong.anchor.set(0.5,0.5);
+        this.wrong.scale.setTo(0.5, 0.5);
+    },
+    
     suspectCheck: function()
     { 
         this.suspectGroup.forEach(function(suspects)
@@ -156,10 +164,12 @@ Suspects.Game4.prototype =
                 if(suspects.name == "person9")
                 {
                     this.wrongSuspect();
+                    this.renderWrong(this.world.width*0.26, this.world.height*0.4);
                 }
                 if(suspects.name == "person10")
                 {
                     this.wrongSuspect();
+                    this.renderWrong(this.world.width*0.47, this.world.height*0.4);
                 }
                 if(suspects.name == "person11")
                 {
@@ -175,15 +185,10 @@ Suspects.Game4.prototype =
         this.timeManager.timeStop();
         this.suspectsManager.isClicked = true;
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this);  
-    }, 
-                                                                                          
-    correctAppear: function()
-    {
-        this.gray.visible = false;
         this.correct.visible = true;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this);
-    },
+        this.glowing.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);  
+    }, 
     
     correctDisappear: function()
     {
@@ -191,7 +196,9 @@ Suspects.Game4.prototype =
         tween = this.add.tween(this.starFull4.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this);
         Suspects.fourthStar = true;
+        this.gray.visible = false;
         this.correct.visible = false;
+        this.glowing.visible = false;
     },
     
     starAppear: function()
@@ -200,7 +207,7 @@ Suspects.Game4.prototype =
         this.destroyItems();
         this.guiltyFace.animations.play('guilty',4, false);
         var tween = null;
-        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },800, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
         this.timeManager.timeStop();
     },
@@ -223,19 +230,15 @@ Suspects.Game4.prototype =
         this.suspectsManager.isClicked = true;
         this.timeManager.timeStop();
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.wrongAppear, this);
-    },
-    
-    wrongAppear: function()
-    {
-        this.gray.visible = false;
-        this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongDisappear, this);
+        this.glowing.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.wrongDisappear, this);
     },
                                                     
     wrongDisappear: function()
     {
+        this.gray.visible = false;
         this.wrong.visible = false;
+        this.glowing.visible = false;
         var caseOutTime = this.time.events.add(Phaser.Timer.SECOND* 0.5, this.caseFailedOut, this);
     },
     

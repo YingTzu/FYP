@@ -16,6 +16,7 @@ Suspects.Tutorial = function(game)
     this.correct = null;
     this.wrong = null;
     this.jailBar = null;
+    this.glowing = null;
     
     this.suspectGroup = null;
 };
@@ -31,6 +32,11 @@ Suspects.Tutorial.prototype =
         //Button
         this.buttonManager = new ButtonManager(this);
         
+        this.glowing = this.add.sprite(this.world.width*0.4, this.world.height*0.81, 'Glowing');
+        this.glowing.anchor.set(0.5,0.5);
+        this.glowing.scale.setTo(0.3,0.28);
+        this.glowing.visible = false;
+        
         this.suspectGroup = this.add.group();
         
         for(i = 0; i < 2; i++)
@@ -39,13 +45,13 @@ Suspects.Tutorial.prototype =
             this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
-        
-        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.63, 'Correct');
+  
+        this.correct = this.add.sprite(this.world.width*0.41, this.world.height*0.4, 'Correct');
         this.correct.anchor.set(0.5,0.5);
-        this.correct.scale.setTo(0.5, 0.5);
+        this.correct.scale.setTo(0.4, 0.4);
         this.correct.visible = false;
         
-        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.63, 'Wrong');
+        this.wrong = this.add.sprite(this.world.width*0.61, this.world.height*0.4, 'Wrong');
         this.wrong.anchor.set(0.5,0.5);
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
@@ -142,22 +148,19 @@ Suspects.Tutorial.prototype =
     correctSuspect: function()
     {
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this);
+        this.correct.visible = true;
+        this.glowing.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this);
         this.suspectsManager.isClicked = true;
     }, 
-                                                    
-    correctAppear: function()
-    {
-        this.correct.visible = true;
-        this.gray.visible = false;
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this);
-    },
     
     correctDisappear: function()
     {
+        this.gray.visible = false;
         this.correct.visible = false;
+        this.glowing.visible = false;
         var tween = null;
-        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },800, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
     },
     

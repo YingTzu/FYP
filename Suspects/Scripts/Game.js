@@ -42,6 +42,11 @@ Suspects.Game.prototype =
         this.timeManager = new TimeManager(this);
         this.timeManager.createTimerDown(this.world.width*0.775, this.world.height*0.23, 60);
         
+        this.glowing = this.add.sprite(this.world.width*0.61, this.world.height*0.8, 'Glowing');
+        this.glowing.anchor.set(0.5,0.5);
+        this.glowing.scale.setTo(0.31,0.3);
+        this.glowing.visible = false;
+        
         this.suspectGroup = this.add.group();
         
         for(i = 0; i < this.noOfSuspect; i++)
@@ -50,7 +55,7 @@ Suspects.Game.prototype =
             this.suspectsManager.create(this.world.width*0.4+200*i, this.world.height*0.777, i+2);
             this.suspectGroup.add(this.suspectsManager.theSuspects);
         }
-        
+
         this.reference = this.add.sprite(this.world.width*0.815, this.world.height*0.435, 'Lvl1Reference');
         this.reference.anchor.set(0.5,0.5);
         var tween = this.add.tween(this.reference.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Linear.None, true);
@@ -65,12 +70,12 @@ Suspects.Game.prototype =
         this.starFull.anchor.set(0.5,0.5);
         this.starFull.visible = false;
     
-        this.correct = this.add.sprite(this.world.width*0.5, this.world.height*0.6, 'Correct');
+        this.correct = this.add.sprite(this.world.width*0.61, this.world.height*0.4, 'Correct');
         this.correct.anchor.set(0.5,0.5);
-        this.correct.scale.setTo(0.5, 0.5);
+        this.correct.scale.setTo(0.4, 0.4);
         this.correct.visible = false;
         
-        this.wrong = this.add.sprite(this.world.width*0.5, this.world.height*0.65, 'Wrong');
+        this.wrong = this.add.sprite(this.world.width*0.41, this.world.height*0.4, 'Wrong');
         this.wrong.anchor.set(0.5,0.5);
         this.wrong.scale.setTo(0.5, 0.5);
         this.wrong.visible = false;
@@ -80,6 +85,10 @@ Suspects.Game.prototype =
         this.guiltyFace.anchor.set(0.5,0.5);
         this.guiltyFace.animations.add('guilty', [3]);
         this.guiltyFace.visible = false;
+        
+        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl1Gray');
+        this.gray.anchor.set(0.5,0.5);
+        this.gray.visible = false;
         
         this.jailBar = this.add.sprite(this.world.width*0.5, -this.world.height*0.5, 'JailBar');
         this.jailBar.anchor.set(0.5,0.5);
@@ -91,10 +100,6 @@ Suspects.Game.prototype =
         this.caseFailed = this.add.sprite(this.world.width*0.5, this.world.height*0.45, 'CaseFailed');
         this.caseFailed.anchor.set(0.5,0.5);
         this.caseFailed.visible = false;
-        
-        this.gray = this.add.sprite(this.world.width*0.5, this.world.height*0.5, 'Lvl1Gray');
-        this.gray.anchor.set(0.5,0.5);
-        this.gray.visible = false;
         
         this.soundManager = new SoundManager(this);
         this.soundManager.createMusic('GameMusic');
@@ -159,19 +164,17 @@ Suspects.Game.prototype =
         this.timeManager.timeStop(); //stop timing
         this.suspectsManager.isClicked = true; //To disable the click input of suspect
         this.gray.visible = true; //grayscale visible set to true
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctAppear, this); //call correctAppear function after 2 sec
+        this.glowing.visible = true;
+        this.correct.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 2, this.correctDisappear, this); //call correctAppear function after 2 sec
     }, 
-                                                                                          
-    correctAppear: function()
-    {
-        this.gray.visible = false; //grayscale visible set to false
-        this.correct.visible = true; //correct image visible set to true
-        var correctTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.correctDisappear, this); //call correctDisppear function after 1 sec
-    },
     
     correctDisappear: function()
     {
         this.starFull.visible = true;
+        this.gray.visible = false;
+        this.glowing.visible = false;
+        this.correct.visible = false;
         tween = this.add.tween(this.starFull.scale).to( { x: 1.01, y: 1.01 }, 1000, Phaser.Easing.Bounce.Out, true);
         tween.onComplete.add(this.starAppear, this); //call starAppear function after star is appear
         Suspects.firstStar = true;
@@ -184,7 +187,7 @@ Suspects.Game.prototype =
         this.destroyItems();
         this.guiltyFace.animations.play('guilty',4, false);
         var tween = null;
-        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },1000, Phaser.Easing.linear, true);
+        tween = this.add.tween(this.jailBar).to({y: this.world.height*0.5 },800, Phaser.Easing.linear, true);
         tween.onComplete.add(this.whenDown, this);
         this.timeManager.timeStop();
     },
@@ -208,14 +211,9 @@ Suspects.Game.prototype =
         this.suspectsManager.isClicked = true;
         this.timeManager.timeStop();
         this.gray.visible = true;
-        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.wrongAppear, this);
-    },
-    
-    wrongAppear: function()
-    {
-        this.gray.visible = false;
         this.wrong.visible = true;
-        var wrongTime = this.time.events.add(Phaser.Timer.SECOND* 1, this.wrongDisappear, this);
+        this.glowing.visible = true;
+        var garyTime = this.time.events.add(Phaser.Timer.SECOND* 3, this.wrongDisappear, this);
     },
                                                     
     wrongDisappear: function()
