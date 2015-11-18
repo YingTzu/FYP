@@ -40,7 +40,7 @@ Suspects.Game4.prototype =
         this.gameBackground.anchor.set(0.5,0.5);
         
         this.timeManager = new TimeManager(this);
-        this.timeManager.createTimerDown(this.world.width*0.775, this.world.height*0.23, 50);
+        this.timeManager.createTimerDown(this.world.width*0.772, this.world.height*0.23, 50);
         
         this.glowing = this.add.sprite(this.world.width*0.678, this.world.height*0.82, 'Glowing');
         this.glowing.anchor.set(0.5,0.5);

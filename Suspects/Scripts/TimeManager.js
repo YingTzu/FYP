@@ -64,6 +64,10 @@ TimeManager.prototype.timeCountDown = function()
         this.timeDown --;
     }
     this.timeText.setText('00:' + this.timeDown);
+    if(this.timeDown < 10)
+    {
+        this.timeText.setText('00:0' + this.timeDown);
+    }
     if(this.timeDown <= 0)
     {
         this.gameOver = true;
