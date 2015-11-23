@@ -94,7 +94,7 @@ Suspects.Game3.prototype =
         this.caseFailed.visible = false;
         
         this.soundManager = new SoundManager(this);
-        this.soundManager.createMusic('GameMusic');
+        //this.soundManager.createMusic('GameMusic');
         
         //Button
         this.buttonManager = new ButtonManager(this);
@@ -258,7 +258,7 @@ Suspects.Game3.prototype =
     
     goNextLevel: function()
     {
-        this.soundManager.stopMusic();
+        //this.soundManager.stopMusic();
         this.gameScene = 5;
         Suspects.FadeScreen.OnEnd = true;
     },

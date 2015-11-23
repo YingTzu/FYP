@@ -18,7 +18,7 @@ Suspects.MainMenu.prototype =
         this.soundManager.createMusic('MenuMusic');
         
         this.buttonManager = new ButtonManager(this);
-        this.buttonManager.createButton(this.world.width*0.513, this.world.height*0.7, 'Play', this.buttonManager.GoToTutorial);
+        this.buttonManager.createButton(this.world.width*0.513, this.world.height*0.7, 'Play', this.buttonManager.StartGame);
         
         //Fade in and out
         Suspects.FadeScreen = new FadeManager(this);

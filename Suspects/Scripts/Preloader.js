@@ -8,6 +8,7 @@ Suspects.Preloader = function(game)
     this.secondStar = false;
     this.thirdStar = false;
     this.fourthStar = false;
+    this.gameMusic = false;
 };
 
 Suspects.Preloader.prototype = 
